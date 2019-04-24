@@ -1,1 +1,1 @@
-language: javajdk:- oraclejdk8sudo: falsescript: mvn cobertura:coberturaenv:  global:  - CODECOV_TOKEN=:35dabd8b-42ee-414c-8334-182328e24ec8after_success:- bash <(curl -s https://codecov.io/bash)
+language: javajdk:- oraclejdk8sudo: falsescript: "mvn cobertura:cobertura"after_success:- bash <(curl -s https://codecov.io/bash)
