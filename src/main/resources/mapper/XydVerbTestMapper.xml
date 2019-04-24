@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xfkj.mapper.XydVerbTestMapper">
+  <resultMap id="BaseResultMap" type="com.xfkj.model.XydVerbTest">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="start_slideshow" jdbcType="VARCHAR" property="startSlideshow" />
+    <result column="end_slideshow" jdbcType="VARCHAR" property="endSlideshow" />
+    <result column="verb_type" jdbcType="VARCHAR" property="verbType" />
+    <result column="verb_image" jdbcType="VARCHAR" property="verbImage" />
+    <result column="verb_char" jdbcType="VARCHAR" property="verbChar" />
+    <result column="verb_record" jdbcType="VARCHAR" property="verbRecord" />
+    <result column="card_image" jdbcType="VARCHAR" property="cardImage" />
+    <result column="card_char" jdbcType="VARCHAR" property="cardChar" />
+    <result column="card_record" jdbcType="VARCHAR" property="cardRecord" />
+    <result column="group_image" jdbcType="VARCHAR" property="groupImage" />
+    <result column="group_char" jdbcType="VARCHAR" property="groupChar" />
+    <result column="group_record" jdbcType="VARCHAR" property="groupRecord" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="card_one_time" jdbcType="INTEGER" property="cardOneTime" />
+    <result column="card_two_time" jdbcType="INTEGER" property="cardTwoTime" />
+    <result column="states" jdbcType="CHAR" property="states" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, start_slideshow, end_slideshow, verb_type, verb_image, verb_char, verb_record, 
+    card_image, card_char, card_record, group_image, group_char, group_record, create_time, 
+    update_time, states,card_one_time,card_two_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from xyd_verb_test
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <select id="selectAllByRand" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from xyd_verb_test
+    WHERE states="1"
+    ORDER BY rand() limit 10
+  </select>
+
+  <select id="selectByType"  resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from xyd_verb_test
+    WHERE states="1"
+    and verb_type = #{verbType} and card_char = #{cardChar}
+    ORDER BY rand() limit 1
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from xyd_verb_test
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xfkj.model.XydVerbTest">
+    insert into xyd_verb_test (id, start_slideshow, end_slideshow, 
+      verb_type, verb_image, verb_char, 
+      verb_record, card_image, card_char, 
+      card_record, group_image, group_char, 
+      group_record, create_time, update_time, 
+      states)
+    values (#{id,jdbcType=INTEGER}, #{startSlideshow,jdbcType=VARCHAR}, #{endSlideshow,jdbcType=VARCHAR}, 
+      #{verbType,jdbcType=VARCHAR}, #{verbImage,jdbcType=VARCHAR}, #{verbChar,jdbcType=VARCHAR}, 
+      #{verbRecord,jdbcType=VARCHAR}, #{cardImage,jdbcType=VARCHAR}, #{cardChar,jdbcType=VARCHAR}, 
+      #{cardRecord,jdbcType=VARCHAR}, #{groupImage,jdbcType=VARCHAR}, #{groupChar,jdbcType=VARCHAR}, 
+      #{groupRecord,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{states,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xfkj.model.XydVerbTest">
+    insert into xyd_verb_test
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="startSlideshow != null">
+        start_slideshow,
+      </if>
+      <if test="endSlideshow != null">
+        end_slideshow,
+      </if>
+      <if test="verbType != null">
+        verb_type,
+      </if>
+      <if test="verbImage != null">
+        verb_image,
+      </if>
+      <if test="verbChar != null">
+        verb_char,
+      </if>
+      <if test="verbRecord != null">
+        verb_record,
+      </if>
+      <if test="cardImage != null">
+        card_image,
+      </if>
+      <if test="cardChar != null">
+        card_char,
+      </if>
+      <if test="cardRecord != null">
+        card_record,
+      </if>
+      <if test="groupImage != null">
+        group_image,
+      </if>
+      <if test="groupChar != null">
+        group_char,
+      </if>
+      <if test="groupRecord != null">
+        group_record,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="states != null">
+        states,
+      </if>
+      <if test="cardOneTime != null">
+        card_one_time,
+      </if>
+      <if test="cardTwoTime != null">
+        card_two_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="startSlideshow != null">
+        #{startSlideshow,jdbcType=VARCHAR},
+      </if>
+      <if test="endSlideshow != null">
+        #{endSlideshow,jdbcType=VARCHAR},
+      </if>
+      <if test="verbType != null">
+        #{verbType,jdbcType=VARCHAR},
+      </if>
+      <if test="verbImage != null">
+        #{verbImage,jdbcType=VARCHAR},
+      </if>
+      <if test="verbChar != null">
+        #{verbChar,jdbcType=VARCHAR},
+      </if>
+      <if test="verbRecord != null">
+        #{verbRecord,jdbcType=VARCHAR},
+      </if>
+      <if test="cardImage != null">
+        #{cardImage,jdbcType=VARCHAR},
+      </if>
+      <if test="cardChar != null">
+        #{cardChar,jdbcType=VARCHAR},
+      </if>
+      <if test="cardRecord != null">
+        #{cardRecord,jdbcType=VARCHAR},
+      </if>
+      <if test="groupImage != null">
+        #{groupImage,jdbcType=VARCHAR},
+      </if>
+      <if test="groupChar != null">
+        #{groupChar,jdbcType=VARCHAR},
+      </if>
+      <if test="groupRecord != null">
+        #{groupRecord,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="states != null">
+        #{states,jdbcType=CHAR},
+      </if>
+      <if test="cardOneTime != null">
+        #{cardOneTime},
+      </if>
+      <if test="cardTwoTime != null">
+        #{cardTwoTime},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xfkj.model.XydVerbTest">
+    update xyd_verb_test
+    <set>
+      <if test="startSlideshow != null">
+        start_slideshow = #{startSlideshow,jdbcType=VARCHAR},
+      </if>
+      <if test="endSlideshow != null">
+        end_slideshow = #{endSlideshow,jdbcType=VARCHAR},
+      </if>
+      <if test="verbType != null">
+        verb_type = #{verbType,jdbcType=VARCHAR},
+      </if>
+      <if test="verbImage != null">
+        verb_image = #{verbImage,jdbcType=VARCHAR},
+      </if>
+      <if test="verbChar != null">
+        verb_char = #{verbChar,jdbcType=VARCHAR},
+      </if>
+      <if test="verbRecord != null">
+        verb_record = #{verbRecord,jdbcType=VARCHAR},
+      </if>
+      <if test="cardImage != null">
+        card_image = #{cardImage,jdbcType=VARCHAR},
+      </if>
+      <if test="cardChar != null">
+        card_char = #{cardChar,jdbcType=VARCHAR},
+      </if>
+      <if test="cardRecord != null">
+        card_record = #{cardRecord,jdbcType=VARCHAR},
+      </if>
+      <if test="groupImage != null">
+        group_image = #{groupImage,jdbcType=VARCHAR},
+      </if>
+      <if test="groupChar != null">
+        group_char = #{groupChar,jdbcType=VARCHAR},
+      </if>
+      <if test="groupRecord != null">
+        group_record = #{groupRecord,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="states != null">
+        states = #{states,jdbcType=CHAR},
+      </if>
+      <if test="cardOneTime != null">
+       card_one_time = #{cardOneTime},
+      </if>
+      <if test="cardTwoTime != null">
+        card_two_time = #{cardTwoTime},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xfkj.model.XydVerbTest">
+    update xyd_verb_test
+    set start_slideshow = #{startSlideshow,jdbcType=VARCHAR},
+      end_slideshow = #{endSlideshow,jdbcType=VARCHAR},
+      verb_type = #{verbType,jdbcType=VARCHAR},
+      verb_image = #{verbImage,jdbcType=VARCHAR},
+      verb_char = #{verbChar,jdbcType=VARCHAR},
+      verb_record = #{verbRecord,jdbcType=VARCHAR},
+      card_image = #{cardImage,jdbcType=VARCHAR},
+      card_char = #{cardChar,jdbcType=VARCHAR},
+      card_record = #{cardRecord,jdbcType=VARCHAR},
+      group_image = #{groupImage,jdbcType=VARCHAR},
+      group_char = #{groupChar,jdbcType=VARCHAR},
+      group_record = #{groupRecord,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      states = #{states,jdbcType=CHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByParamCount" parameterType="com.xfkj.common.query.GenericQueryParam" resultType="Integer">
+    select
+    count(id)
+    from xyd_verb_test
+    <where> 1=1
+      <if test="groupchar != null">
+        and group_char = #{groupchar}
+      </if>
+    </where>
+  </select>
+
+  <select id="selectByParamList" parameterType="com.xfkj.common.query.GenericQueryParam" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from
+    xyd_verb_test
+    <where> 1=1
+      <if test="groupchar != null">
+        and group_char LIKE #{groupchar}
+      </if>
+    </where>
+  </select>
+</mapper>

@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xfkj.mapper.XydResultAnalyzeMapper">
+  <resultMap id="BaseResultMap" type="com.xfkj.model.XydResultAnalyze">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="is_optional" jdbcType="CHAR" property="isOptional" />
+    <result column="month_age" jdbcType="INTEGER" property="monthAge" />
+    <result column="sex" jdbcType="CHAR" property="sex" />
+    <result column="state_score" jdbcType="INTEGER" property="stateScore" />
+    <result column="end_score" jdbcType="INTEGER" property="endScore" />
+    <result column="state_percent" jdbcType="INTEGER" property="statePercent" />
+    <result column="end_percent" jdbcType="INTEGER" property="endPercent" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="states" jdbcType="VARCHAR" property="states" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, is_optional, month_age, sex, state_score, end_score, state_percent, end_percent, 
+    create_time, update_time, states
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from xyd_result_analyze
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from xyd_result_analyze
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xfkj.model.XydResultAnalyze">
+    insert into xyd_result_analyze (id, is_optional, month_age, 
+      sex, state_score, end_score, 
+      state_percent, end_percent, create_time, 
+      update_time, states)
+    values (#{id,jdbcType=INTEGER}, #{isOptional,jdbcType=CHAR}, #{monthAge,jdbcType=INTEGER}, 
+      #{sex,jdbcType=CHAR}, #{stateScore,jdbcType=INTEGER}, #{endScore,jdbcType=INTEGER}, 
+      #{statePercent,jdbcType=INTEGER}, #{endPercent,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{states,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xfkj.model.XydResultAnalyze">
+    insert into xyd_result_analyze
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="isOptional != null">
+        is_optional,
+      </if>
+      <if test="monthAge != null">
+        month_age,
+      </if>
+      <if test="sex != null">
+        sex,
+      </if>
+      <if test="stateScore != null">
+        state_score,
+      </if>
+      <if test="endScore != null">
+        end_score,
+      </if>
+      <if test="statePercent != null">
+        state_percent,
+      </if>
+      <if test="endPercent != null">
+        end_percent,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="states != null">
+        states,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="isOptional != null">
+        #{isOptional,jdbcType=CHAR},
+      </if>
+      <if test="monthAge != null">
+        #{monthAge,jdbcType=INTEGER},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=CHAR},
+      </if>
+      <if test="stateScore != null">
+        #{stateScore,jdbcType=INTEGER},
+      </if>
+      <if test="endScore != null">
+        #{endScore,jdbcType=INTEGER},
+      </if>
+      <if test="statePercent != null">
+        #{statePercent,jdbcType=INTEGER},
+      </if>
+      <if test="endPercent != null">
+        #{endPercent,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="states != null">
+        #{states,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xfkj.model.XydResultAnalyze">
+    update xyd_result_analyze
+    <set>
+      <if test="isOptional != null">
+        is_optional = #{isOptional,jdbcType=CHAR},
+      </if>
+      <if test="monthAge != null">
+        month_age = #{monthAge,jdbcType=INTEGER},
+      </if>
+      <if test="sex != null">
+        sex = #{sex,jdbcType=CHAR},
+      </if>
+      <if test="stateScore != null">
+        state_score = #{stateScore,jdbcType=INTEGER},
+      </if>
+      <if test="endScore != null">
+        end_score = #{endScore,jdbcType=INTEGER},
+      </if>
+      <if test="statePercent != null">
+        state_percent = #{statePercent,jdbcType=INTEGER},
+      </if>
+      <if test="endPercent != null">
+        end_percent = #{endPercent,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="states != null">
+        states = #{states,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xfkj.model.XydResultAnalyze">
+    update xyd_result_analyze
+    set is_optional = #{isOptional,jdbcType=CHAR},
+      month_age = #{monthAge,jdbcType=INTEGER},
+      sex = #{sex,jdbcType=CHAR},
+      state_score = #{stateScore,jdbcType=INTEGER},
+      end_score = #{endScore,jdbcType=INTEGER},
+      state_percent = #{statePercent,jdbcType=INTEGER},
+      end_percent = #{endPercent,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      states = #{states,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectByCountList" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from xyd_result_analyze
+    where 1 = 1
+    <if test="xydResultAnalyze.isOptional != null">
+      AND is_optional = #{xydResultAnalyze.isOptional,jdbcType=CHAR}
+    </if>
+    <if test="xydResultAnalyze.monthAge != null">
+      AND  month_age = #{xydResultAnalyze.monthAge,jdbcType=INTEGER}
+    </if>
+    <if test="xydResultAnalyze.sex != null">
+      AND sex = #{xydResultAnalyze.sex,jdbcType=CHAR}
+    </if>
+    <if test="xydResultAnalyze.states != null">
+      AND  states = #{xydResultAnalyze.states,jdbcType=VARCHAR}
+    </if>
+    <if test="count != null">
+      AND  #{count} BETWEEN state_score AND end_score
+    </if>
+  </select>
+</mapper>

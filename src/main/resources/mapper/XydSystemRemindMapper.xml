@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xfkj.mapper.XydSystemRemindMapper">
+  <resultMap id="BaseResultMap" type="com.xfkj.model.XydSystemRemind">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="parents_id" jdbcType="INTEGER" property="parentsId" />
+    <result column="is_remind" jdbcType="CHAR" property="isRemind" />
+    <result column="states" jdbcType="VARCHAR" property="states" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, type, title, user_id, parents_id, is_remind, states, create_time, update_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from xyd_system_remind
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from xyd_system_remind
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xfkj.model.XydSystemRemind">
+    insert into xyd_system_remind (id, type, title, 
+      user_id, parents_id, is_remind,
+      states, create_time, update_time
+      )
+    values (#{id,jdbcType=INTEGER}, #{type,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, 
+      #{userId,jdbcType=INTEGER}, #{parentsId,jdbcType=INTEGER}, #{isRemind,jdbcType=CHAR},
+      #{states,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.xfkj.model.XydSystemRemind">
+    insert into xyd_system_remind
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="parentsId != null">
+        parents_id,
+      </if>
+      <if test="isRemind != null">
+        is_remind,
+      </if>
+      <if test="states != null">
+        states,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="parentsId != null">
+        #{parentsId,jdbcType=INTEGER},
+      </if>
+      <if test="isRemind != null">
+        #{isRemind,jdbcType=CHAR},
+      </if>
+      <if test="states != null">
+        #{states,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xfkj.model.XydSystemRemind">
+    update xyd_system_remind
+    <set>
+      <if test="type != null">
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="parentsId != null">
+        parents_id = #{parentsId,jdbcType=INTEGER},
+      </if>
+      <if test="isRemind != null">
+        is_remind = #{isRemind,jdbcType=CHAR},
+      </if>
+      <if test="states != null">
+        states = #{states,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xfkj.model.XydSystemRemind">
+    update xyd_system_remind
+    set type = #{type,jdbcType=VARCHAR},
+      title = #{title,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=INTEGER},
+      parents_id = #{parentsId,jdbcType=INTEGER},
+      is_remind = #{isRemind,jdbcType=CHAR},
+      states = #{states,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectList" parameterType="com.xfkj.model.XydSystemRemind" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from xyd_system_remind
+    WHERE 1 = 1
+    <if test="type != null">
+      AND type = #{type,jdbcType=VARCHAR}
+    </if>
+    <if test="title != null">
+      AND title = #{title,jdbcType=VARCHAR}
+    </if>
+    <if test="userId != null">
+      AND user_id = #{userId,jdbcType=INTEGER}
+    </if>
+    <if test="parentsId != null">
+      AND parents_id = #{parentsId,jdbcType=INTEGER}
+    </if>
+    <if test="isRemind != null">
+      AND is_remind = #{isRemind,jdbcType=CHAR}
+    </if>
+    <if test="states != null">
+      AND states = #{states,jdbcType=VARCHAR}
+    </if>
+    <if test="createTime != null">
+      AND create_time = #{createTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="updateTime != null">
+      AND update_time = #{updateTime,jdbcType=TIMESTAMP}
+    </if>
+  </select>
+
+  <select id="selecPrefectCount"  resultType="java.lang.Integer">
+    select
+    COUNT(distinct parents_id)
+    from xyd_system_remind
+    where type = "2" AND is_remind = "2"
+  </select>
+
+  <update id="updateRemind" parameterType="java.lang.Integer">
+    UPDATE  xyd_system_remind
+    SET is_remind ="1" , states ="2"
+    where parents_id = #{parentsId,jdbcType=INTEGER} AND (type ="1" OR type ="3")
+  </update>
+
+</mapper>

@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xfkj.mapper.XydSystemStatisticsMapper">
+  <resultMap id="BaseResultMap" type="com.xfkj.model.XydSystemStatistics">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="learning_time" jdbcType="INTEGER" property="learningTime" />
+    <result column="rate" jdbcType="DECIMAL" property="rate" />
+    <result column="module" jdbcType="VARCHAR" property="module" />
+    <result column="pass_number" jdbcType="INTEGER" property="passNumber" />
+    <result column="states" jdbcType="VARCHAR" property="states" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="child_module" jdbcType="CHAR" property="childModule" />
+    <result column="rate1" jdbcType="DECIMAL" property="rate1" />
+    <result column="is_pass" jdbcType="CHAR" property="isPass" />
+    <result column="player" jdbcType="INTEGER" property="player" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, user_id, learning_time,rate, module, pass_number, states, create_time, update_time, child_module,count,
+    rate1,is_pass,player
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from xyd_system_statistics
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <select id="selectJinDU"  resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from xyd_system_statistics
+    where user_id = #{userId,jdbcType=INTEGER} and module = #{module}
+  </select>
+  <select id="selectNew" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from xyd_system_statistics
+    where user_id = #{userId,jdbcType=INTEGER}
+    order by create_time desc limit 1
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from xyd_system_statistics
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xfkj.model.XydSystemStatistics">
+    insert into xyd_system_statistics (id, user_id, learning_time,rate,
+      module, pass_number, states, 
+      create_time, update_time, player)
+    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{learningTime,jdbcType=INTEGER}, #{rate,jdbcType=DECIMAL},
+      #{module,jdbcType=VARCHAR}, #{passNumber,jdbcType=INTEGER}, #{states,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{player,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xfkj.model.XydSystemStatistics">
+    insert into xyd_system_statistics
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="learningTime != null">
+        learning_time,
+      </if>
+      <if test="rate != null">
+        rate,
+      </if>
+      <if test="module != null">
+        module,
+      </if>
+      <if test="passNumber != null">
+        pass_number,
+      </if>
+      <if test="states != null">
+        states,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="childModule != null">
+        child_module,
+      </if>
+      <if test="count != null">
+        count,
+      </if>
+      <if test="isPass != null">
+        is_pass,
+      </if>
+      <if test="rate1 != null">
+        rate1,
+      </if>
+      <if test="player != null">
+        player,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="learningTime != null">
+        #{learningTime,jdbcType=INTEGER},
+      </if>
+      <if test="rate != null">
+        #{rate,jdbcType=DECIMAL},
+      </if>
+      <if test="module != null">
+        #{module,jdbcType=VARCHAR},
+      </if>
+      <if test="passNumber != null">
+        #{passNumber,jdbcType=INTEGER},
+      </if>
+      <if test="states != null">
+        #{states,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="childModule != null">
+        #{childModule},
+      </if>
+      <if test="count != null">
+        #{count},
+      </if>
+      <if test="isPass != null">
+        #{is_pass},
+      </if>
+      <if test="rate1 != null">
+        #{rate1},
+      </if>
+      <if test="player != null">
+        #{player},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xfkj.model.XydSystemStatistics">
+    update xyd_system_statistics
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="learningTime != null">
+        learning_time = #{learningTime,jdbcType=INTEGER},
+      </if>
+      <if test="rate != null">
+        rate = #{rate,jdbcType=DECIMAL},
+      </if>
+      <if test="module != null">
+        module = #{module,jdbcType=VARCHAR},
+      </if>
+      <if test="passNumber != null">
+        pass_number = #{passNumber,jdbcType=INTEGER},
+      </if>
+      <if test="states != null">
+        states = #{states,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="childModule != null">
+        child_module = #{childModule},
+      </if>
+      <if test="count != null">
+        count = #{count},
+      </if>
+      <if test="rate1 != null">
+        rate1 = #{rate1},
+      </if>
+      <if test="isPass != null">
+        is_pass = #{isPass},
+      </if>
+      <if test="player != null">
+        player = #{player},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xfkj.model.XydSystemStatistics">
+    update xyd_system_statistics
+    set user_id = #{userId,jdbcType=INTEGER},
+      learning_time = #{learningTime,jdbcType=INTEGER},
+      rate = #{rate,jdbcType=DECIMAL},
+      module = #{module,jdbcType=VARCHAR},
+      pass_number = #{passNumber,jdbcType=INTEGER},
+      states = #{states,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      player = #{player,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectSumStudyTime" parameterType="java.lang.Integer" resultType="java.lang.Long">
+    select
+    sum(learning_time)
+    from xyd_system_statistics
+    where user_id = #{userId}
+  </select>
+  <select id="selectPlayerResultList" parameterType="com.xfkj.model.XydSystemStatistics" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from xyd_system_statistics
+    where 1 = 1
+    <if test="userId != null">
+      AND user_id = #{userId,jdbcType=INTEGER}
+    </if>
+    <if test="module != null">
+      AND  module = #{module,jdbcType=VARCHAR}
+    </if>
+    <if test="states != null">
+      AND  states = #{states,jdbcType=VARCHAR}
+    </if>
+    <if test="createTime != null">
+      AND  create_time = #{createTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="updateTime != null">
+      AND  update_time = #{updateTime,jdbcType=TIMESTAMP}
+    </if>
+    ORDER BY create_time ASC
+  </select>
+
+  <select id="selectSumRate" parameterType="com.xfkj.model.XydSystemStatistics" resultType="java.lang.Double">
+    select
+    SUM(rate1)
+    from xyd_system_statistics
+    where 1 = 1
+    <if test="userId != null">
+      AND user_id = #{userId,jdbcType=INTEGER}
+    </if>
+    <if test="states != null">
+      AND  states = #{states,jdbcType=VARCHAR}
+    </if>
+  </select>
+
+  <select id="selectList" parameterType="com.xfkj.model.XydSystemStatistics" resultMap="BaseResultMap">
+    select
+      <include refid="Base_Column_List" />
+    from xyd_system_statistics
+    where 1 = 1
+    <if test="userId != null">
+      AND user_id = #{userId,jdbcType=INTEGER}
+    </if>
+    <if test="module != null">
+      AND module = #{module,jdbcType=VARCHAR}
+    </if>
+    <if test="states != null">
+      AND  states = #{states,jdbcType=VARCHAR}
+    </if>
+    <if test="createTime != null">
+      AND  create_time = #{createTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="updateTime != null">
+      AND  update_time = #{updateTime,jdbcType=TIMESTAMP}
+    </if>
+    ORDER BY create_time DESC
+  </select>
+
+  <select id="selectPlayerCount" parameterType="com.xfkj.model.XydSystemStatistics" resultType="java.lang.Integer">
+    select
+    COUNT(distinct user_id)
+    from xyd_system_statistics
+    where 1 = 1
+    <if test="module != null">
+      AND  module = #{module,jdbcType=VARCHAR}
+    </if>
+    <if test="rate1 != null">
+      AND  rate1 = #{rate1,jdbcType=VARCHAR}
+    </if>
+    AND  states = "1"
+  </select>
+
+  <select id="selectDayCount"  resultType="java.util.LinkedHashMap">
+   SELECT d.days, IF(xyd.coun IS NULL , 0, xyd.coun) as coun
+        FROM
+            (select adddate( DATE_FORMAT( #{startTime},'%Y-%m-%d'), numlist.id) as days
+            from (SELECT n1.i + n10.i*10 + n100.i*100 AS id FROM num n1 cross join num as n10 cross join num as n100) as numlist
+            where adddate( DATE_FORMAT( #{startTime},'%Y-%m-%d'), numlist.id) &lt;=  DATE_FORMAT(#{endTime},'%Y-%m-%d'))
+        as d LEFT JOIN
+            ( select DATE_FORMAT(create_time,'%Y-%m-%d') days , 	COUNT(distinct user_id) coun
+            from xyd_system_statistics
+            where  module = "4" AND rate1 = "1" AND
+            DATE_FORMAT(create_time, '%Y%m%d') BETWEEN  DATE_FORMAT( #{startTime}, '%Y%m%d' ) AND DATE_FORMAT( #{endTime}, '%Y%m%d' )
+            group by days)
+        as xyd
+        on d.days = xyd.days
+  </select>
+
+  <select id="selectTotalCount"  resultType="java.util.LinkedHashMap">
+     SELECT d.days, IF(xyd.tota IS NULL , 0, xyd.tota) as total
+        FROM
+            (select adddate( DATE_FORMAT( #{startTime},'%Y-%m-%d'), numlist.id) as days
+            from (SELECT n1.i + n10.i*10 + n100.i*100 AS id FROM num n1 cross join num as n10 cross join num as n100) as numlist
+            where adddate( DATE_FORMAT( #{startTime},'%Y-%m-%d'), numlist.id) &lt;=  DATE_FORMAT(#{endTime},'%Y-%m-%d'))
+        as d LEFT JOIN
+            (  select grp.* from ( select DATE_FORMAT(create_time,'%Y-%m-%d') days  ,(select count(distinct user_id)
+              from xyd_system_statistics as i
+              where  i.create_time &lt;= xss.create_time and i.module = "4" and i.rate1="1"
+            ) as tota
+            from xyd_system_statistics as xss
+            where xss.module = "4" AND xss.rate1 = "1"
+            AND xss.create_time BETWEEN  #{startTime} AND #{endTime} order by tota DESC
+            	) grp GROUP BY days
+		) as xyd
+        on d.days = xyd.days
+  </select>
+</mapper>

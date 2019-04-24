@@ -1,0 +1,501 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xfkj.mapper.XydGroupTrainingMapper">
+  <resultMap id="BaseResultMap" type="com.xfkj.model.XydGroupTraining">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="training_idlist" jdbcType="VARCHAR" property="trainingIdlist" />
+    <result column="scene" jdbcType="VARCHAR" property="scene" />
+    <result column="module" jdbcType="VARCHAR" property="module" />
+    <result column="start_time" jdbcType="TIMESTAMP" property="startTime" />
+    <result column="end_time" jdbcType="TIMESTAMP" property="endTime" />
+    <result column="stay_time" jdbcType="INTEGER" property="stayTime" />
+    <result column="pass" jdbcType="CHAR" property="pass" />
+    <result column="accuracy" jdbcType="DECIMAL" property="accuracy" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="states" jdbcType="CHAR" property="states" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, user_id, training_idlist, scene, module, start_time, end_time, stay_time, pass, 
+    accuracy, create_time, update_time, states,valid
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from xyd_group_training
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+
+  <select id="selectSense2" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from xyd_group_training
+    where user_id = #{userId,jdbcType=INTEGER} and valid='1' and module='1'
+    order by create_time desc
+    limit 2
+  </select>
+  <select id="selectNearmodule"  resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from xyd_group_training
+    where user_id = #{userId,jdbcType=INTEGER}
+    and module = #{module} and valid = 1 order by create_time desc limit 1
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from xyd_group_training
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xfkj.model.XydGroupTraining">
+    insert into xyd_group_training (id, user_id, training_idlist, 
+      scene, module, start_time, 
+      end_time, stay_time, pass, 
+      accuracy, create_time, update_time, 
+      states)
+    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{trainingIdlist,jdbcType=VARCHAR}, 
+      #{scene,jdbcType=VARCHAR}, #{module,jdbcType=VARCHAR}, #{startTime,jdbcType=TIMESTAMP},
+      #{endTime,jdbcType=TIMESTAMP}, #{stayTime,jdbcType=INTEGER}, #{pass,jdbcType=CHAR},
+      #{accuracy,jdbcType=DECIMAL}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{states,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xfkj.model.XydGroupTraining">
+    <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+      SELECT LAST_INSERT_ID() AS id
+    </selectKey>
+    insert into xyd_group_training
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="trainingIdlist != null">
+        training_idlist,
+      </if>
+      <if test="scene != null">
+        scene,
+      </if>
+      <if test="module != null">
+        module,
+      </if>
+      <if test="startTime != null">
+        start_time,
+      </if>
+      <if test="endTime != null">
+        end_time,
+      </if>
+      <if test="stayTime != null">
+        stay_time,
+      </if>
+      <if test="pass != null">
+        pass,
+      </if>
+      <if test="accuracy != null">
+        accuracy,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="states != null">
+        states,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="trainingIdlist != null">
+        #{trainingIdlist,jdbcType=VARCHAR},
+      </if>
+      <if test="scene != null">
+        #{scene,jdbcType=VARCHAR},
+      </if>
+      <if test="module != null">
+        #{module,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null">
+        #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="stayTime != null">
+        #{stayTime,jdbcType=INTEGER},
+      </if>
+      <if test="pass != null">
+        #{pass,jdbcType=CHAR},
+      </if>
+      <if test="accuracy != null">
+        #{accuracy,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="states != null">
+        #{states,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xfkj.model.XydGroupTraining">
+    update xyd_group_training
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="trainingIdlist != null">
+        training_idlist = #{trainingIdlist,jdbcType=VARCHAR},
+      </if>
+      <if test="scene != null">
+        scene = #{scene,jdbcType=VARCHAR},
+      </if>
+      <if test="module != null">
+        module = #{module,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null">
+        start_time = #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+        end_time = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="stayTime != null">
+        stay_time = #{stayTime,jdbcType=INTEGER},
+      </if>
+      <if test="pass != null">
+        pass = #{pass,jdbcType=CHAR},
+      </if>
+      <if test="accuracy != null">
+        accuracy = #{accuracy,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="states != null">
+        states = #{states,jdbcType=CHAR},
+      </if>
+      <if test="valid != null">
+         valid = #{valid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xfkj.model.XydGroupTraining">
+    update xyd_group_training
+    set user_id = #{userId,jdbcType=INTEGER},
+      training_idlist = #{trainingIdlist,jdbcType=VARCHAR},
+      scene = #{scene,jdbcType=VARCHAR},
+      module = #{module,jdbcType=VARCHAR},
+      start_time = #{startTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      stay_time = #{stayTime,jdbcType=INTEGER},
+      pass = #{pass,jdbcType=CHAR},
+      accuracy = #{accuracy,jdbcType=DECIMAL},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      states = #{states,jdbcType=CHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectDayResultList"  resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from xyd_group_training
+    where 1 = 1
+    <if test="userId != null">
+      AND  user_id = #{userId, jdbcType=INTEGER}
+    </if>
+    <if test="scene != null">
+      AND  scene = #{scene,jdbcType=VARCHAR}
+    </if>
+    <if test="module != null">
+      AND  module = #{module,jdbcType=VARCHAR}
+    </if>
+      AND states = "1" AND valid = "1" AND  to_days(create_time)=to_days(#{time})
+      ORDER BY create_time ASC
+  </select>
+
+  <select id="selectDayCountTime"  resultType="java.lang.Integer">
+    select
+    sum(stay_time)
+    from xyd_group_training
+    where 1 = 1
+    <if test="userId != null">
+      AND  user_id = #{userId, jdbcType=INTEGER}
+    </if>
+    <if test="module != null">
+      AND  module = #{module,jdbcType=VARCHAR}
+    </if>
+    AND states = "1"  AND  to_days(create_time)=to_days(#{time});
+  </select>
+  <select id="selectWeekStayResultList"  resultType="map">
+    select
+    DATE_FORMAT(xgt.create_time,'%Y-%m-%d') as time,	sum(xgt.stay_time) as 'countTime',	AVG(xgt.accuracy)  as 'accuracy'
+    from xyd_group_training xgt
+    where 1 = 1
+    <if test="userId != null">
+      AND  user_id = #{userId, jdbcType=INTEGER}
+    </if>
+    <if test="scene != null">
+      AND  scene = #{scene,jdbcType=VARCHAR}
+    </if>
+    <if test="module != null">
+      AND  module = #{module,jdbcType=VARCHAR}
+    </if>
+    AND states = "1"  AND xgt.create_Time BETWEEN #{weekFirstDay} and #{weekLastDay}
+    GROUP BY time
+    ORDER BY time
+  </select>
+
+  <select id="selectWeekByMonthStayResultList" resultType="java.util.LinkedHashMap">
+    select
+   	sum(xgt.stay_time) as 'countTime',	AVG(xgt.accuracy)  as 'accuracy'
+    from xyd_group_training xgt
+    where 1 = 1
+    <if test="userId != null">
+      AND  user_id = #{userId, jdbcType=INTEGER}
+    </if>
+    <if test="scene != null">
+      AND  scene = #{scene,jdbcType=VARCHAR}
+    </if>
+    <if test="module != null">
+      AND  module = #{module,jdbcType=VARCHAR}
+    </if>
+    AND states = "1"  AND xgt.create_Time BETWEEN #{weekFirstDay} and #{weekLastDay}
+  </select>
+
+  <select id="selectWeekAccuracyList"  resultType="java.util.LinkedHashMap">
+    select
+    DATE_FORMAT(xgt.create_time,'%Y-%m-%d') as time,	AVG(xgt.accuracy)  as 'accuracy',SUM(stay_time) stayTime
+    from xyd_group_training xgt
+    where 1 = 1
+    <if test="userId != null">
+      AND  user_id = #{userId, jdbcType=INTEGER}
+    </if>
+    <if test="scene != null">
+      AND  scene = #{scene,jdbcType=VARCHAR}
+    </if>
+    <if test="module != null">
+      AND  module = #{module,jdbcType=VARCHAR}
+    </if>
+    <if test="valid != null">
+      AND  valid = #{valid,jdbcType=VARCHAR}
+    </if>
+    AND states = "1"  AND xgt.create_Time BETWEEN #{weekFirstDay} and #{weekLastDay}
+    GROUP BY time
+    ORDER BY time
+  </select>
+
+  <select id="selectByDayResultList"   resultType="java.util.LinkedHashMap">
+    select
+    id,accuracy
+    from xyd_group_training
+    where 1 = 1
+    <if test="userId != null">
+      AND  user_id = #{userId, jdbcType=INTEGER}
+    </if>
+    <if test="scene != null">
+      AND  scene = #{scene,jdbcType=VARCHAR}
+    </if>
+    <if test="module != null">
+      AND  module = #{module,jdbcType=VARCHAR}
+    </if>
+    <if test="valid != null">
+      AND  valid = #{valid,jdbcType=VARCHAR}
+    </if>
+    AND states = "1" AND to_days(create_time) = to_days(#{dayDate})
+  </select>
+
+  <select id="selectByList"  parameterType="com.xfkj.model.XydGroupTraining" resultMap="BaseResultMap">
+    select
+    *
+    from xyd_group_training
+    where 1 = 1
+    <if test="userId != null">
+      AND  user_id = #{userId, jdbcType=INTEGER}
+    </if>
+    <if test="scene != null">
+      AND  scene = #{scene,jdbcType=VARCHAR}
+    </if>
+    <if test="module != null">
+      AND  module = #{module,jdbcType=VARCHAR}
+    </if>
+    <if test="valid != null">
+      AND  valid = #{valid,jdbcType=VARCHAR}
+    </if>
+    <if test="states != null">
+      AND  states = #{states,jdbcType=VARCHAR}
+    </if>
+    ORDER BY create_time DESC
+  </select>
+
+
+  <select id="selectMonthAccuracyList1"   resultType="java.util.LinkedHashMap">
+    select
+    DATE_FORMAT(create_time,'%u') weeks, SUM(stay_time) stayTime , 	AVG(accuracy) accuracy
+    from xyd_group_training
+    where 1 = 1
+    <if test="userId != null">
+      AND  user_id = #{userId, jdbcType=INTEGER}
+    </if>
+    <if test="scene != null">
+      AND  scene = #{scene,jdbcType=VARCHAR}
+    </if>
+    <if test="module != null">
+      AND  module = #{module,jdbcType=VARCHAR}
+    </if>
+    <if test="valid != null">
+      AND  valid = #{valid,jdbcType=VARCHAR}
+    </if>
+     AND states = "1" AND DATE_FORMAT(create_time, '%Y%m') =  DATE_FORMAT( #{endTime}, '%Y%m' )
+    group by weeks ;
+  </select>
+
+  <select id="selectMonthAccuracyList"   resultType="java.util.LinkedHashMap">
+    SELECT date AS weeks, IFNULL(stayTime, 0) AS stayTime, IFNULL(accuracy, 0) AS accuracy  from (
+    SELECT
+    DATE_FORMAT(adddate('2019-2-01', INTERVAL numlist.id week ) ,'%u') AS 'date'
+    FROM
+    (
+    SELECT
+    *
+    FROM
+    ( SELECT n1.i + n10.i * 10 AS id FROM num n1 CROSS JOIN num AS n10 ) a
+    WHERE
+    a.id &lt;= 4
+    ) AS numlist
+    WHERE
+    adddate( '2019-02-01', INTERVAL numlist.id week ) &lt;= '2019-02-28'
+    ) dd
+
+    LEFT JOIN
+
+    (
+    select DATE_FORMAT(create_time,'%u') weeks, SUM(stay_time) stayTime , AVG(accuracy) accuracy
+    from xyd_group_training
+    where 1 = 1
+    <if test="userId != null">
+      AND  user_id = #{userId, jdbcType=INTEGER}
+    </if>
+    <if test="scene != null">
+      AND  scene = #{scene,jdbcType=VARCHAR}
+    </if>
+    <if test="module != null">
+      AND  module = #{module,jdbcType=VARCHAR}
+    </if>
+    <if test="valid != null">
+      AND  valid = #{valid,jdbcType=VARCHAR}
+    </if>
+    AND states = "1" AND DATE_FORMAT(create_time, '%Y%m') =  DATE_FORMAT( #{endTime}, '%Y%m' )
+    group by weeks ) ff
+
+    ON dd.date = ff.weeks
+  </select>
+
+  <select id="selectStatisticsCount"  parameterType="com.xfkj.model.XydGroupTraining"   resultType="java.lang.Integer">
+    select  COUNT(distinct user_id)
+    from xyd_group_training
+    where 1 = 1
+    <if test="scene != null">
+      AND  scene = #{scene,jdbcType=VARCHAR}
+    </if>
+    <if test="module != null">
+      AND  module = #{module,jdbcType=VARCHAR}
+    </if>
+  </select>
+
+
+  <select id="selectDayCount1"  resultType="java.util.LinkedHashMap">
+    select
+    DATE_FORMAT(create_time,'%Y-%m-%d') days , 	COUNT(distinct user_id) coun
+    from xyd_group_training
+    where 1 = 1
+    <if test="scene != null">
+      AND  scene = #{scene,jdbcType=VARCHAR}
+    </if>
+    <if test="module != null">
+      AND  module = #{module,jdbcType=VARCHAR}
+    </if>
+    AND DATE_FORMAT(create_time, '%Y%m%d') BETWEEN  DATE_FORMAT( #{startTime}, '%Y%m%d' ) AND DATE_FORMAT( #{endTime}, '%Y%m%d' )
+    group by days
+  </select>
+  <select id="selectDayCount"  resultType="java.util.LinkedHashMap">
+    SELECT d.days, IF(xyd.coun IS NULL , 0, xyd.coun) as coun
+    FROM
+      (select adddate( DATE_FORMAT( #{startTime},'%Y-%m-%d'), numlist.id) as days
+      from (SELECT n1.i + n10.i*10 + n100.i*100 AS id FROM num n1 cross join num as n10 cross join num as n100) as numlist
+      where adddate( DATE_FORMAT( #{startTime},'%Y-%m-%d'), numlist.id) &lt;=  DATE_FORMAT(#{endTime},'%Y-%m-%d'))
+    as d LEFT JOIN
+      ( select DATE_FORMAT(create_time,'%Y-%m-%d') days , 	COUNT(distinct user_id) coun from xyd_group_training
+        where 1 = 1
+        <if test="scene != null">
+          AND  scene = #{scene,jdbcType=VARCHAR}
+        </if>
+        <if test="module != null">
+          AND  module = #{module,jdbcType=VARCHAR}
+        </if>
+         AND DATE_FORMAT(create_time, '%Y%m%d') BETWEEN  DATE_FORMAT( #{startTime}, '%Y%m%d' ) AND DATE_FORMAT( #{endTime}, '%Y%m%d' )
+        group by days)
+    as xyd
+    on d.days = xyd.days
+  </select>
+
+  <select id="selectTotalCount"  resultType="java.util.LinkedHashMap">
+    SELECT d.days, IF(xyd.tota IS NULL , 0, xyd.tota) as total
+        FROM
+            (select adddate( DATE_FORMAT( #{startTime},'%Y-%m-%d'), numlist.id) as days
+            from (SELECT n1.i + n10.i*10 + n100.i*100 AS id FROM num n1 cross join num as n10 cross join num as n100) as numlist
+            where adddate( DATE_FORMAT( #{startTime},'%Y-%m-%d'), numlist.id) &lt;=  DATE_FORMAT(#{endTime},'%Y-%m-%d'))
+        as d LEFT JOIN
+            ( select grp.* from ( select DATE_FORMAT(create_time,'%Y-%m-%d') days  ,(select count(distinct user_id)
+            from xyd_group_training as i
+            where  i.create_time &lt;= xp.create_time) as tota
+            from xyd_group_training as xp
+            where  xp.module = "1"
+            AND xp.create_time BETWEEN    #{startTime} AND #{endTime} order by tota DESC
+           	) grp GROUP BY days
+		) as xyd
+        on d.days = xyd.days
+  </select>
+
+  <select id="selectNearTest" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from xyd_group_training
+    where
+    end_time>=CURRENT_TIMESTAMP - INTERVAL 20 MINUTE
+    AND
+    user_id=#{userId}
+    AND
+    valid = "0"
+    group by module,scene
+  </select>
+
+  <select id="selectnearJuziFenjie" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from xyd_group_training
+    where
+    user_id = #{userId} and scene='2' and module='4' order by id desc limit 3
+  </select>
+
+  <select id="selectnearJuziChengzu" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from xyd_group_training
+    where
+    user_id = #{userId} and scene='2' and module='3' order by id desc limit 3
+  </select>
+
+</mapper>

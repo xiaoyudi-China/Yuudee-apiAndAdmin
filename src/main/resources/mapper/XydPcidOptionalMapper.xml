@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xfkj.mapper.XydPcidOptionalMapper">
+  <resultMap id="BaseResultMap" type="com.xfkj.model.XydPcidOptional">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="pcdi_type_id" jdbcType="INTEGER" property="pcdiTypeId" />
+    <result column="topic_title" jdbcType="VARCHAR" property="topicTitle" />
+    <result column="topic_result_one" jdbcType="VARCHAR" property="topicResultOne" />
+    <result column="topic_result_two" jdbcType="VARCHAR" property="topicResultTwo" />
+    <result column="states" jdbcType="VARCHAR" property="states" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="answer" jdbcType="VARCHAR" property="answer" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="name_enum" jdbcType="VARCHAR" property="nameEnum" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, pcdi_type_id, topic_title, topic_result_one, topic_result_two, states, create_time, 
+    update_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from xyd_pcid_optional
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from xyd_pcid_optional
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xfkj.model.XydPcidOptional">
+    insert into xyd_pcid_optional (id, pcdi_type_id, topic_title, 
+      topic_result_one, topic_result_two, states, 
+      create_time, update_time)
+    values (#{id,jdbcType=INTEGER}, #{pcdiTypeId,jdbcType=INTEGER}, #{topicTitle,jdbcType=VARCHAR}, 
+      #{topicResultOne,jdbcType=VARCHAR}, #{topicResultTwo,jdbcType=VARCHAR}, #{states,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xfkj.model.XydPcidOptional">
+    insert into xyd_pcid_optional
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="pcdiTypeId != null">
+        pcdi_type_id,
+      </if>
+      <if test="topicTitle != null">
+        topic_title,
+      </if>
+      <if test="topicResultOne != null">
+        topic_result_one,
+      </if>
+      <if test="topicResultTwo != null">
+        topic_result_two,
+      </if>
+      <if test="states != null">
+        states,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="pcdiTypeId != null">
+        #{pcdiTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="topicTitle != null">
+        #{topicTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="topicResultOne != null">
+        #{topicResultOne,jdbcType=VARCHAR},
+      </if>
+      <if test="topicResultTwo != null">
+        #{topicResultTwo,jdbcType=VARCHAR},
+      </if>
+      <if test="states != null">
+        #{states,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xfkj.model.XydPcidOptional">
+    update xyd_pcid_optional
+    <set>
+      <if test="pcdiTypeId != null">
+        pcdi_type_id = #{pcdiTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="topicTitle != null">
+        topic_title = #{topicTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="topicResultOne != null">
+        topic_result_one = #{topicResultOne,jdbcType=VARCHAR},
+      </if>
+      <if test="topicResultTwo != null">
+        topic_result_two = #{topicResultTwo,jdbcType=VARCHAR},
+      </if>
+      <if test="states != null">
+        states = #{states,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xfkj.model.XydPcidOptional">
+    update xyd_pcid_optional
+    set pcdi_type_id = #{pcdiTypeId,jdbcType=INTEGER},
+      topic_title = #{topicTitle,jdbcType=VARCHAR},
+      topic_result_one = #{topicResultOne,jdbcType=VARCHAR},
+      topic_result_two = #{topicResultTwo,jdbcType=VARCHAR},
+      states = #{states,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectList" parameterType="com.xfkj.model.XydPcidOptional" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from xyd_pcid_optional
+    where 1 = 1
+    <if test="pcdiTypeId != null">
+      AND pcdi_type_id = #{pcdiTypeId,jdbcType=INTEGER}
+    </if>
+    <if test="topicTitle != null">
+      AND topic_title = #{topicTitle,jdbcType=VARCHAR}
+    </if>
+    <if test="topicResultOne != null">
+      AND topic_result_one = #{topicResultOne,jdbcType=VARCHAR}
+    </if>
+    <if test="topicResultTwo != null">
+      AND topic_result_two = #{topicResultTwo,jdbcType=VARCHAR}
+    </if>
+    <if test="states != null">
+      AND states = #{states,jdbcType=VARCHAR}
+    </if>
+    <if test="createTime != null">
+      AND create_time = #{createTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="updateTime != null">
+      AND update_time = #{updateTime,jdbcType=TIMESTAMP}
+    </if>
+  </select>
+
+  <select id="selectByTypeLis" parameterType="com.xfkj.model.XydPcidOptional" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from xyd_pcid_optional
+    where 1 = 1
+    <if test="pcdiTypeId != null">
+      AND pcdi_type_id = #{pcdiTypeId,jdbcType=INTEGER}
+    </if>
+    <if test="topicTitle != null">
+      AND topic_title = #{topicTitle,jdbcType=VARCHAR}
+    </if>
+    <if test="topicResultOne != null">
+      AND topic_result_one = #{topicResultOne,jdbcType=VARCHAR}
+    </if>
+    <if test="topicResultTwo != null">
+      AND topic_result_two = #{topicResultTwo,jdbcType=VARCHAR}
+    </if>
+    <if test="states != null">
+      AND states = #{states,jdbcType=VARCHAR}
+    </if>
+    <if test="createTime != null">
+      AND create_time = #{createTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="updateTime != null">
+      AND update_time = #{updateTime,jdbcType=TIMESTAMP}
+    </if>
+    ORDER BY create_time ASC
+  </select>
+
+  <select id="selectByTypeAndOutLis" resultMap="BaseResultMap">
+    select
+    xpo.*, xar.answer
+    from xyd_pcid_optional xpo , xyd_answer_results xar
+    where xar.answer_id = #{answerRecordId} AND xpo.id = xar.topic_id and xpo.pcdi_type_id = #{pcidTypeId} AND xar.topic_type = #{pcidTypeId}
+    AND xpo.states = "1"
+    ORDER BY xpo.create_time ASC
+  </select>
+
+  <select id="selectByParamCount" parameterType="com.xfkj.common.query.GenericQueryParam" resultType="Integer">
+    SELECT COUNT(1)
+    from xyd_pcid_optional xpo , xyd_pcid_type xpt
+    where xpt.is_optional = "2" AND xpo.pcdi_type_id = xpt.id
+    <if test="nameenum != null">
+      AND xpt.name_enum = #{nameenum,jdbcType=INTEGER}
+    </if>
+    <if test="topictitle != null">
+      AND xpo.topic_title LIKE #{topictitle,jdbcType=VARCHAR}
+    </if>
+    <if test="states != null">
+      AND xpo.states = #{states,jdbcType=VARCHAR} AND  xpt.states = #{states,jdbcType=VARCHAR}
+    </if>
+    ORDER BY xpo.create_time ASC
+  </select>
+
+  <select id="selectByParamList" parameterType="com.xfkj.common.query.GenericQueryParam" resultMap="BaseResultMap">
+    SELECT
+    xpo.*, xpt.name_enum, xpt.name
+    from xyd_pcid_optional xpo , xyd_pcid_type xpt
+    where xpt.is_optional = "2" AND xpo.pcdi_type_id = xpt.id
+    <if test="nameenum != null">
+      AND xpt.name_enum = #{nameenum,jdbcType=INTEGER}
+    </if>
+    <if test="topictitle != null">
+      AND xpo.topic_title LIKE #{topictitle,jdbcType=VARCHAR}
+    </if>
+    <if test="states != null">
+      AND xpo.states = #{states,jdbcType=VARCHAR} AND  xpt.states = #{states,jdbcType=VARCHAR}
+    </if>
+    ORDER BY xpo.create_time ASC
+  </select>
+
+</mapper>

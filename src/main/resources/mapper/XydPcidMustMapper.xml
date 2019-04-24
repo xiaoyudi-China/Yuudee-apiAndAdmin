@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xfkj.mapper.XydPcidMustMapper">
+  <resultMap id="BaseResultMap" type="com.xfkj.model.XydPcidMust">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="pcdi_type_id" jdbcType="INTEGER" property="pcdiTypeId" />
+    <result column="describes" jdbcType="VARCHAR" property="describes" />
+    <result column="topic_title" jdbcType="VARCHAR" property="topicTitle" />
+    <result column="sort" jdbcType="INTEGER" property="sort" />
+    <result column="topic_result_one" jdbcType="VARCHAR" property="topicResultOne" />
+    <result column="topic_result_two" jdbcType="VARCHAR" property="topicResultTwo" />
+    <result column="topic_result_three" jdbcType="VARCHAR" property="topicResultThree" />
+    <result column="topic_result_four" jdbcType="VARCHAR" property="topicResultFour" />
+    <result column="topic_result_five" jdbcType="VARCHAR" property="topicResultFive" />
+    <result column="topic_result_six" jdbcType="VARCHAR" property="topicResultSix" />
+    <result column="is_other_options" jdbcType="CHAR" property="isOtherOptions" />
+    <result column="child_options" jdbcType="VARCHAR" property="childOptions" />
+    <result column="is_score" jdbcType="CHAR" property="isScore" />
+    <result column="states" jdbcType="VARCHAR" property="states" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="answer" jdbcType="VARCHAR" property="answer" />
+    <result column="answer_one" jdbcType="VARCHAR" property="answerOne" />
+    <result column="answer_two" jdbcType="VARCHAR" property="answerTwo" />
+    <result column="answer_three" jdbcType="VARCHAR" property="answerThree" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="result" jdbcType="VARCHAR" property="result" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, pcdi_type_id, describes, topic_title, sort, topic_result_one, topic_result_two, 
+    topic_result_three, topic_result_four, topic_result_five, topic_result_six, is_other_options, 
+    child_options, is_score, states, create_time, update_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from xyd_pcid_must
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from xyd_pcid_must
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xfkj.model.XydPcidMust">
+    insert into xyd_pcid_must (id, pcdi_type_id, describes, 
+      topic_title, sort, topic_result_one, 
+      topic_result_two, topic_result_three, topic_result_four, 
+      topic_result_five, topic_result_six, is_other_options, 
+      child_options, is_score, states, 
+      create_time, update_time)
+    values (#{id,jdbcType=INTEGER}, #{pcdiTypeId,jdbcType=INTEGER}, #{describes,jdbcType=VARCHAR}, 
+      #{topicTitle,jdbcType=VARCHAR}, #{sort,jdbcType=INTEGER}, #{topicResultOne,jdbcType=VARCHAR}, 
+      #{topicResultTwo,jdbcType=VARCHAR}, #{topicResultThree,jdbcType=VARCHAR}, #{topicResultFour,jdbcType=VARCHAR}, 
+      #{topicResultFive,jdbcType=VARCHAR}, #{topicResultSix,jdbcType=VARCHAR}, #{isOtherOptions,jdbcType=CHAR}, 
+      #{childOptions,jdbcType=VARCHAR}, #{isScore,jdbcType=CHAR}, #{states,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xfkj.model.XydPcidMust">
+    insert into xyd_pcid_must
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="pcdiTypeId != null">
+        pcdi_type_id,
+      </if>
+      <if test="describes != null">
+        describes,
+      </if>
+      <if test="topicTitle != null">
+        topic_title,
+      </if>
+      <if test="sort != null">
+        sort,
+      </if>
+      <if test="topicResultOne != null">
+        topic_result_one,
+      </if>
+      <if test="topicResultTwo != null">
+        topic_result_two,
+      </if>
+      <if test="topicResultThree != null">
+        topic_result_three,
+      </if>
+      <if test="topicResultFour != null">
+        topic_result_four,
+      </if>
+      <if test="topicResultFive != null">
+        topic_result_five,
+      </if>
+      <if test="topicResultSix != null">
+        topic_result_six,
+      </if>
+      <if test="isOtherOptions != null">
+        is_other_options,
+      </if>
+      <if test="childOptions != null">
+        child_options,
+      </if>
+      <if test="isScore != null">
+        is_score,
+      </if>
+      <if test="states != null">
+        states,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="pcdiTypeId != null">
+        #{pcdiTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="describes != null">
+        #{describes,jdbcType=VARCHAR},
+      </if>
+      <if test="topicTitle != null">
+        #{topicTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null">
+        #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="topicResultOne != null">
+        #{topicResultOne,jdbcType=VARCHAR},
+      </if>
+      <if test="topicResultTwo != null">
+        #{topicResultTwo,jdbcType=VARCHAR},
+      </if>
+      <if test="topicResultThree != null">
+        #{topicResultThree,jdbcType=VARCHAR},
+      </if>
+      <if test="topicResultFour != null">
+        #{topicResultFour,jdbcType=VARCHAR},
+      </if>
+      <if test="topicResultFive != null">
+        #{topicResultFive,jdbcType=VARCHAR},
+      </if>
+      <if test="topicResultSix != null">
+        #{topicResultSix,jdbcType=VARCHAR},
+      </if>
+      <if test="isOtherOptions != null">
+        #{isOtherOptions,jdbcType=CHAR},
+      </if>
+      <if test="childOptions != null">
+        #{childOptions,jdbcType=VARCHAR},
+      </if>
+      <if test="isScore != null">
+        #{isScore,jdbcType=CHAR},
+      </if>
+      <if test="states != null">
+        #{states,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xfkj.model.XydPcidMust">
+    update xyd_pcid_must
+    <set>
+      <if test="pcdiTypeId != null">
+        pcdi_type_id = #{pcdiTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="describes != null">
+        describes = #{describes,jdbcType=VARCHAR},
+      </if>
+      <if test="topicTitle != null">
+        topic_title = #{topicTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null">
+        sort = #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="topicResultOne != null">
+        topic_result_one = #{topicResultOne,jdbcType=VARCHAR},
+      </if>
+      <if test="topicResultTwo != null">
+        topic_result_two = #{topicResultTwo,jdbcType=VARCHAR},
+      </if>
+      <if test="topicResultThree != null">
+        topic_result_three = #{topicResultThree,jdbcType=VARCHAR},
+      </if>
+      <if test="topicResultFour != null">
+        topic_result_four = #{topicResultFour,jdbcType=VARCHAR},
+      </if>
+      <if test="topicResultFive != null">
+        topic_result_five = #{topicResultFive,jdbcType=VARCHAR},
+      </if>
+      <if test="topicResultSix != null">
+        topic_result_six = #{topicResultSix,jdbcType=VARCHAR},
+      </if>
+      <if test="isOtherOptions != null">
+        is_other_options = #{isOtherOptions,jdbcType=CHAR},
+      </if>
+      <if test="childOptions != null">
+        child_options = #{childOptions,jdbcType=VARCHAR},
+      </if>
+      <if test="isScore != null">
+        is_score = #{isScore,jdbcType=CHAR},
+      </if>
+      <if test="states != null">
+        states = #{states,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xfkj.model.XydPcidMust">
+    update xyd_pcid_must
+    set pcdi_type_id = #{pcdiTypeId,jdbcType=INTEGER},
+      describes = #{describes,jdbcType=VARCHAR},
+      topic_title = #{topicTitle,jdbcType=VARCHAR},
+      sort = #{sort,jdbcType=INTEGER},
+      topic_result_one = #{topicResultOne,jdbcType=VARCHAR},
+      topic_result_two = #{topicResultTwo,jdbcType=VARCHAR},
+      topic_result_three = #{topicResultThree,jdbcType=VARCHAR},
+      topic_result_four = #{topicResultFour,jdbcType=VARCHAR},
+      topic_result_five = #{topicResultFive,jdbcType=VARCHAR},
+      topic_result_six = #{topicResultSix,jdbcType=VARCHAR},
+      is_other_options = #{isOtherOptions,jdbcType=CHAR},
+      child_options = #{childOptions,jdbcType=VARCHAR},
+      is_score = #{isScore,jdbcType=CHAR},
+      states = #{states,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectByTypeLis" parameterType="com.xfkj.model.XydPcidMust" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from xyd_pcid_must
+    where 1 = 1
+    <if test="pcdiTypeId != null">
+     AND pcdi_type_id = #{pcdiTypeId,jdbcType=INTEGER}
+    </if>
+    <if test="describes != null">
+      AND  describes = #{describes,jdbcType=VARCHAR}
+    </if>
+    <if test="topicTitle != null">
+      AND topic_title = #{topicTitle,jdbcType=VARCHAR}
+    </if>
+    <if test="sort != null">
+      AND sort = #{sort,jdbcType=INTEGER}
+    </if>
+    <if test="isScore != null">
+      AND is_score = #{isScore,jdbcType=CHAR}
+    </if>
+    <if test="states != null">
+      AND states = #{states,jdbcType=VARCHAR}
+    </if>
+    ORDER BY create_time ASC
+  </select>
+
+  <select id="selectByTypeAndOutLis" resultMap="BaseResultMap">
+    select
+    xpm.*, xar.answer, xar.answer_one, xar.answer_two, xar.answer_three
+    from xyd_pcid_must xpm , xyd_answer_results xar
+    where xar.answer_id = #{answerRecordId} AND xpm.id = xar.topic_id and xpm.pcdi_type_id = #{pcidTypeId} AND xar.topic_type = #{pcidTypeId}
+    AND xpm.states = "1"
+    ORDER BY xpm.create_time ASC
+  </select>
+
+  <select id="selectByParamCount" parameterType="com.xfkj.common.query.GenericQueryParam" resultType="Integer">
+    SELECT COUNT(1)
+    from (
+      SELECT a.`id`, a.topic_title,a.describes ,a.create_time, t.name,"0" as result from xyd_pcid_must a ,xyd_pcid_type t
+      <where> t.id = a.pcdi_type_id
+        <if test="nameenum != null">
+          AND t.name_enum = #{nameenum,jdbcType=INTEGER}
+        </if>
+        <if test="topictitle != null">
+          AND  a.topic_title LIKE #{topictitle,jdbcType=VARCHAR}
+        </if>
+        <if test="states != null">
+          AND a.states = #{states,jdbcType=VARCHAR}
+        </if>
+          AND t.is_optional = "1" AND t.states = "1"
+      </where>
+      UNION all
+      SELECT b.id ,b.topic_title,b.type,b.create_time, x.name, "1" as result from xyd_pcid_must_vocabulary b,xyd_pcid_type x
+      <where> x.id = b.pcdi_type_id
+        <if test="nameenum != null">
+          AND x.name_enum = #{nameenum,jdbcType=INTEGER}
+        </if>
+        <if test="topictitle != null">
+          AND  b.topic_title LIKE #{topictitle,jdbcType=VARCHAR}
+        </if>
+        <if test="states != null">
+          AND b.states = #{states,jdbcType=VARCHAR}
+        </if>
+        AND x.is_optional = "1" AND x.states = "1"
+      </where>
+    ) c
+  </select>
+
+  <select id="selectByParamList" parameterType="com.xfkj.common.query.GenericQueryParam" resultMap="BaseResultMap">
+      SELECT c.*
+      from (
+        SELECT a.`id`, a.topic_title,a.describes ,a.create_time, t.name,"0" as result
+        from xyd_pcid_must a ,xyd_pcid_type t
+        <where> t.id = a.pcdi_type_id
+          <if test="nameenum != null">
+            AND t.name_enum = #{nameenum,jdbcType=INTEGER}
+          </if>
+          <if test="topictitle != null">
+            AND  a.topic_title LIKE #{topictitle,jdbcType=VARCHAR}
+          </if>
+          <if test="states != null">
+            AND a.states = #{states,jdbcType=VARCHAR}
+          </if>
+          AND t.is_optional = "1" AND t.states = "1"
+        </where>
+
+        UNION all
+        SELECT b.id ,b.topic_title,b.type,b.create_time, x.name, "1" as result
+        from xyd_pcid_must_vocabulary b,xyd_pcid_type x
+        <where> x.id = b.pcdi_type_id
+          <if test="nameenum != null">
+            AND x.name_enum = #{nameenum,jdbcType=INTEGER}
+          </if>
+          <if test="topictitle != null">
+            AND  b.topic_title LIKE #{topictitle,jdbcType=VARCHAR}
+          </if>
+          <if test="states != null">
+            AND b.states = #{states,jdbcType=VARCHAR}
+          </if>
+          AND x.is_optional = "1" AND x.states = "1"
+        </where>
+      ) c WHERE  1 = 1 ORDER BY create_time ASC
+    </select>
+</mapper>

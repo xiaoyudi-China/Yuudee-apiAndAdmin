@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xfkj.mapper.XydSentenceResolveTestMapper">
+  <resultMap id="BaseResultMap" type="com.xfkj.model.XydSentenceResolveTest">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="start_slideshow" jdbcType="VARCHAR" property="startSlideshow" />
+    <result column="card_one_image" jdbcType="VARCHAR" property="cardOneImage" />
+    <result column="card_one_char" jdbcType="VARCHAR" property="cardOneChar" />
+    <result column="card_one_record" jdbcType="VARCHAR" property="cardOneRecord" />
+    <result column="card_one_time" jdbcType="INTEGER" property="cardOneTime" />
+    <result column="card_two_image" jdbcType="VARCHAR" property="cardTwoImage" />
+    <result column="card_two_char" jdbcType="VARCHAR" property="cardTwoChar" />
+    <result column="card_two_record" jdbcType="VARCHAR" property="cardTwoRecord" />
+    <result column="card_two_time" jdbcType="INTEGER" property="cardTwoTime" />
+    <result column="card_three_image" jdbcType="VARCHAR" property="cardThreeImage" />
+    <result column="card_three_char" jdbcType="VARCHAR" property="cardThreeChar" />
+    <result column="card_three_record" jdbcType="VARCHAR" property="cardThreeRecord" />
+    <result column="card_three_time" jdbcType="INTEGER" property="cardThreeTime" />
+    <result column="card_four_image" jdbcType="VARCHAR" property="cardFourImage" />
+    <result column="card_four_char" jdbcType="VARCHAR" property="cardFourChar" />
+    <result column="card_four_record" jdbcType="VARCHAR" property="cardFourRecord" />
+    <result column="card_four_time" jdbcType="INTEGER" property="cardFourTime" />
+    <result column="group_char" jdbcType="VARCHAR" property="groupChar" />
+    <result column="group_record" jdbcType="VARCHAR" property="groupRecord" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="states" jdbcType="CHAR" property="states" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, start_slideshow, card_one_image, card_one_char, card_one_record, card_one_time, 
+    card_two_image, card_two_char, card_two_record, card_two_time, card_three_image, 
+    card_three_char, card_three_record, card_three_time, card_four_image, card_four_char, 
+    card_four_record, card_four_time, group_char, group_record, create_time, update_time, 
+    states
+  </sql>
+
+  <select id="selectAllByRand"  resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from xyd_sentence_resolve_test
+    ORDER BY rand() limit 10
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from xyd_sentence_resolve_test
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from xyd_sentence_resolve_test
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xfkj.model.XydSentenceResolveTest">
+    insert into xyd_sentence_resolve_test (id, start_slideshow, card_one_image, 
+      card_one_char, card_one_record, card_one_time, 
+      card_two_image, card_two_char, card_two_record, 
+      card_two_time, card_three_image, card_three_char, 
+      card_three_record, card_three_time, card_four_image, 
+      card_four_char, card_four_record, card_four_time, 
+      group_char, group_record, create_time, 
+      update_time, states)
+    values (#{id,jdbcType=INTEGER}, #{startSlideshow,jdbcType=VARCHAR}, #{cardOneImage,jdbcType=VARCHAR}, 
+      #{cardOneChar,jdbcType=VARCHAR}, #{cardOneRecord,jdbcType=VARCHAR}, #{cardOneTime,jdbcType=INTEGER}, 
+      #{cardTwoImage,jdbcType=VARCHAR}, #{cardTwoChar,jdbcType=VARCHAR}, #{cardTwoRecord,jdbcType=VARCHAR}, 
+      #{cardTwoTime,jdbcType=INTEGER}, #{cardThreeImage,jdbcType=VARCHAR}, #{cardThreeChar,jdbcType=VARCHAR}, 
+      #{cardThreeRecord,jdbcType=VARCHAR}, #{cardThreeTime,jdbcType=INTEGER}, #{cardFourImage,jdbcType=VARCHAR}, 
+      #{cardFourChar,jdbcType=VARCHAR}, #{cardFourRecord,jdbcType=VARCHAR}, #{cardFourTime,jdbcType=INTEGER},
+      #{groupChar,jdbcType=VARCHAR}, #{groupRecord,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{states,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xfkj.model.XydSentenceResolveTest">
+    insert into xyd_sentence_resolve_test
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="startSlideshow != null">
+        start_slideshow,
+      </if>
+      <if test="cardOneImage != null">
+        card_one_image,
+      </if>
+      <if test="cardOneChar != null">
+        card_one_char,
+      </if>
+      <if test="cardOneRecord != null">
+        card_one_record,
+      </if>
+      <if test="cardOneTime != null">
+        card_one_time,
+      </if>
+      <if test="cardTwoImage != null">
+        card_two_image,
+      </if>
+      <if test="cardTwoChar != null">
+        card_two_char,
+      </if>
+      <if test="cardTwoRecord != null">
+        card_two_record,
+      </if>
+      <if test="cardTwoTime != null">
+        card_two_time,
+      </if>
+      <if test="cardThreeImage != null">
+        card_three_image,
+      </if>
+      <if test="cardThreeChar != null">
+        card_three_char,
+      </if>
+      <if test="cardThreeRecord != null">
+        card_three_record,
+      </if>
+      <if test="cardThreeTime != null">
+        card_three_time,
+      </if>
+      <if test="cardFourImage != null">
+        card_four_image,
+      </if>
+      <if test="cardFourChar != null">
+        card_four_char,
+      </if>
+      <if test="cardFourRecord != null">
+        card_four_record,
+      </if>
+      <if test="cardFourTime != null">
+        card_four_time,
+      </if>
+      <if test="groupChar != null">
+        group_char,
+      </if>
+      <if test="groupRecord != null">
+        group_record,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="states != null">
+        states,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="startSlideshow != null">
+        #{startSlideshow,jdbcType=VARCHAR},
+      </if>
+      <if test="cardOneImage != null">
+        #{cardOneImage,jdbcType=VARCHAR},
+      </if>
+      <if test="cardOneChar != null">
+        #{cardOneChar,jdbcType=VARCHAR},
+      </if>
+      <if test="cardOneRecord != null">
+        #{cardOneRecord,jdbcType=VARCHAR},
+      </if>
+      <if test="cardOneTime != null">
+        #{cardOneTime,jdbcType=INTEGER},
+      </if>
+      <if test="cardTwoImage != null">
+        #{cardTwoImage,jdbcType=VARCHAR},
+      </if>
+      <if test="cardTwoChar != null">
+        #{cardTwoChar,jdbcType=VARCHAR},
+      </if>
+      <if test="cardTwoRecord != null">
+        #{cardTwoRecord,jdbcType=VARCHAR},
+      </if>
+      <if test="cardTwoTime != null">
+        #{cardTwoTime,jdbcType=INTEGER},
+      </if>
+      <if test="cardThreeImage != null">
+        #{cardThreeImage,jdbcType=VARCHAR},
+      </if>
+      <if test="cardThreeChar != null">
+        #{cardThreeChar,jdbcType=VARCHAR},
+      </if>
+      <if test="cardThreeRecord != null">
+        #{cardThreeRecord,jdbcType=VARCHAR},
+      </if>
+      <if test="cardThreeTime != null">
+        #{cardThreeTime,jdbcType=INTEGER},
+      </if>
+      <if test="cardFourImage != null">
+        #{cardFourImage,jdbcType=VARCHAR},
+      </if>
+      <if test="cardFourChar != null">
+        #{cardFourChar,jdbcType=VARCHAR},
+      </if>
+      <if test="cardFourRecord != null">
+        #{cardFourRecord,jdbcType=VARCHAR},
+      </if>
+      <if test="cardFourTime != null">
+        #{cardFourTime,jdbcType=INTEGER},
+      </if>
+      <if test="groupChar != null">
+        #{groupChar,jdbcType=VARCHAR},
+      </if>
+      <if test="groupRecord != null">
+        #{groupRecord,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="states != null">
+        #{states,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xfkj.model.XydSentenceResolveTest">
+    update xyd_sentence_resolve_test
+    <set>
+      <if test="startSlideshow != null">
+        start_slideshow = #{startSlideshow,jdbcType=VARCHAR},
+      </if>
+      <if test="cardOneImage != null">
+        card_one_image = #{cardOneImage,jdbcType=VARCHAR},
+      </if>
+      <if test="cardOneChar != null">
+        card_one_char = #{cardOneChar,jdbcType=VARCHAR},
+      </if>
+      <if test="cardOneRecord != null">
+        card_one_record = #{cardOneRecord,jdbcType=VARCHAR},
+      </if>
+      <if test="cardOneTime != null">
+        card_one_time = #{cardOneTime,jdbcType=INTEGER},
+      </if>
+      <if test="cardTwoImage != null">
+        card_two_image = #{cardTwoImage,jdbcType=VARCHAR},
+      </if>
+      <if test="cardTwoChar != null">
+        card_two_char = #{cardTwoChar,jdbcType=VARCHAR},
+      </if>
+      <if test="cardTwoRecord != null">
+        card_two_record = #{cardTwoRecord,jdbcType=VARCHAR},
+      </if>
+      <if test="cardTwoTime != null">
+        card_two_time = #{cardTwoTime,jdbcType=INTEGER},
+      </if>
+      <if test="cardThreeImage != null">
+        card_three_image = #{cardThreeImage,jdbcType=VARCHAR},
+      </if>
+      <if test="cardThreeChar != null">
+        card_three_char = #{cardThreeChar,jdbcType=VARCHAR},
+      </if>
+      <if test="cardThreeRecord != null">
+        card_three_record = #{cardThreeRecord,jdbcType=VARCHAR},
+      </if>
+      <if test="cardThreeTime != null">
+        card_three_time = #{cardThreeTime,jdbcType=INTEGER},
+      </if>
+      <if test="cardFourImage != null">
+        card_four_image = #{cardFourImage,jdbcType=VARCHAR},
+      </if>
+      <if test="cardFourChar != null">
+        card_four_char = #{cardFourChar,jdbcType=VARCHAR},
+      </if>
+      <if test="cardFourRecord != null">
+        card_four_record = #{cardFourRecord,jdbcType=VARCHAR},
+      </if>
+      <if test="cardFourTime != null">
+        card_four_time = #{cardFourTime,jdbcType=INTEGER},
+      </if>
+      <if test="groupChar != null">
+        group_char = #{groupChar,jdbcType=VARCHAR},
+      </if>
+      <if test="groupRecord != null">
+        group_record = #{groupRecord,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="states != null">
+        states = #{states,jdbcType=CHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xfkj.model.XydSentenceResolveTest">
+    update xyd_sentence_resolve_test
+    set start_slideshow = #{startSlideshow,jdbcType=VARCHAR},
+      card_one_image = #{cardOneImage,jdbcType=VARCHAR},
+      card_one_char = #{cardOneChar,jdbcType=VARCHAR},
+      card_one_record = #{cardOneRecord,jdbcType=VARCHAR},
+      card_one_time = #{cardOneTime,jdbcType=INTEGER},
+      card_two_image = #{cardTwoImage,jdbcType=VARCHAR},
+      card_two_char = #{cardTwoChar,jdbcType=VARCHAR},
+      card_two_record = #{cardTwoRecord,jdbcType=VARCHAR},
+      card_two_time = #{cardTwoTime,jdbcType=INTEGER},
+      card_three_image = #{cardThreeImage,jdbcType=VARCHAR},
+      card_three_char = #{cardThreeChar,jdbcType=VARCHAR},
+      card_three_record = #{cardThreeRecord,jdbcType=VARCHAR},
+      card_three_time = #{cardThreeTime,jdbcType=INTEGER},
+      card_four_image = #{cardFourImage,jdbcType=VARCHAR},
+      card_four_char = #{cardFourChar,jdbcType=VARCHAR},
+      card_four_record = #{cardFourRecord,jdbcType=VARCHAR},
+      card_four_time = #{cardFourTime,jdbcType=INTEGER},
+      group_char = #{groupChar,jdbcType=VARCHAR},
+      group_record = #{groupRecord,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      states = #{states,jdbcType=CHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectByParamCount" parameterType="com.xfkj.common.query.GenericQueryParam" resultType="Integer">
+    select
+    count(id)
+    from xyd_sentence_resolve_test
+    <where> 1=1
+      <if test="groupchar != null">
+        and group_char = #{groupchar}
+      </if>
+    </where>
+  </select>
+
+  <select id="selectByParamList" parameterType="com.xfkj.common.query.GenericQueryParam" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from
+    xyd_sentence_resolve_test
+    <where> 1=1
+      <if test="groupchar != null">
+        and group_char LIKE #{groupchar}
+      </if>
+    </where>
+  </select>
+</mapper>

@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xfkj.mapper.XydParentsMapper">
+    <resultMap id="BaseResultMap" type="com.xfkj.model.XydParents">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="nickname" jdbcType="VARCHAR" property="nickname"/>
+        <result column="age" jdbcType="INTEGER" property="age"/>
+        <result column="sex" jdbcType="CHAR" property="sex"/>
+        <result column="qcellcore_id" jdbcType="INTEGER" property="qcellcoreId"/>
+        <result column="phone_number" jdbcType="CHAR" property="phoneNumber"/>
+        <result column="password" jdbcType="VARCHAR" property="password"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="child_id" jdbcType="INTEGER" property="childId"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+        <result column="token" jdbcType="VARCHAR" property="token"/>
+        <result column="status" jdbcType="CHAR" property="status"/>
+        <result column="name" jdbcType="VARCHAR" property="city"/>
+        <result column="phone_prefix" jdbcType="VARCHAR" property="phonePrefix"/>
+        <result column="feel" jdbcType="VARCHAR" property="feel"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, nickname, age, sex, qcellcore_id, phone_number, password, create_time, child_id, 
+    update_time,token, status, feel
+  </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from xyd_parents
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from xyd_parents
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+    <insert id="insert" parameterType="com.xfkj.model.XydParents">
+    insert into xyd_parents (id, nickname, age, 
+      sex, qcellcore_id, phone_number, 
+      password, create_time, child_id, 
+      update_time,token, status, feel)
+    values (#{id,jdbcType=INTEGER}, #{nickname,jdbcType=VARCHAR}, #{age,jdbcType=INTEGER}, 
+      #{sex,jdbcType=CHAR}, #{qcellcoreId,jdbcType=INTEGER}, #{phoneNumber,jdbcType=CHAR},
+      #{password,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{childId,jdbcType=INTEGER}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{token,jdbcType=VARCHAR}, #{status,jdbcType=CHAR}, #{feel,jdbcType=VARCHAR})
+  </insert>
+    <insert id="insertSelective" keyProperty="id" useGeneratedKeys="true" parameterType="com.xfkj.model.XydParents">
+        insert into xyd_parents
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="nickname != null">
+                nickname,
+            </if>
+            <if test="age != null">
+                age,
+            </if>
+            <if test="sex != null">
+                sex,
+            </if>
+            <if test="qcellcoreId != null">
+                qcellcore_id,
+            </if>
+            <if test="phoneNumber != null">
+                phone_number,
+            </if>
+            <if test="password != null">
+                password,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="childId != null">
+                child_id,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+            <if test="token != null">
+                token,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+            <if test="feel != null">
+                feel,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="nickname != null">
+                #{nickname,jdbcType=VARCHAR},
+            </if>
+            <if test="age != null">
+                #{age,jdbcType=INTEGER},
+            </if>
+            <if test="sex != null">
+                #{sex,jdbcType=CHAR},
+            </if>
+            <if test="qcellcoreId != null">
+                #{qcellcoreId,jdbcType=INTEGER},
+            </if>
+            <if test="phoneNumber != null">
+                #{phoneNumber,jdbcType=CHAR},
+            </if>
+            <if test="password != null">
+                #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="childId != null">
+                #{childId,jdbcType=INTEGER},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="token != null">
+                #{token,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=CHAR},
+            </if>
+            <if test="feel != null">
+                #{feel,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.xfkj.model.XydParents">
+        update xyd_parents
+        <set>
+            <if test="nickname != null">
+                nickname = #{nickname,jdbcType=VARCHAR},
+            </if>
+            <if test="age != null">
+                age = #{age,jdbcType=INTEGER},
+            </if>
+            <if test="sex != null">
+                sex = #{sex,jdbcType=CHAR},
+            </if>
+            <if test="qcellcoreId != null">
+                qcellcore_id = #{qcellcoreId,jdbcType=INTEGER},
+            </if>
+            <if test="phoneNumber != null">
+                phone_number = #{phoneNumber,jdbcType=CHAR},
+            </if>
+            <if test="password != null">
+                password = #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="childId != null">
+                child_id = #{childId,jdbcType=INTEGER},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="token != null">
+                token = #{token,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=CHAR},
+            </if>
+            <if test="feel != null">
+                feel = #{feel,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.xfkj.model.XydParents">
+    update xyd_parents
+    set nickname = #{nickname,jdbcType=VARCHAR},
+      age = #{age,jdbcType=INTEGER},
+      sex = #{sex,jdbcType=CHAR},
+      qcellcore_id = #{qcellcoreId,jdbcType=INTEGER},
+      phone_number = #{phoneNumber,jdbcType=CHAR},
+      password = #{password,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      child_id = #{childId,jdbcType=INTEGER},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      token = #{token,jdbcType=VARCHAR},
+      status = #{status,jdbcType=CHAR},
+      feel = #{feel,jdbcType=CHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+    <select id="selectList" parameterType="com.xfkj.model.XydParents" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from xyd_parents
+        where 1 = 1
+        <if test="nickname != null">
+            and nickname = #{nickname,jdbcType=VARCHAR}
+        </if>
+        <if test="age != null">
+            and age = #{age,jdbcType=INTEGER}
+        </if>
+        <if test="sex != null">
+            and sex = #{sex,jdbcType=CHAR}
+        </if>
+        <if test="qcellcoreId != null">
+            and qcellcore_id = #{qcellcoreId,jdbcType=INTEGER}
+        </if>
+        <if test="phoneNumber != null">
+            and phone_number = #{phoneNumber,jdbcType=CHAR}
+        </if>
+        <if test="createTime != null">
+            and create_time = #{createTime,jdbcType=TIMESTAMP}
+        </if>
+        <if test="childId != null">
+            and child_id = #{childId,jdbcType=INTEGER}
+        </if>
+        <if test="updateTime != null">
+            and update_time = #{updateTime,jdbcType=TIMESTAMP}
+        </if>
+        <if test="token != null">
+            and token = #{token,jdbcType=VARCHAR}
+        </if>
+        <if test="status != null">
+            and status = #{status,jdbcType=CHAR}
+        </if>
+        <if test="feel != null">
+            and feel = #{status,jdbcType=VARCHAR}
+        </if>
+    </select>
+
+    <select id="selectByParamCount" parameterType="com.xfkj.common.query.GenericQueryParam" resultType="Integer">
+        SELECT COUNT(1)
+        from xyd_parents xp, xyd_phone_qcellcore xpq
+        where xp.qcellcore_id = xpq.id
+        <if test="nickname != null">
+            and xp.nickname LIKE #{nickname,jdbcType=VARCHAR}
+        </if>
+        <if test="sex != null">
+            and xp.sex = #{sex,jdbcType=CHAR}
+        </if>
+        <if test="phonenumber != null">
+            and xp.phone_number = #{phonenumber,jdbcType=CHAR}
+        </if>
+        <if test="qcellcoreid != null">
+            and xp.qcellcore_id = #{qcellcoreid,jdbcType=INTEGER}
+        </if>
+        <if test="status != null">
+            and xp.status = #{status,jdbcType=CHAR}
+        </if>
+    </select>
+
+    <select id="selectByParamList" parameterType="com.xfkj.common.query.GenericQueryParam" resultMap="BaseResultMap">
+        SELECT
+        xp.*, xpq.phone_prefix, xpq.name
+        from xyd_parents xp, xyd_phone_qcellcore xpq
+        where xp.qcellcore_id = xpq.id
+        <if test="nickname != null">
+            and xp.nickname LIKE #{nickname,jdbcType=VARCHAR}
+        </if>
+        <if test="sex != null">
+            and xp.sex = #{sex,jdbcType=CHAR}
+        </if>
+        <if test="phonenumber != null">
+            and xp.phone_number = #{phonenumber,jdbcType=CHAR}
+        </if>
+        <if test="qcellcoreid != null">
+            and xp.qcellcore_id = #{qcellcoreid,jdbcType=INTEGER}
+        </if>
+        <if test="status != null">
+            and xp.status = #{status,jdbcType=CHAR}
+        </if>
+        ORDER BY xp.create_time ASC
+    </select>
+
+    <select id="selectRegisterCount" parameterType="com.xfkj.model.XydParents" resultType="java.lang.Integer">
+        select
+        COUNT(distinct phone_number)
+        from xyd_parents
+        where 1 = 1
+        <if test="feel != null">
+            and feel = #{feel,jdbcType=VARCHAR}
+        </if>
+    </select>
+
+    <select id="selectDayCount" resultType="java.util.LinkedHashMap">
+        SELECT d.days, IF(xyd.coun IS NULL , 0, xyd.coun) as coun
+        FROM
+            (select adddate( DATE_FORMAT( #{startTime},'%Y-%m-%d'), numlist.id) as days
+            from (SELECT n1.i + n10.i*10 + n100.i*100 AS id FROM num n1 cross join num as n10 cross join num as n100) as numlist
+            where adddate( DATE_FORMAT( #{startTime},'%Y-%m-%d'), numlist.id) &lt;=  DATE_FORMAT(#{endTime},'%Y-%m-%d'))
+        as d LEFT JOIN
+            ( select
+            DATE_FORMAT(create_time,'%Y-%m-%d') days , 	COUNT(distinct phone_number) coun
+            from xyd_parents
+            where 1 = 1 AND
+             DATE_FORMAT(create_time, '%Y%m%d') BETWEEN  DATE_FORMAT( #{startTime}, '%Y%m%d' ) AND DATE_FORMAT( #{endTime}, '%Y%m%d' )
+            group by days)
+        as xyd
+        on d.days = xyd.days
+    </select>
+
+    <select id="selectTotalCount" resultType="java.util.LinkedHashMap">
+        SELECT d.days, IF(xyd.tota IS NULL , 0, xyd.tota) as total
+        FROM
+            (select adddate( DATE_FORMAT( #{startTime},'%Y-%m-%d'), numlist.id) as days
+            from (SELECT n1.i + n10.i*10 + n100.i*100 AS id FROM num n1 cross join num as n10 cross join num as n100) as numlist
+            where adddate( DATE_FORMAT( #{startTime},'%Y-%m-%d'), numlist.id) &lt;=  DATE_FORMAT(#{endTime},'%Y-%m-%d'))
+        as d LEFT JOIN
+            ( select grp.* from ( select DATE_FORMAT(create_time,'%Y-%m-%d') days  ,(select count(id) from xyd_parents as i where i.create_time &lt;= o.create_time) as tota
+             from xyd_parents as o where o.create_time BETWEEN    #{startTime} AND #{endTime} order by tota DESC
+            )grp GROUP BY days
+		)as xyd
+        on d.days = xyd.days
+    </select>
+
+</mapper>

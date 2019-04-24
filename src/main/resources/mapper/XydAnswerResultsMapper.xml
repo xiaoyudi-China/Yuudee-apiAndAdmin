@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xfkj.mapper.XydAnswerResultsMapper">
+  <resultMap id="BaseResultMap" type="com.xfkj.model.XydAnswerResults">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="answer_id" jdbcType="INTEGER" property="answerId" />
+    <result column="topic_id" jdbcType="INTEGER" property="topicId" />
+    <result column="topic_type" jdbcType="INTEGER" property="topicType" />
+    <result column="is_other_options" jdbcType="CHAR" property="isOtherOptions" />
+    <result column="answer" jdbcType="VARCHAR" property="answer" />
+    <result column="sign" jdbcType="INTEGER" property="sign" />
+    <result column="answer_one" jdbcType="VARCHAR" property="answerOne" />
+    <result column="answer_two" jdbcType="VARCHAR" property="answerTwo" />
+    <result column="answer_three" jdbcType="VARCHAR" property="answerThree" />
+    <result column="states" jdbcType="VARCHAR" property="states" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, answer_id, topic_id, topic_type, is_other_options, answer,sign, answer_one, answer_two,
+    answer_three, states, create_time, update_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from xyd_answer_results
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from xyd_answer_results
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xfkj.model.XydAnswerResults">
+    insert into xyd_answer_results (id, answer_id, topic_id, 
+      topic_type, is_other_options, answer,sign,
+      answer_one, answer_two, answer_three, 
+      states, create_time, update_time
+      )
+    values (#{id,jdbcType=INTEGER}, #{answerId,jdbcType=INTEGER}, #{topicId,jdbcType=INTEGER}, 
+      #{topicType,jdbcType=INTEGER}, #{isOtherOptions,jdbcType=CHAR}, #{answer,jdbcType=VARCHAR}, #{sign,jdbcType=INTEGER},
+      #{answerOne,jdbcType=VARCHAR}, #{answerTwo,jdbcType=VARCHAR}, #{answerThree,jdbcType=VARCHAR}, 
+      #{states,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.xfkj.model.XydAnswerResults">
+    insert into xyd_answer_results
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="answerId != null">
+        answer_id,
+      </if>
+      <if test="topicId != null">
+        topic_id,
+      </if>
+      <if test="topicType != null">
+        topic_type,
+      </if>
+      <if test="isOtherOptions != null">
+        is_other_options,
+      </if>
+      <if test="answer != null">
+        answer,
+      </if>
+      <if test="sign != null">
+        sign,
+      </if>
+      <if test="answerOne != null">
+        answer_one,
+      </if>
+      <if test="answerTwo != null">
+        answer_two,
+      </if>
+      <if test="answerThree != null">
+        answer_three,
+      </if>
+      <if test="states != null">
+        states,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="answerId != null">
+        #{answerId,jdbcType=INTEGER},
+      </if>
+      <if test="topicId != null">
+        #{topicId,jdbcType=INTEGER},
+      </if>
+      <if test="topicType != null">
+        #{topicType,jdbcType=INTEGER},
+      </if>
+      <if test="isOtherOptions != null">
+        #{isOtherOptions,jdbcType=CHAR},
+      </if>
+      <if test="answer != null">
+        #{answer,jdbcType=VARCHAR},
+      </if>
+      <if test="sign != null">
+        #{sign,jdbcType=INTEGER},
+      </if>
+      <if test="answerOne != null">
+        #{answerOne,jdbcType=VARCHAR},
+      </if>
+      <if test="answerTwo != null">
+        #{answerTwo,jdbcType=VARCHAR},
+      </if>
+      <if test="answerThree != null">
+        #{answerThree,jdbcType=VARCHAR},
+      </if>
+      <if test="states != null">
+        #{states,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xfkj.model.XydAnswerResults">
+    update xyd_answer_results
+    <set>
+      <if test="answerId != null">
+        answer_id = #{answerId,jdbcType=INTEGER},
+      </if>
+      <if test="topicId != null">
+        topic_id = #{topicId,jdbcType=INTEGER},
+      </if>
+      <if test="topicType != null">
+        topic_type = #{topicType,jdbcType=INTEGER},
+      </if>
+      <if test="isOtherOptions != null">
+        is_other_options = #{isOtherOptions,jdbcType=CHAR},
+      </if>
+      <if test="answer != null">
+        answer = #{answer,jdbcType=VARCHAR},
+      </if>
+      <if test="sign != null">
+        sign = #{sign,jdbcType=INTEGER},
+      </if>
+      <if test="answerOne != null">
+        answer_one = #{answerOne,jdbcType=VARCHAR},
+      </if>
+      <if test="answerTwo != null">
+        answer_two = #{answerTwo,jdbcType=VARCHAR},
+      </if>
+      <if test="answerThree != null">
+        answer_three = #{answerThree,jdbcType=VARCHAR},
+      </if>
+      <if test="states != null">
+        states = #{states,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xfkj.model.XydAnswerResults">
+    update xyd_answer_results
+    set answer_id = #{answerId,jdbcType=INTEGER},
+      topic_id = #{topicId,jdbcType=INTEGER},
+      topic_type = #{topicType,jdbcType=INTEGER},
+      is_other_options = #{isOtherOptions,jdbcType=CHAR},
+      answer = #{answer,jdbcType=VARCHAR},
+      sign =  #{sign,jdbcType=INTEGER},
+      answer_one = #{answerOne,jdbcType=VARCHAR},
+      answer_two = #{answerTwo,jdbcType=VARCHAR},
+      answer_three = #{answerThree,jdbcType=VARCHAR},
+      states = #{states,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <insert id="insertResultList">
+    insert into xyd_answer_results (  answer_id,topic_type,
+    topic_id, is_other_options, answer,sign,answer_one,answer_two,answer_three,
+    states,create_time) values
+    <foreach collection ="list" item="resultScale" separator =",">
+      ( #{answerId,jdbcType=INTEGER},#{resultScale.topicType,jdbcType=INTEGER},
+      #{resultScale.topicId,jdbcType=INTEGER},#{resultScale.isOtherOptions,jdbcType=VARCHAR}, #{resultScale.answer,jdbcType=VARCHAR},
+     #{resultScale.answerid,jdbcType=INTEGER},
+        <foreach collection ="resultScale.subAnswer" item="ans" >
+          #{ans, jdbcType=VARCHAR},
+        </foreach >
+      #{states,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP})
+    </foreach >
+  </insert>
+
+  <insert id="insertPcdiQuestionResult">
+    insert into xyd_answer_results (  answer_id,topic_type,
+    topic_id, answer,sign,
+    states,create_time) values
+    <foreach collection ="list" item="resultScale" separator =",">
+      ( #{answerId,jdbcType=INTEGER},#{resultScale.topicType,jdbcType=INTEGER},
+      #{resultScale.topicId,jdbcType=INTEGER}, #{resultScale.answer,jdbcType=VARCHAR},
+      #{resultScale.answerid,jdbcType=INTEGER},#{states,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP})
+    </foreach >
+  </insert>
+  <insert id="insertABCResultList">
+    insert into xyd_answer_results (  answer_id,
+    topic_id, answer, sign, states,create_time) values
+    <foreach collection ="list" item="resultScale" separator =",">
+      ( #{answerId,jdbcType=INTEGER},#{resultScale.topicId,jdbcType=INTEGER}, #{resultScale.answer,jdbcType=VARCHAR},
+      #{resultScale.answerid,jdbcType=INTEGER},#{states,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP})
+    </foreach >
+  </insert>
+
+  <select id="selectList" parameterType="com.xfkj.model.XydAnswerResults" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from xyd_answer_results
+    where 1 = 1
+    <if test="answerId != null">
+      AND answer_id = #{answerId,jdbcType=INTEGER}
+    </if>
+    <if test="topicId != null">
+      AND topic_id = #{topicId,jdbcType=INTEGER}
+    </if>
+    <if test="topicType != null">
+      AND topic_type = #{topicType,jdbcType=INTEGER}
+    </if>
+    <if test="isOtherOptions != null">
+      AND is_other_options = #{isOtherOptions,jdbcType=CHAR}
+    </if>
+    <if test="answer != null">
+      AND answer = #{answer,jdbcType=VARCHAR}
+    </if>
+    <if test="sign != null">
+      AND sign = #{sign,jdbcType=INTEGER}
+    </if>
+    <if test="answerOne != null">
+      AND answer_one = #{answerOne,jdbcType=VARCHAR}
+    </if>
+    <if test="answerTwo != null">
+      AND answer_two = #{answerTwo,jdbcType=VARCHAR}
+    </if>
+    <if test="answerThree != null">
+      AND answer_three = #{answerThree,jdbcType=VARCHAR}
+    </if>
+    <if test="states != null">
+      AND states = #{states,jdbcType=VARCHAR}
+    </if>
+    <if test="createTime != null">
+      AND create_time = #{createTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="updateTime != null">
+      AND update_time = #{updateTime,jdbcType=TIMESTAMP}
+    </if>
+  </select>
+</mapper>

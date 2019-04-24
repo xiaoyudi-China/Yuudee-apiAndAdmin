@@ -1,0 +1,12 @@
+0:0:0:0:0:0:0:1 - - [18/Mar/2019:18:56:20 +0800] "GET / HTTP/1.1" 200 3153 492
+0:0:0:0:0:0:0:1 - - [18/Mar/2019:18:56:20 +0800] "GET /static/css/login/simple-line-icons.css HTTP/1.1" 200 11717 52
+0:0:0:0:0:0:0:1 - - [18/Mar/2019:18:56:20 +0800] "GET /static/css/login/bootstrap.css HTTP/1.1" 200 126970 67
+0:0:0:0:0:0:0:1 - - [18/Mar/2019:18:56:20 +0800] "GET /static/js/jquery-2.1.1.js HTTP/1.1" 200 84247 66
+0:0:0:0:0:0:0:1 - - [18/Mar/2019:18:56:20 +0800] "GET /static/css/login/app.css HTTP/1.1" 200 107542 65
+0:0:0:0:0:0:0:1 - - [18/Mar/2019:18:56:20 +0800] "GET /static/images/login/yudee_bg.png HTTP/1.1" 200 841898 42
+0:0:0:0:0:0:0:1 - - [18/Mar/2019:18:56:20 +0800] "GET /favicon.ico HTTP/1.1" 200 946 27
+0:0:0:0:0:0:0:1 - - [18/Mar/2019:18:56:22 +0800] "GET /app/trainTest/getSentenceResolve HTTP/1.1" 200 51416 1380
+0:0:0:0:0:0:0:1 - - [18/Mar/2019:18:56:55 +0800] "POST /app/trainTest/getSentenceResolve HTTP/1.1" 200 51325 74
+0:0:0:0:0:0:0:1 - - [18/Mar/2019:18:59:27 +0800] "POST /app/trainTest/getSentenceResolve HTTP/1.1" 200 51385 72
+0:0:0:0:0:0:0:1 - - [18/Mar/2019:19:34:27 +0800] "POST /app/trainTest/getSentenceResolve HTTP/1.1" 200 51453 8592
+0:0:0:0:0:0:0:1 - - [18/Mar/2019:19:34:34 +0800] "POST /app/trainTest/getSentenceResolve HTTP/1.1" 200 51561 80

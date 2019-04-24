@@ -1,0 +1,286 @@
+body {
+    background: url("../../static/images/img/questionnaire.png") no-repeat;
+    background-size: 100%;
+}
+
+.header {
+    height: 1.64rem;
+    width: 100%;
+    box-sizing: border-box;
+    padding-left: .48rem;
+    padding-right: .36rem;
+    color: #fffdec;
+    padding-top: .57rem;
+    position: relative;
+}
+
+.header .title {
+    font-size: .44rem;
+    line-height: .44rem;
+    font-family: STYuanti-SC-Bold;
+}
+
+.msg {
+    font-size: .26rem;
+    line-height: .26rem;
+    margin-top: .16rem;
+}
+
+.home_button {
+    width: .86rem;
+    position: absolute;
+    right: .36rem;
+    bottom: .36rem;
+}
+
+.top {
+    margin: .47rem .48rem .35rem .48rem;
+    height: .32rem;
+    line-height: .32rem;
+}
+
+.top > .l {
+    font-size: .32rem;
+    color: #14101e;
+}
+
+.top .r {
+    font-size: .28rem;
+    color: #c06d00;
+    cursor: pointer;
+}
+
+.top .r img {
+    width: .41rem;
+    margin-left: .16rem;
+}
+
+.dashed {
+    width: 6.74rem;
+    height: .1rem;
+    border-bottom: 1px dashed #92674a;
+    margin: 0 auto;
+}
+
+.centent {
+    overflow: auto;
+}
+
+.centent .title > div {
+    position: absolute;
+    left: -1.685rem;
+    top: .175rem;
+    z-index: -1;
+}
+
+.centent .title {
+    width: 3.44rem;
+    height: .6rem;
+    line-height: .6rem;
+    text-align: center;
+    font-size: .3rem;
+    color: #fffdec;
+    background: #92674a;
+    border-radius: 1rem;
+    margin: 0 auto .16rem auto;
+    position: relative;
+}
+
+.notes {
+    margin-left: .54rem;
+    margin-right: .43rem;
+    font-size: .26rem;
+    color: #14101e;
+    line-height: .46rem;
+    margin-bottom: .28rem;
+}
+
+.centent li {
+    position: relative;
+    width: 6.41rem;
+    margin-left: .45rem;
+    margin-right: .6rem;
+}
+
+.black_spot {
+    width: .1rem;
+    height: .1rem;
+    border-radius: 50%;
+    background: #14101e;
+    position: absolute;
+    top: .18rem;
+    left: -.24rem;
+}
+
+li > .subject {
+    font-size: .28rem;
+    line-height: .4rem;
+    color: #14101e;
+    margin-bottom: .34rem;
+}
+
+li > .input_box:last-child {
+    margin-bottom: .5rem;
+}
+
+li > .input_box {
+    border-radius: 1rem;
+    height: .84rem;
+    border: 1px solid #c06d00;
+    margin-top: .42rem;
+    background: #fffdec;
+    position: relative;
+    box-sizing: border-box;
+}
+
+li input::placeholder {
+    color: #c06d00;
+    font-size: .28rem;
+}
+
+li input[type='text'] {
+    background: none;
+    border: none;
+    font-size: .28rem;
+    position: absolute;
+    top: .25rem;
+    left: .37rem;
+    outline: none;
+    color: #c06d00;
+}
+
+.Submission {
+    width: 3.1rem;
+    height: .94rem;
+    margin: 0 auto .4rem auto;
+    background: url("../img/button.png") no-repeat;
+    background-size: 100% 100%;
+    color: #fffdec;
+    font-size: .32rem;
+    text-align: center;
+    line-height: .74rem;
+    font-family: STYuanti-SC-Bold;
+    cursor: pointer;
+}
+
+.radio {
+    margin-bottom: .5rem;
+
+}
+
+.radio p {
+    width: 33%;
+    text-align: center;
+    color: #14101e;
+    font-size: .28rem;
+    height: .27rem;
+    line-height: .28rem;
+}
+
+.radio img {
+    width: .3rem;
+    margin-right: .14rem;
+    vertical-align: middle;
+}
+
+.selectColor {
+    color: #cd4744 !important;
+}
+
+.mask {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    opacity: .6;
+    z-index: 99;
+    display: none;
+}
+
+.dialog {
+    width: 6.61rem;
+    height: 5.03rem;
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    background: url("../../static/images/img/dialog.png") no-repeat;
+    background-size: 100% 100%;
+    z-index: 100;
+    padding-bottom: .4rem;
+    display: none;
+}
+.dialog>img{
+    position: absolute;
+    right: .38rem;
+    top: .7rem;
+    width: .65rem;
+}
+.Htitle {
+    margin: .88rem auto .3rem auto;
+    font-size: .32rem;
+    color: #6f4c28;
+    text-align: center;
+}
+.msg1{
+    width: 5.51rem;
+    margin: 0 auto .3rem auto;
+    font-size: .28rem;
+    color: #14101e;
+    line-height: .4rem;
+}
+.button{
+    height: .69rem;
+}
+.button>.Submission{
+    width: 2.3rem;
+
+}
+.button>.Submission:first-child{
+    margin-right: .62rem;
+    margin-left: .62rem;
+}
+.dialog1 {
+    width: 6.61rem;
+    height: 4.15rem;
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    background: url("../../static/images/img/dialog.png") no-repeat;
+    background-size: 100% 100%;
+    z-index: 100;
+    padding-bottom: .4rem;
+    display: none;
+}
+.dialog1>img{
+    position: absolute;
+    right: .38rem;
+    top: .7rem;
+    width: .65rem;
+}
+.dialog1 .msg1{
+    width: 5.51rem;
+    margin: .85rem auto .58rem auto;
+    font-size: .28rem;
+    color: #14101e;
+    line-height: .4rem;
+}
+
+
+/*body:after {*/
+    /*content: "";*/
+    /*width: 100%;*/
+    /*height: 100%;*/
+    /*position: absolute;*/
+    /*left: 0;*/
+    /*top: 0;*/
+    /*background: inherit;*/
+    /*filter: blur(2px);*/
+/*}*/

@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xfkj.mapper.XydGradeRuleMapper">
+  <resultMap id="BaseResultMap" type="com.xfkj.model.XydGradeRule">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="type" jdbcType="CHAR" property="type" />
+    <result column="is_optional" jdbcType="CHAR" property="isOptional" />
+    <result column="topic_type" jdbcType="INTEGER" property="topicType" />
+    <result column="answer" jdbcType="DECIMAL" property="answer" />
+    <result column="answer_one" jdbcType="DECIMAL" property="answerOne" />
+    <result column="answer_two" jdbcType="DECIMAL" property="answerTwo" />
+    <result column="answer_three" jdbcType="DECIMAL" property="answerThree" />
+    <result column="answer_four" jdbcType="DECIMAL" property="answerFour" />
+    <result column="answer_five" jdbcType="DECIMAL" property="answerFive" />
+    <result column="answer_six" jdbcType="DECIMAL" property="answerSix" />
+    <result column="states" jdbcType="VARCHAR" property="states" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, type, is_optional, topic_type, answer, answer_one, answer_two, answer_three, 
+    answer_four, answer_five, answer_six, states, create_time, update_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from xyd_grade_rule
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from xyd_grade_rule
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xfkj.model.XydGradeRule">
+    insert into xyd_grade_rule (id, type, is_optional, 
+      topic_type, answer, answer_one, 
+      answer_two, answer_three, answer_four, 
+      answer_five, answer_six, states, 
+      create_time, update_time)
+    values (#{id,jdbcType=INTEGER}, #{type,jdbcType=CHAR}, #{isOptional,jdbcType=CHAR}, 
+      #{topicType,jdbcType=INTEGER}, #{answer,jdbcType=DECIMAL}, #{answerOne,jdbcType=DECIMAL}, 
+      #{answerTwo,jdbcType=DECIMAL}, #{answerThree,jdbcType=DECIMAL}, #{answerFour,jdbcType=DECIMAL}, 
+      #{answerFive,jdbcType=DECIMAL}, #{answerSix,jdbcType=DECIMAL}, #{states,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xfkj.model.XydGradeRule">
+    insert into xyd_grade_rule
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="isOptional != null">
+        is_optional,
+      </if>
+      <if test="topicType != null">
+        topic_type,
+      </if>
+      <if test="answer != null">
+        answer,
+      </if>
+      <if test="answerOne != null">
+        answer_one,
+      </if>
+      <if test="answerTwo != null">
+        answer_two,
+      </if>
+      <if test="answerThree != null">
+        answer_three,
+      </if>
+      <if test="answerFour != null">
+        answer_four,
+      </if>
+      <if test="answerFive != null">
+        answer_five,
+      </if>
+      <if test="answerSix != null">
+        answer_six,
+      </if>
+      <if test="states != null">
+        states,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=CHAR},
+      </if>
+      <if test="isOptional != null">
+        #{isOptional,jdbcType=CHAR},
+      </if>
+      <if test="topicType != null">
+        #{topicType,jdbcType=INTEGER},
+      </if>
+      <if test="answer != null">
+        #{answer,jdbcType=DECIMAL},
+      </if>
+      <if test="answerOne != null">
+        #{answerOne,jdbcType=DECIMAL},
+      </if>
+      <if test="answerTwo != null">
+        #{answerTwo,jdbcType=DECIMAL},
+      </if>
+      <if test="answerThree != null">
+        #{answerThree,jdbcType=DECIMAL},
+      </if>
+      <if test="answerFour != null">
+        #{answerFour,jdbcType=DECIMAL},
+      </if>
+      <if test="answerFive != null">
+        #{answerFive,jdbcType=DECIMAL},
+      </if>
+      <if test="answerSix != null">
+        #{answerSix,jdbcType=DECIMAL},
+      </if>
+      <if test="states != null">
+        #{states,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xfkj.model.XydGradeRule">
+    update xyd_grade_rule
+    <set>
+      <if test="type != null">
+        type = #{type,jdbcType=CHAR},
+      </if>
+      <if test="isOptional != null">
+        is_optional = #{isOptional,jdbcType=CHAR},
+      </if>
+      <if test="topicType != null">
+        topic_type = #{topicType,jdbcType=INTEGER},
+      </if>
+      <if test="answer != null">
+        answer = #{answer,jdbcType=DECIMAL},
+      </if>
+      <if test="answerOne != null">
+        answer_one = #{answerOne,jdbcType=DECIMAL},
+      </if>
+      <if test="answerTwo != null">
+        answer_two = #{answerTwo,jdbcType=DECIMAL},
+      </if>
+      <if test="answerThree != null">
+        answer_three = #{answerThree,jdbcType=DECIMAL},
+      </if>
+      <if test="answerFour != null">
+        answer_four = #{answerFour,jdbcType=DECIMAL},
+      </if>
+      <if test="answerFive != null">
+        answer_five = #{answerFive,jdbcType=DECIMAL},
+      </if>
+      <if test="answerSix != null">
+        answer_six = #{answerSix,jdbcType=DECIMAL},
+      </if>
+      <if test="states != null">
+        states = #{states,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xfkj.model.XydGradeRule">
+    update xyd_grade_rule
+    set type = #{type,jdbcType=CHAR},
+      is_optional = #{isOptional,jdbcType=CHAR},
+      topic_type = #{topicType,jdbcType=INTEGER},
+      answer = #{answer,jdbcType=DECIMAL},
+      answer_one = #{answerOne,jdbcType=DECIMAL},
+      answer_two = #{answerTwo,jdbcType=DECIMAL},
+      answer_three = #{answerThree,jdbcType=DECIMAL},
+      answer_four = #{answerFour,jdbcType=DECIMAL},
+      answer_five = #{answerFive,jdbcType=DECIMAL},
+      answer_six = #{answerSix,jdbcType=DECIMAL},
+      states = #{states,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectList" parameterType="com.xfkj.model.XydGradeRule" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from xyd_grade_rule
+    where 1 = 1
+    <if test="type != null">
+     AND type = #{type,jdbcType=CHAR}
+    </if>
+    <if test="isOptional != null">
+      AND is_optional = #{isOptional,jdbcType=CHAR}
+    </if>
+    <if test="topicType != null">
+      AND topic_type = #{topicType,jdbcType=INTEGER}
+    </if>
+    <if test="answer != null">
+      AND answer = #{answer,jdbcType=DECIMAL}
+    </if>
+    <if test="states != null">
+      AND states = #{states,jdbcType=VARCHAR}
+    </if>
+    <if test="createTime != null">
+      AND create_time = #{createTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="updateTime != null">
+      AND update_time = #{updateTime,jdbcType=TIMESTAMP}
+    </if>
+  </select>
+</mapper>

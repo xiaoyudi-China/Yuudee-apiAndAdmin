@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="java">
+<head>
+    <meta charset="text/html;charset=UTF-8">
+    <title>Title</title>
+    <style>
+       /* html{
+            background: rgba(204, 204, 204, 0.17);
+        }
+        html, body {
+            margin: 0;
+            width: 100%;
+            height: 100%;
+
+            box-sizing: border-box;
+        }*/
+
+        a {
+            color: #000;
+        }
+
+        .htul, li, ol {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        p {
+            margin: 0;
+            padding: 0;
+        }
+
+        .l {
+            float: left;
+        }
+
+        .r {
+            float: right;
+        }
+
+        .clearfix:after {
+            content: "";
+            display: block;
+            height: 0;
+            clear: both;
+            visibility: hidden;
+        }
+
+        .clearfix {
+            zoom: 1;
+        }
+
+       #list1,div {
+            padding: 50px;
+        }
+
+        .htul {
+            padding-left: 10px;
+        }
+        .wBox>li{
+            margin-bottom: 10px;
+        }
+       .htul, li > p {
+            margin-bottom: 5px;
+        }
+
+        li > span {
+            margin: 0 20px;
+        }
+
+        .title:first-child {
+            margin-top: 0;
+        }
+
+        .title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            margin-top: 20px;
+        }
+
+       .htul,li ul {
+            padding-left: 20px;
+            margin-top: 5px;
+        }
+
+       .htul,li .r {
+            padding: 0;
+        }
+
+       .htul,li .r > span {
+            margin-right: 30px;
+        }
+
+        .result {
+            color: #cd4744 !important;
+        }
+        img{
+            width: 13px;
+            height: 13px;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+<!--<h3 id="h3"></h3>-->
+<div id="list1" class="hdiv">
+
+
+</div>
+<script id="list3" type="text/x-jquery-tmpl">
+    <ul class="wBox htul" >
+    {{each(i,item) dataList}}
+        <li>
+            <p>${i+1}.${topicTitle}</p>
+            <span class="${item.sign == 1 && item.answer == '没有' ? 'result' : ''}"><img src="${item.sign == 1 && item.answer == '没有' ? '../img/select.png' : '../img/no_select.png'}" alt="">没有</span>
+            <span class="${item.sign == 2 && item.answer == '轻微' ? 'result' : ''}"><img src="${item.sign == 2 && item.answer == '轻微' ? '../img/select.png' : '../img/no_select.png'}" alt="">轻微</span>
+            <span class="${item.sign == 3 && item.answer == '明显' ? 'result' : ''}"><img src="${item.sign == 3 && item.answer == '明显' ? '../img/select.png' : '../img/no_select.png'}" alt="">明显</span>
+            <span class="${item.sign == 4 && item.answer == '严重' ? 'result' : ''}"><img src="${item.sign == 4 && item.answer == '严重' ? '../img/select.png' : '../img/no_select.png'}" alt="">严重</span>
+            {{each(j,o) item.topicResult}}
+                {{if o == item.answer}}
+                    <span class="result"><img src="../img/select.png" alt="">${o}</span>
+                {{else}}
+                    <span><img src="../img/no_select.png" alt="">${o}</span>
+                {{/if}}
+            {{/each}}
+
+        </li>
+    {{/each}}
+    </ul>
+</script>
+<script id="list2" type="text/x-jquery-tmpl">
+{{if pcidType.nameEnum != 5}}
+    <p class="title">${pcidType.name}</p>
+    <ul class="wBox htul">
+    {{each(i,item) pcidList}}
+        <li>
+            <p>${i+1}.${topicTitle}</p>
+            {{each(j,o) item.topicResult}}
+                {{if o == item.answer}}
+                    <span class="result"><img src="../img/select.png" alt="">${o}</span>
+                {{else}}
+                    <span><img src="../img/no_select.png" alt="">${o}</span>
+                {{/if}}
+            {{/each}}
+            {{if item.answers.length>0}}
+                <p style="padding-left:40px;margin-top:20px;">您孩子最近说过的三个最长的句子</p>
+                <ul style="padding-left:52px;">
+                {{each(j,o) item.answers}}
+                    <li style="list-style: decimal;"><span style="border-bottom:1px solid #999;min-width:300px;display:inline-block;margin-left:0;">${o}</span></li>
+                {{/each}}
+                </ul>
+            {{/if}}
+        </li>
+    {{/each}}
+    </ul>
+{{else}}
+    <p class="title">${pcidType.name}</p>
+    <ul style="width: 500px;" class="wBox htul">
+        {{each(i,item) pcidList}}
+            <li class="clearfix">
+                <span class="l">${i+1}.${item.topicTitle}</span>
+                <div class="r">
+                {{if item.answer == '会说'}}
+                <span class="result"><img src="../img/select.png" alt="">会说</span>
+                <span><img src="../img/no_select.png" alt="">不会说</span>
+                {{else}}
+                <span><img src="../img/no_select.png" alt="">会说</span>
+                <span class="result"><img src="../img/select.png" alt="">不会说</span>
+                {{/if}}
+                </div>
+            </li>
+        {{/each}}
+    </ul>
+{{/if}}
+</script>
+<script src="${path}/static/js/hjs/jquery.tmpl.min.js"></script>
+<script src="${path}/static/js/hjs/api.js"></script>
+<script>
+    $(function () {
+        get('roll/topcdiAndabc/resultInfo',{id:88}).then(
+            function (res) {
+                console.log(res)
+                if(res.code == 200){
+                    // $('h3').html(res.msg)
+                    if(res.data.type != '3'){
+                        if(res.data.type == '2'){
+                            var n = [];
+                            res.data.dataList.must.forEach(function (items) {
+                                items.pcidList.forEach(function (item,i) {
+                                    item.topicResult = item.topicResultOne.split('|')
+                                    item.answers = []
+                                    if(item.answerOne){
+                                        item.answers.push(item.answerOne)
+                                    }
+                                    if(item.answerTwo){
+                                        item.answers.push(item.answerTwo)
+                                    }
+                                    if(item.answerThree){
+                                        item.answers.push(item.answerThree)
+                                    }
+                                })
+                                n.push(items)
+                            })
+                            res.data.dataList.optional.forEach(function (items) {
+                                items.pcidList.forEach(function (item,i) {
+                                    item.topicResult = []
+                                    item.answers = []
+                                    if(item.topicResultOne){
+                                        item.topicResult.push(item.topicResultOne)
+                                    }
+                                    if(item.topicResultTwo){
+                                        item.topicResult.push(item.topicResultTwo)
+                                    }
+                                })
+                                n.push(items)
+                            })
+                            console.log(n)
+                            $('#list1').empty();
+                            $('#list2').tmpl(n).appendTo('#list1')
+                        }else{
+                            res.data.dataList.forEach(function (items,i) {
+                                items.pcidList.forEach(function (item,i) {
+                                    item.topicResult = item.topicResultOne.split('|')
+                                    item.answers = []
+                                    if(item.answerOne){
+                                        item.answers.push(item.answerOne)
+                                    }
+                                    if(item.answerTwo){
+                                        item.answers.push(item.answerTwo)
+                                    }
+                                    if(item.answerThree){
+                                        item.answers.push(item.answerThree)
+                                    }
+                                })
+                            })
+                            console.log()
+                            $('#list1').empty();
+                            $('#list2').tmpl(res.data.dataList).appendTo('#list1')
+                        }
+                    }else{
+                        $('#list1').empty();
+                        $('#list3').tmpl(res.data).appendTo('#list1')
+                    }
+
+
+                }
+            },
+            function (err) {
+                console.log(err)
+            }
+        )
+    })
+</script>
+</body>
+</html>

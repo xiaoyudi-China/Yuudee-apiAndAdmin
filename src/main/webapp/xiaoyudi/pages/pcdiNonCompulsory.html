@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Title</title>
+    <script type="text/javascript" src="../js/rem.js"></script>
+    <link rel="stylesheet" href="../css/currency.css">
+    <style>
+        body {
+            background: url("../img/questionnaire.png") no-repeat;
+            background-size: 100% 100%;
+            height: 100%;
+        }
+        html{
+            height: 100%;
+        }
+        .notes {
+            margin-left: .54rem;
+            margin-right: .43rem;
+            font-size: .26rem;
+            color: #14101e;
+            line-height: .46rem;
+            margin-bottom: .28rem;
+        }
+
+        .header {
+            height: 1.94rem;
+            width: 100%;
+            box-sizing: border-box;
+            padding-left: .48rem;
+            padding-right: .36rem;
+            color: #fffdec;
+            position: relative;
+            padding-top: .57rem;
+        }
+
+        .header .title {
+            font-size: .44rem;
+            line-height: .44rem;
+            font-family: STYuanti-SC-Bold;
+        }
+
+        .msg {
+            font-size: .26rem;
+            line-height: .26rem;
+            margin-top: .16rem;
+        }
+
+        .home_button {
+            width: .86rem;
+            position: absolute;
+            right: .36rem;
+            bottom: .36rem;
+        }
+
+        .top {
+            margin: .47rem .48rem .35rem .48rem;
+            height: .32rem;
+            line-height: .32rem;
+        }
+
+        .top > .l {
+            font-size: .32rem;
+            color: #14101e;
+        }
+
+        .top .r {
+            font-size: .28rem;
+            color: #c06d00;
+            cursor: pointer;
+        }
+
+        .top .r img {
+            width: .41rem;
+            margin-left: .16rem;
+        }
+
+        .dashed {
+            width: 6.74rem;
+            height: .1rem;
+            border-bottom: 1px dashed #92674a;
+            margin: 0 auto;
+        }
+
+        .centent {
+            overflow: auto;
+        }
+
+        .centent .title > div {
+            position: absolute;
+            left: .38rem;
+            top: .175rem;
+            z-index: -1;
+        }
+
+        .centent .title {
+            width: auto;
+            height: .6rem;
+            line-height: .6rem;
+            text-align: center;
+            font-size: .3rem;
+            color: #fffdec;
+            background: #92674a;
+            border-radius: 1rem;
+            margin: 0 auto .1rem auto;
+            /*position: relative;*/
+            display: table;
+            padding: 0 .5rem;
+        }
+
+        .centent li {
+            position: relative;
+            width: 6.9rem;
+            margin: .3rem auto 0 auto;
+            border-bottom: 1px dashed #92674a;
+        }
+
+        .black_spot {
+            width: .1rem;
+            height: .1rem;
+            border-radius: 50%;
+            background: #14101e;
+            position: absolute;
+            top: .16rem;
+            left: 0rem;
+        }
+
+        li:last-child {
+            border-bottom: none;
+        }
+
+        li > .subject {
+            font-size: .28rem;
+            line-height: .4rem;
+            color: #14101e;
+            margin-left: .24rem;
+        }
+
+        .Submission {
+            width: 3.1rem;
+            height: .94rem;
+            margin: 0rem auto .4rem auto;
+            background: url("../img/button.png") no-repeat;
+            background-size: 100% 100%;
+            color: #fffdec;
+            font-size: .32rem;
+            text-align: center;
+            line-height: .74rem;
+            font-family: STYuanti-SC-Bold;
+            cursor: pointer;
+        }
+
+        .radio p {
+            margin-right: 0.24rem;
+            text-align: center;
+            color: #14101e;
+            font-size: .26rem;
+            height: .25rem;
+            line-height: .26rem;
+            padding: 0.34rem 0.30rem 0.26rem;
+        }
+
+        .radio img {
+            width: .3rem;
+            margin-right: .14rem;
+            vertical-align: middle;
+        }
+
+        .selectColor {
+            color: #cd4744 !important;
+        }
+
+        .dialog {
+            width: 6.61rem;
+            height: 5.03rem;
+            position: absolute;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+            background: url("../img/dialog.png") no-repeat;
+            background-size: 100% 100%;
+            z-index: 100;
+            padding-bottom: .4rem;
+            display: none;
+        }
+
+        .dialog > img {
+            position: absolute;
+            right: .38rem;
+            top: .7rem;
+            width: .65rem;
+        }
+
+        .Htitle {
+            margin: .88rem auto .3rem auto;
+            font-size: .32rem;
+            color: #6f4c28;
+            text-align: center;
+        }
+
+        .dialog .msg1 {
+            width: 5.51rem;
+            margin: 0 auto .3rem auto;
+            font-size: .28rem;
+            color: #14101e;
+            line-height: .4rem;
+        }
+
+        .dialog1 {
+            width: 6.61rem;
+            height: 3rem;
+            position: absolute;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+            background: url("../img/dialog.png") no-repeat;
+            background-size: 100% 100%;
+            z-index: 100;
+            padding-bottom: .4rem;
+            display: none;
+        }
+
+        .dialog1 > img {
+            position: absolute;
+            right: .38rem;
+            top: .7rem;
+            width: .65rem;
+        }
+
+        .dialog1 .msg1 {
+            width: 5.51rem;
+            margin: .85rem auto .58rem auto;
+            font-size: .28rem;
+            color: #14101e;
+            line-height: .4rem;
+        }
+
+        .button {
+            height: .69rem;
+        }
+
+        .button > .Submission {
+            width: 2.3rem;
+            margin-top: 0;
+        }
+
+        .button > .Submission:first-child {
+            margin-right: .62rem;
+            margin-left: .62rem;
+        }
+
+        .mask {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            opacity: .6;
+            z-index: 99;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<div class="header">
+    <p class="title">PCDI选填问卷</p>
+    <p class="msg">汉语沟通发展量表：词汇及句子(16以上月龄)</p>
+    <img src="../img/home_button.png" class="home_button" alt="">
+</div>
+<div class="centent">
+    <div class="top clearfix">
+        <span class="l">选做部分</span>
+        <a href="answerNote.html" class="r"><span>查看答题说明<img class="r" src="../img/button_right.png" alt=""></span></a>
+    </div>
+    <div id="topicList">
+
+    </div>
+</div>
+<div class="Submission" id="determine">
+    确定
+</div>
+<div class="mask"></div>
+<div class="dialog1">
+    <!--<img src="../img/close.png" alt="">-->
+    <p class="msg1">
+        您尚未填写完问卷评估，您确定要退出吗？
+    </p>
+    <div class="button clearfix">
+        <div class="Submission l l3">
+            继续填写
+        </div>
+        <div class="Submission l l4">
+            确定退出
+        </div>
+    </div>
+</div>
+<div class="dialog">
+    <!--<img src="../img/close.png" alt="">-->
+    <p class="Htitle">您已经完成了PCDI必做部分问卷</p>
+    <p class="msg1">
+        如您愿意全部完成必做和选做部分，将可以获得幼童汉语言发展水平的完整评估。仅完成必做部分不会影响小雨滴2训练的使用，但将无法获取完整评估打分。
+        接下来的选做部分将花费您10-15分钟时间。
+    </p>
+    <div class="button clearfix">
+        <div class="Submission l l1">
+            确定提交
+        </div>
+        <div class="Submission l l2">
+            继续评估
+        </div>
+    </div>
+</div>
+<script src="../js/jquery-1.11.2.min.js"></script>
+<script src="../js/jquery.tmpl.min.js"></script>
+<script type="text/javascript" src="../js/centent.js"></script>
+<script src="../js/api.js"></script>
+<script type="text/x-jquery-tmpl" id="list">
+    <div style="position:relative;">
+        <div class="title">
+             ${pcidType.name}
+            <div class="dashed"></div>
+        </div>
+    </div>
+    {{if pcidType.title != ''}}
+        <p class="notes" >
+           ${pcidType.title}
+        </p>
+    {{/if}}
+
+    <ul>
+        {{each(i,item) pcidList}}
+            <li>
+                <div class="black_spot"></div>
+                <p class="subject">${i+1}. ${item.topicTitle}</p>
+                <div class="clearfix radio">
+                    <p class="l ${item.answer == '不会说' && item.answerid == 1 ? 'selectColor' : ''}" data-ind="1" data-val="不会说" data-pcdiTypeId="${item.pcdiTypeId}" data-id="${pcidType.id}|${item.id}"><img src="${item.answer == '不会说' && item.answerid == 1 ? '../img/select.png' : '../img/no_select.png'}" alt="">不会说</p>
+                    <p class="l ${item.answer == '会说' && item.answerid == 2 ? 'selectColor' : ''}" data-ind="2" data-val="会说" data-pcdiTypeId="${item.pcdiTypeId}" data-id="${pcidType.id}|${item.id}"><img src="${item.answer == '会说' && item.answerid == 2 ? '../img/select.png' : '../img/no_select.png'}" alt="">会说</p>
+                </div>
+            </li>
+        {{/each}}
+    </ul>
+
+
+</script>
+<script>
+    $(function () {
+        var answerJSON = {};
+        var answerList = [];
+        function getUrlParam(name) {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+            var r = window.location.search.substr(1).match(reg);  //匹配目标参数
+            if (r != null) return unescape(r[2]); return null; //返回参数值
+        }
+        var mustId = getUrlParam('id')
+        var pcdiNonId = getUrlParam('pcdiNonId')
+        // var score = 0;
+        $('.home_button').click(function () {
+            $('.mask').show();
+            $('.dialog1').show()
+        })
+        $('.l3').click(function () {
+            $('.mask').hide();
+            $('.dialog1').hide()
+        })
+        $('.l4').click(function () {
+            if(window.webkit){
+                window.webkit.messageHandlers.goBack.postMessage(null);
+            }else{
+                android.goBackthree();
+            }
+
+            // window.location.href = 'requiredPresentation.html'
+        })
+        $('.l1').click(function () {
+            $('.mask').hide();
+            $('.dialog').hide()
+        })
+        $('.l2').click(function () {
+            $('.mask').hide();
+            $('.dialog').hide()
+        })
+        //做题
+        $('#topicList').delegate('.radio p', 'click', function () {
+            var  id = $(this).data('id');
+            var  ind = $(this).data('ind');
+            var  val = $(this).data('val');
+            var  pcdiTypeId = $(this).data('pcditypeid');
+            var  radio = $(this).parents('.radio');
+            radio.find('p').removeClass('selectColor');
+            radio.find('img').attr('src', '../img/no_select.png');
+            $(this).addClass('selectColor');
+            $(this).find('img').attr('src', '../img/select.png')
+
+            answerJSON[id] = {
+                topicId: id.split('|')[1],
+                topicType: pcdiTypeId,
+                answer: val,
+                answerid: ind,
+            };
+
+        });
+
+        //获取题目列表
+        get('/getPcdi/optional').then(
+            function (res) {
+                console.log(res)
+                if (res.code == 200) {
+                    if(pcdiNonId != 'null'){
+                        get('/getPcdi/optionalAndResult',{answerId:pcdiNonId}).then(
+                            function (data) {
+                                console.log(data)
+                                if(data.code == 200){
+                                    data.data.forEach(function (items,i) {
+                                        res.data.forEach(function (item,n) {
+                                            item.pcidList.forEach(function (o,j) {
+                                                if(o.pcdiTypeId == items.topicType && items.topicId == o.id){
+                                                    item.pcidList[j].answerid = items.sign
+                                                    item.pcidList[j].answer = items.answer
+                                                }
+                                            })
+
+                                        })
+                                        answerJSON[items.topicType+'|'+items.topicId] = {
+                                            topicId: items.topicId,
+                                            topicType: items.topicType,
+                                            answer: items.answer,
+                                            answerid: items.sign,
+                                        }
+                                    })
+                                    $('#topicList').empty();
+                                    $('#list').tmpl(res.data).appendTo('#topicList')
+                                }else{
+                                    tips(data.msg);
+                                }
+                            },
+                            function (err) {
+                                console.log(err)
+                            }
+                        )
+                    }else{
+                        $('#topicList').empty();
+                        $('#list').tmpl(res.data).appendTo('#topicList')
+                    }
+
+                } else {
+                    tips(res.msg);
+                }
+
+            },
+            function (err) {
+                console.log(err)
+            }
+        );
+        //提交
+        $('#determine').click(function () {
+            var  score = 0;
+            if($('.selectColor').length<$('#topicList').find('li').length){
+
+                tips('您还没有题目未做完，请继续答题')
+                var isHasFindNoSelector=false
+                $('#topicList').find('li').each(function (index,item) {
+                    if(!isHasFindNoSelector&&$(item).find('.selectColor').length===0){
+                        console.log($(item).position().top)
+                        console.log($('.centent').scrollTop($(item).position().top-$(item).parent().position().top))
+                        isHasFindNoSelector=true
+                        // $(window).scroll($(item).offset().top);
+
+                    }
+                })
+                return
+            }
+            var data = JSON.parse(JSON.stringify(answerJSON))
+            for(var key in data){
+                if(data[key].answer == '会说' && data[key].answerid == 2){
+                    score = score+=1
+                }
+                answerList.push(data[key])
+            }
+            var  params = {
+                resultList:JSON.stringify(answerList),
+                count:score,
+                mustId:mustId
+            }
+            console.log(params)
+            post('/addPcdiOutResult', params).then(
+                function (res) {
+                    console.log(res)
+                    if (res.code == 200) {
+                        window.location.href = 'allResult.html'
+                    } else {
+                        tips(res.msg);
+                    }
+                },
+                function (err) {
+                    console.log(err)
+                }
+            )
+
+        });
+    })
+</script>
+</body>
+</html>

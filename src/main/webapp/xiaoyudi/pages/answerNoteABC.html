@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <script type="text/javascript" src="../js/rem.js"></script>
+    <link rel="stylesheet" href="../css/currency.css">
+    <style>
+        body {
+            background: url("../img/assessment.png") no-repeat;
+            position: relative;
+            padding-top: .65rem;
+            box-sizing: border-box;
+        }
+
+        .left_button {
+            position: fixed;
+            left: .35rem;
+            top: .35rem;
+            height: .865rem;
+            /*width: .78rem;*/
+            cursor: pointer;
+        }
+
+        .title {
+            font-family: STYuanti-SC-Bold;
+            font-size: .44rem;
+            color: #a36033;
+            margin: 0 auto .9rem auto;
+            text-align: center;
+        }
+
+        .text {
+            margin: 0 .5rem;
+            color: #14101e;
+            text-indent: .88rem;
+            font-size: .28rem;
+            line-height: .56rem;
+        }
+    </style>
+</head>
+<body>
+<img src="../img/left_button.png" class="left_button" alt="">
+<p class="title">ABC答题说明</p>
+<p class="text">
+    填表者必须是与儿童生活在一起（半年以上）的父母或是与儿童生活了3－6周的老师来填写,本问卷评估的是儿童目前的症状程度。总计57题，依据儿童的每种症状程度打分，没有该症状记0分；轻微记1分；明显记2分；严重记3分。
+<script src="../js/jquery-1.11.2.min.js"></script>
+<script>
+    $(function () {
+        $('img').click(function () {
+            window.history.back(-1);
+        })
+    })
+</script>
+</body>
+</html>

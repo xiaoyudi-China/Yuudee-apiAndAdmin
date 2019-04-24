@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xfkj.mapper.XydSentenceGroupTrainingMapper">
+    <resultMap id="BaseResultMap" type="com.xfkj.model.XydSentenceGroupTraining">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="start_slideshow" jdbcType="VARCHAR" property="startSlideshow"/>
+        <result column="card_one_image" jdbcType="VARCHAR" property="cardOneImage"/>
+        <result column="card_one_char" jdbcType="VARCHAR" property="cardOneChar"/>
+        <result column="card_one_record" jdbcType="VARCHAR" property="cardOneRecord"/>
+        <result column="card_two_image" jdbcType="VARCHAR" property="cardTwoImage"/>
+        <result column="card_two_char" jdbcType="VARCHAR" property="cardTwoChar"/>
+        <result column="card_two_record" jdbcType="VARCHAR" property="cardTwoRecord"/>
+        <result column="group_char" jdbcType="VARCHAR" property="groupChar"/>
+        <result column="group_record" jdbcType="VARCHAR" property="groupRecord"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+        <result column="states" jdbcType="VARCHAR" property="states"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, start_slideshow, card_one_image, card_one_char, card_one_record, card_two_image, 
+    card_two_char, card_two_record, group_char, group_record, create_time, update_time, 
+    states
+  </sql>
+
+    <select id="selectAllByRand" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from xyd_sentence_group_training
+        ORDER BY rand() limit 10
+    </select>
+
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from xyd_sentence_group_training
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from xyd_sentence_group_training
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+    <insert id="insert" parameterType="com.xfkj.model.XydSentenceGroupTraining">
+    insert into xyd_sentence_group_training (id, start_slideshow, card_one_image, 
+      card_one_char, card_one_record, card_two_image, 
+      card_two_char, card_two_record, group_char, 
+      group_record, create_time, update_time, 
+      states)
+    values (#{id,jdbcType=INTEGER}, #{startSlideshow,jdbcType=VARCHAR}, #{cardOneImage,jdbcType=VARCHAR}, 
+      #{cardOneChar,jdbcType=VARCHAR}, #{cardOneRecord,jdbcType=VARCHAR}, #{cardTwoImage,jdbcType=VARCHAR}, 
+      #{cardTwoChar,jdbcType=VARCHAR}, #{cardTwoRecord,jdbcType=VARCHAR}, #{groupChar,jdbcType=VARCHAR}, 
+      #{groupRecord,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{states,jdbcType=VARCHAR})
+  </insert>
+    <insert id="insertSelective" parameterType="com.xfkj.model.XydSentenceGroupTraining">
+        insert into xyd_sentence_group_training
+        <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+            SELECT LAST_INSERT_ID() AS id
+        </selectKey>
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="startSlideshow != null">
+                start_slideshow,
+            </if>
+            <if test="cardOneImage != null">
+                card_one_image,
+            </if>
+            <if test="cardOneChar != null">
+                card_one_char,
+            </if>
+            <if test="cardOneRecord != null">
+                card_one_record,
+            </if>
+            <if test="cardTwoImage != null">
+                card_two_image,
+            </if>
+            <if test="cardTwoChar != null">
+                card_two_char,
+            </if>
+            <if test="cardTwoRecord != null">
+                card_two_record,
+            </if>
+            <if test="groupChar != null">
+                group_char,
+            </if>
+            <if test="groupRecord != null">
+                group_record,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+            <if test="states != null">
+                states,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="startSlideshow != null">
+                #{startSlideshow,jdbcType=VARCHAR},
+            </if>
+            <if test="cardOneImage != null">
+                #{cardOneImage,jdbcType=VARCHAR},
+            </if>
+            <if test="cardOneChar != null">
+                #{cardOneChar,jdbcType=VARCHAR},
+            </if>
+            <if test="cardOneRecord != null">
+                #{cardOneRecord,jdbcType=VARCHAR},
+            </if>
+            <if test="cardTwoImage != null">
+                #{cardTwoImage,jdbcType=VARCHAR},
+            </if>
+            <if test="cardTwoChar != null">
+                #{cardTwoChar,jdbcType=VARCHAR},
+            </if>
+            <if test="cardTwoRecord != null">
+                #{cardTwoRecord,jdbcType=VARCHAR},
+            </if>
+            <if test="groupChar != null">
+                #{groupChar,jdbcType=VARCHAR},
+            </if>
+            <if test="groupRecord != null">
+                #{groupRecord,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="states != null">
+                #{states,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.xfkj.model.XydSentenceGroupTraining">
+        update xyd_sentence_group_training
+        <set>
+            <if test="startSlideshow != null">
+                start_slideshow = #{startSlideshow,jdbcType=VARCHAR},
+            </if>
+            <if test="cardOneImage != null">
+                card_one_image = #{cardOneImage,jdbcType=VARCHAR},
+            </if>
+            <if test="cardOneChar != null">
+                card_one_char = #{cardOneChar,jdbcType=VARCHAR},
+            </if>
+            <if test="cardOneRecord != null">
+                card_one_record = #{cardOneRecord,jdbcType=VARCHAR},
+            </if>
+            <if test="cardTwoImage != null">
+                card_two_image = #{cardTwoImage,jdbcType=VARCHAR},
+            </if>
+            <if test="cardTwoChar != null">
+                card_two_char = #{cardTwoChar,jdbcType=VARCHAR},
+            </if>
+            <if test="cardTwoRecord != null">
+                card_two_record = #{cardTwoRecord,jdbcType=VARCHAR},
+            </if>
+            <if test="groupChar != null">
+                group_char = #{groupChar,jdbcType=VARCHAR},
+            </if>
+            <if test="groupRecord != null">
+                group_record = #{groupRecord,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="states != null">
+                states = #{states,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.xfkj.model.XydSentenceGroupTraining">
+    update xyd_sentence_group_training
+    set start_slideshow = #{startSlideshow,jdbcType=VARCHAR},
+      card_one_image = #{cardOneImage,jdbcType=VARCHAR},
+      card_one_char = #{cardOneChar,jdbcType=VARCHAR},
+      card_one_record = #{cardOneRecord,jdbcType=VARCHAR},
+      card_two_image = #{cardTwoImage,jdbcType=VARCHAR},
+      card_two_char = #{cardTwoChar,jdbcType=VARCHAR},
+      card_two_record = #{cardTwoRecord,jdbcType=VARCHAR},
+      group_char = #{groupChar,jdbcType=VARCHAR},
+      group_record = #{groupRecord,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      states = #{states,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+    <select id="selectByParamCount" parameterType="com.xfkj.common.query.GenericQueryParam" resultType="Integer">
+        select
+        count(id)
+        from xyd_sentence_group_training
+        <where>1=1
+            <if test="groupchar != null">
+                and group_char = #{groupchar}
+            </if>
+        </where>
+    </select>
+
+    <select id="selectByParamList" parameterType="com.xfkj.common.query.GenericQueryParam" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from
+        xyd_sentence_group_training
+        <where>1=1
+            <if test="groupchar != null">
+                and group_char LIKE #{groupchar}
+            </if>
+        </where>
+    </select>
+</mapper>

@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xfkj.mapper.XydExperienceRecordMapper">
+  <resultMap id="BaseResultMap" type="com.xfkj.model.XydExperienceRecord">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="parents_id" jdbcType="INTEGER" property="parentsId" />
+    <result column="module" jdbcType="VARCHAR" property="module" />
+    <result column="child_module" jdbcType="VARCHAR" property="childModule" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="states" jdbcType="VARCHAR" property="states" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, parents_id, module, child_module, create_time, update_time, states
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from xyd_experience_record
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from xyd_experience_record
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xfkj.model.XydExperienceRecord">
+    insert into xyd_experience_record (id, parents_id, module, 
+      child_module, create_time, update_time, 
+      states)
+    values (#{id,jdbcType=INTEGER}, #{parentsId,jdbcType=INTEGER}, #{module,jdbcType=VARCHAR}, 
+      #{childModule,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{states,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xfkj.model.XydExperienceRecord">
+    insert into xyd_experience_record
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="parentsId != null">
+        parents_id,
+      </if>
+      <if test="module != null">
+        module,
+      </if>
+      <if test="childModule != null">
+        child_module,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="states != null">
+        states,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="parentsId != null">
+        #{parentsId,jdbcType=INTEGER},
+      </if>
+      <if test="module != null">
+        #{module,jdbcType=VARCHAR},
+      </if>
+      <if test="childModule != null">
+        #{childModule,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="states != null">
+        #{states,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xfkj.model.XydExperienceRecord">
+    update xyd_experience_record
+    <set>
+      <if test="parentsId != null">
+        parents_id = #{parentsId,jdbcType=INTEGER},
+      </if>
+      <if test="module != null">
+        module = #{module,jdbcType=VARCHAR},
+      </if>
+      <if test="childModule != null">
+        child_module = #{childModule,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="states != null">
+        states = #{states,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xfkj.model.XydExperienceRecord">
+    update xyd_experience_record
+    set parents_id = #{parentsId,jdbcType=INTEGER},
+      module = #{module,jdbcType=VARCHAR},
+      child_module = #{childModule,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      states = #{states,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByList" parameterType="com.xfkj.model.XydExperienceRecord" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from xyd_experience_record
+    where 1 = 1
+    <if test="parentsId != null">
+      AND  parents_id = #{parentsId,jdbcType=INTEGER}
+    </if>
+    <if test="module != null">
+      AND module = #{module,jdbcType=VARCHAR}
+    </if>
+    <if test="childModule != null">
+      AND child_module = #{childModule,jdbcType=VARCHAR}
+    </if>
+    <if test="states != null">
+      AND states = #{states,jdbcType=VARCHAR}
+    </if>
+  </select>
+  <select id="selectRegisterCount" parameterType="com.xfkj.model.XydExperienceRecord" resultType="java.lang.Integer">
+    select
+    COUNT(1)
+    from xyd_experience_record
+    where 1 = 1
+    <if test="parentsId != null">
+    AND  parents_id = #{parentsId,jdbcType=INTEGER}
+    </if>
+    <if test="module != null">
+      AND module = #{module,jdbcType=VARCHAR}
+    </if>
+    <if test="childModule != null">
+      AND child_module = #{childModule,jdbcType=VARCHAR}
+    </if>
+    <if test="states != null">
+      AND states = #{states,jdbcType=VARCHAR}
+    </if>
+  </select>
+
+</mapper>

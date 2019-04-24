@@ -1,0 +1,43 @@
+html, body {
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    font-family: STYuanti-SC-Regular;
+}
+
+p {
+    margin: 0;
+    padding: 0;
+}
+
+
+
+a {
+    text-decoration: none;
+}
+
+ul, li, ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.l {
+    float: left;
+}
+
+.r {
+    float: right;
+}
+
+.clearfix:after {
+    content: "";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+.clearfix {
+    zoom: 1;
+}

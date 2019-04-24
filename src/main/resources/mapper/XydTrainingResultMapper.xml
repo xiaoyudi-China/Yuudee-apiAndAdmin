@@ -1,0 +1,366 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xfkj.mapper.XydTrainingResultMapper">
+    <resultMap id="BaseResultMap" type="com.xfkj.model.XydTrainingResult">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="user_id" jdbcType="INTEGER" property="userId"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="courseware_id" jdbcType="INTEGER" property="coursewareId"/>
+        <result column="group_id" jdbcType="INTEGER" property="groupId"/>
+        <result column="scene" jdbcType="VARCHAR" property="scene"/>
+        <result column="module" jdbcType="VARCHAR" property="module"/>
+        <result column="start_time" jdbcType="TIMESTAMP" property="startTime"/>
+        <result column="end_time" jdbcType="TIMESTAMP" property="endTime"/>
+        <result column="stay_time" jdbcType="INTEGER" property="stayTime"/>
+        <result column="pass" jdbcType="CHAR" property="pass"/>
+        <result column="disturb_name" jdbcType="VARCHAR" property="disturbName"/>
+        <result column="error_type" jdbcType="VARCHAR" property="errorType"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+        <result column="states" jdbcType="CHAR" property="states"/>
+        <result column="stay_time_list" jdbcType="VARCHAR" property="stayTimeList"/>
+
+        <result column="countId" jdbcType="INTEGER" property="testCount"/>
+        <result column="countPass" jdbcType="DOUBLE" property="passCount"/>
+        <result column="countUser" jdbcType="INTEGER" property="testPersonCount"/>
+        <result column="duration1" jdbcType="DOUBLE" property="duration1"/>
+        <result column="duration2" jdbcType="DOUBLE" property="duration2"/>
+        <result column="duration3" jdbcType="DOUBLE" property="duration3"/>
+        <result column="duration4" jdbcType="DOUBLE" property="duration4"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, user_id, name, courseware_id, group_id, scene, module, start_time, end_time, 
+    stay_time, pass, disturb_name, error_type, create_time, update_time, states,stay_time_list
+  </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from xyd_training_result
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+
+    <select id="selectPassCount" resultType="java.lang.Integer">
+    select
+    count(id)
+    from xyd_training_result a
+    where a.user_id=#{userId} and a.module=#{module}
+  </select>
+    <select id="selectByGroupId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from xyd_training_result
+        where group_id=#{groupId} and states="1"
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from xyd_training_result
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+    <insert id="insert" parameterType="com.xfkj.model.XydTrainingResult">
+    insert into xyd_training_result (id, user_id, name, 
+      courseware_id, group_id, scene, 
+      module, start_time, end_time, 
+      stay_time, pass, disturb_name, 
+      error_type, create_time, update_time, 
+      states,stay_time_list)
+    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, 
+      #{coursewareId,jdbcType=INTEGER}, #{groupId,jdbcType=INTEGER}, #{scene,jdbcType=VARCHAR}, 
+      #{module,jdbcType=VARCHAR}, #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, 
+      #{stayTime,jdbcType=INTEGER}, #{pass,jdbcType=CHAR}, #{disturbName,jdbcType=VARCHAR},
+      #{errorType,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{states,jdbcType=CHAR},#{stayTimeList})
+  </insert>
+    <insert id="insertSelective" parameterType="com.xfkj.model.XydTrainingResult">
+        insert into xyd_training_result
+        <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+            SELECT LAST_INSERT_ID() AS id
+        </selectKey>
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="userId != null">
+                user_id,
+            </if>
+            <if test="name != null">
+                name,
+            </if>
+            <if test="coursewareId != null">
+                courseware_id,
+            </if>
+            <if test="groupId != null">
+                group_id,
+            </if>
+            <if test="scene != null">
+                scene,
+            </if>
+            <if test="module != null">
+                module,
+            </if>
+            <if test="startTime != null">
+                start_time,
+            </if>
+            <if test="endTime != null">
+                end_time,
+            </if>
+            <if test="stayTime != null">
+                stay_time,
+            </if>
+            <if test="pass != null">
+                pass,
+            </if>
+            <if test="disturbName != null">
+                disturb_name,
+            </if>
+            <if test="errorType != null">
+                error_type,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+            <if test="states != null">
+                states,
+            </if>
+            <if test="stayTimeList != null">
+                stay_time_list,
+            </if>
+
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="userId != null">
+                #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="coursewareId != null">
+                #{coursewareId,jdbcType=INTEGER},
+            </if>
+            <if test="groupId != null">
+                #{groupId,jdbcType=INTEGER},
+            </if>
+            <if test="scene != null">
+                #{scene,jdbcType=VARCHAR},
+            </if>
+            <if test="module != null">
+                #{module,jdbcType=VARCHAR},
+            </if>
+            <if test="startTime != null">
+                #{startTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="endTime != null">
+                #{endTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="stayTime != null">
+                #{stayTime,jdbcType=INTEGER},
+            </if>
+            <if test="pass != null">
+                #{pass,jdbcType=CHAR},
+            </if>
+            <if test="disturbName != null">
+                #{disturbName,jdbcType=VARCHAR},
+            </if>
+            <if test="errorType != null">
+                #{errorType,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="states != null">
+                #{states,jdbcType=CHAR},
+            </if>
+            <if test="stayTimeList != null">
+                #{stayTimeList},
+            </if>
+
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.xfkj.model.XydTrainingResult">
+        update xyd_training_result
+        <set>
+            <if test="userId != null">
+                user_id = #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="name != null">
+                name = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="coursewareId != null">
+                courseware_id = #{coursewareId,jdbcType=INTEGER},
+            </if>
+            <if test="groupId != null">
+                group_id = #{groupId,jdbcType=INTEGER},
+            </if>
+            <if test="scene != null">
+                scene = #{scene,jdbcType=VARCHAR},
+            </if>
+            <if test="module != null">
+                module = #{module,jdbcType=VARCHAR},
+            </if>
+            <if test="startTime != null">
+                start_time = #{startTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="endTime != null">
+                end_time = #{endTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="stayTime != null">
+                stay_time = #{stayTime,jdbcType=INTEGER},
+            </if>
+            <if test="pass != null">
+                pass = #{pass,jdbcType=CHAR},
+            </if>
+            <if test="disturbName != null">
+                disturb_name = #{disturbName,jdbcType=VARCHAR},
+            </if>
+            <if test="errorType != null">
+                error_type = #{errorType,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="states != null">
+                states = #{states,jdbcType=CHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.xfkj.model.XydTrainingResult">
+    update xyd_training_result
+    set user_id = #{userId,jdbcType=INTEGER},
+      name = #{name,jdbcType=VARCHAR},
+      courseware_id = #{coursewareId,jdbcType=INTEGER},
+      group_id = #{groupId,jdbcType=INTEGER},
+      scene = #{scene,jdbcType=VARCHAR},
+      module = #{module,jdbcType=VARCHAR},
+      start_time = #{startTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      stay_time = #{stayTime,jdbcType=INTEGER},
+      pass = #{pass,jdbcType=CHAR},
+      disturb_name = #{disturbName,jdbcType=VARCHAR},
+      error_type = #{errorType,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      states = #{states,jdbcType=CHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+    <select id="selectByParamCount" parameterType="com.xfkj.common.query.GenericQueryParam" resultType="Integer">
+        select
+        count(id)
+        from xyd_training_result as x
+        <where>1=1 and x.states = 1
+            <if test="userid != null">
+                and x.user_id=#{userid}
+            </if>
+            <if test="name != null">
+                and x.name LIKE concat('%', #{name}, '%')
+            </if>
+            <if test="module != null">
+                and x.module = #{module}
+            </if>
+            <if test="scene != null">
+                and x.scene = #{scene}
+            </if>
+            <if test="pass != null">
+                and x.pass = #{pass}
+            </if>
+            <if test="errortype != null">
+                and x.error_type = #{errortype}
+            </if>
+            <if test="sentence == 1">
+                GROUP BY x.courseware_id
+            </if>
+        </where>
+    </select>
+
+    <select id="selectTestPersonCount" resultMap="BaseResultMap">
+    select DISTINCT user_id ,name, courseware_id, group_id, scene, module, start_time,
+     end_time,stay_time, pass, disturb_name, error_type, create_time, update_time,
+      states,stay_time_list from xyd_training_result where module = #{module} and scene = #{scene} and states = 1 GROUP BY user_id
+  </select>
+    <select id="selectByParamList" parameterType="com.xfkj.common.query.GenericQueryParam" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from
+        xyd_training_result as x
+        <where>1=1 and x.states = 1
+            <if test="userid != null">
+                and x.user_id=#{userid}
+            </if>
+            <if test="name != null">
+                and x.name LIKE concat('%', #{name}, '%')
+            </if>
+            <if test="module != null">
+                and x.module = #{module}
+            </if>
+            <if test="scene != null">
+                and x.scene = #{scene}
+            </if>
+            <if test="pass != null">
+                and x.pass = #{pass}
+            </if>
+            <if test="errortype != null">
+                and x.error_type = #{errortype}
+            </if>
+            <if test="sentence == 1">
+                GROUP BY x.courseware_id
+            </if>
+        </where>
+    </select>
+
+
+
+    <select id="selectByParamStatCount" parameterType="com.xfkj.common.query.GenericQueryParam" resultType="Integer">
+       SELECT COUNT(1)
+       FROM (
+        SELECT *
+        FROM xyd_training_result
+        where 1 = 1
+        <if test="states != null">
+            AND states = #{states}
+        </if>
+        <if test="scene != null">
+            AND scene = #{scene}
+        </if>
+        <if test="module != null">
+            AND module = #{module}
+        </if>
+        <if test="name != null">
+            AND name LIKE #{name}
+        </if>
+        GROUP BY name
+       ) AS result
+    </select>
+
+    <select id="selectByParamStatList" parameterType="com.xfkj.common.query.GenericQueryParam" resultMap="BaseResultMap">
+        SELECT courseware_id,scene, name, module, COUNT(DISTINCT user_id) as countUser, COUNT(id) countid, COUNT(pass ='1' or NULL) countPass,
+        AVG(func_splitString(stay_time_list,',',1)) duration1, AVG(func_splitString(stay_time_list,',',2)) duration2,
+        AVG(func_splitString(stay_time_list,',',3)) duration3, AVG(func_splitString(stay_time_list,',',4)) duration4
+        FROM xyd_training_result
+        where 1 = 1
+        <if test="states != null">
+          AND states = #{states}
+        </if>
+        <if test="scene != null">
+            AND scene = #{scene}
+        </if>
+        <if test="module != null">
+            AND module = #{module}
+        </if>
+        <if test="name != null">
+            AND name LIKE #{name}
+        </if>
+         GROUP BY name
+    </select>
+</mapper>

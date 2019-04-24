@@ -1,0 +1,455 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xfkj.mapper.XydChildMapper">
+  <resultMap id="BaseResultMap" type="com.xfkj.model.XydChild">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="parents_id" jdbcType="INTEGER" property="parentsId" />
+    <result column="phone_number" jdbcType="CHAR" property="phoneNumber" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="sex" jdbcType="CHAR" property="sex" />
+    <result column="birthdate" jdbcType="TIMESTAMP" property="birthdate" />
+    <result column="countiy" jdbcType="VARCHAR" property="countiy" />
+    <result column="province" jdbcType="VARCHAR" property="province" />
+    <result column="city" jdbcType="CHAR" property="city" />
+    <result column="medical" jdbcType="VARCHAR" property="medical" />
+    <result column="medical_state" jdbcType="VARCHAR" property="medicalState" />
+    <result column="first_language" jdbcType="VARCHAR" property="firstLanguage" />
+    <result column="first_rests" jdbcType="VARCHAR" property="firstRests" />
+    <result column="second_language" jdbcType="VARCHAR" property="secondLanguage" />
+    <result column="second_rests" jdbcType="VARCHAR" property="secondRests" />
+    <result column="father_culture" jdbcType="VARCHAR" property="fatherCulture" />
+    <result column="mother_culture" jdbcType="VARCHAR" property="motherCulture" />
+    <result column="training_method" jdbcType="VARCHAR" property="trainingMethod" />
+    <result column="training_rests" jdbcType="VARCHAR" property="trainingRests" />
+    <result column="perfection" jdbcType="CHAR" property="perfection" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="photo" jdbcType="VARCHAR" property="photo" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, parents_id, phone_number, name, sex, birthdate, countiy, province, city, medical, 
+    medical_state, first_language, first_rests, second_language, second_rests, father_culture, 
+    mother_culture, training_method, training_rests, perfection, create_time, update_time, 
+    status, photo
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from xyd_child
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from xyd_child
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xfkj.model.XydChild">
+    insert into xyd_child (id, parents_id, phone_number, 
+      name, sex, birthdate, 
+      countiy, province, city, 
+      medical, medical_state, first_language, 
+      first_rests, second_language, second_rests, 
+      father_culture, mother_culture, training_method, 
+      training_rests, perfection, create_time, 
+      update_time, status,photo)
+    values (#{id,jdbcType=INTEGER}, #{parentsId,jdbcType=INTEGER}, #{phoneNumber,jdbcType=CHAR}, 
+      #{name,jdbcType=VARCHAR}, #{sex,jdbcType=CHAR}, #{birthdate,jdbcType=TIMESTAMP}, 
+      #{countiy,jdbcType=VARCHAR}, #{province,jdbcType=VARCHAR}, #{city,jdbcType=CHAR}, 
+      #{medical,jdbcType=VARCHAR}, #{medicalState,jdbcType=VARCHAR}, #{firstLanguage,jdbcType=VARCHAR}, 
+      #{firstRests,jdbcType=VARCHAR}, #{secondLanguage,jdbcType=VARCHAR}, #{secondRests,jdbcType=VARCHAR}, 
+      #{fatherCulture,jdbcType=VARCHAR}, #{motherCulture,jdbcType=VARCHAR}, #{trainingMethod,jdbcType=VARCHAR}, 
+      #{trainingRests,jdbcType=VARCHAR}, #{perfection,jdbcType=CHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{status,jdbcType=VARCHAR}, #{photo,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" useGeneratedKeys="true" keyProperty="id" parameterType="com.xfkj.model.XydChild">
+    insert into xyd_child
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="parentsId != null">
+        parents_id,
+      </if>
+      <if test="phoneNumber != null">
+        phone_number,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="sex != null">
+        sex,
+      </if>
+      <if test="birthdate != null">
+        birthdate,
+      </if>
+      <if test="countiy != null">
+        countiy,
+      </if>
+      <if test="province != null">
+        province,
+      </if>
+      <if test="city != null">
+        city,
+      </if>
+      <if test="medical != null">
+        medical,
+      </if>
+      <if test="medicalState != null">
+        medical_state,
+      </if>
+      <if test="firstLanguage != null">
+        first_language,
+      </if>
+      <if test="firstRests != null">
+        first_rests,
+      </if>
+      <if test="secondLanguage != null">
+        second_language,
+      </if>
+      <if test="secondRests != null">
+        second_rests,
+      </if>
+      <if test="fatherCulture != null">
+        father_culture,
+      </if>
+      <if test="motherCulture != null">
+        mother_culture,
+      </if>
+      <if test="trainingMethod != null">
+        training_method,
+      </if>
+      <if test="trainingRests != null">
+        training_rests,
+      </if>
+      <if test="perfection != null">
+        perfection,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="photo != null">
+        photo,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="parentsId != null">
+        #{parentsId,jdbcType=INTEGER},
+      </if>
+      <if test="phoneNumber != null">
+        #{phoneNumber,jdbcType=CHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=CHAR},
+      </if>
+      <if test="birthdate != null">
+        #{birthdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="countiy != null">
+        #{countiy,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null">
+        #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null">
+        #{city,jdbcType=CHAR},
+      </if>
+      <if test="medical != null">
+        #{medical,jdbcType=VARCHAR},
+      </if>
+      <if test="medicalState != null">
+        #{medicalState,jdbcType=VARCHAR},
+      </if>
+      <if test="firstLanguage != null">
+        #{firstLanguage,jdbcType=VARCHAR},
+      </if>
+      <if test="firstRests != null">
+        #{firstRests,jdbcType=VARCHAR},
+      </if>
+      <if test="secondLanguage != null">
+        #{secondLanguage,jdbcType=VARCHAR},
+      </if>
+      <if test="secondRests != null">
+        #{secondRests,jdbcType=VARCHAR},
+      </if>
+      <if test="fatherCulture != null">
+        #{fatherCulture,jdbcType=VARCHAR},
+      </if>
+      <if test="motherCulture != null">
+        #{motherCulture,jdbcType=VARCHAR},
+      </if>
+      <if test="trainingMethod != null">
+        #{trainingMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="trainingRests != null">
+        #{trainingRests,jdbcType=VARCHAR},
+      </if>
+      <if test="perfection != null">
+        #{perfection,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="photo != null">
+        #{photo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xfkj.model.XydChild">
+    update xyd_child
+    <set>
+      <if test="parentsId != null">
+        parents_id = #{parentsId,jdbcType=INTEGER},
+      </if>
+      <if test="phoneNumber != null">
+        phone_number = #{phoneNumber,jdbcType=CHAR},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        sex = #{sex,jdbcType=CHAR},
+      </if>
+      <if test="birthdate != null">
+        birthdate = #{birthdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="countiy != null">
+        countiy = #{countiy,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null">
+        province = #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null">
+        city = #{city,jdbcType=CHAR},
+      </if>
+      <if test="medical != null">
+        medical = #{medical,jdbcType=VARCHAR},
+      </if>
+      <if test="medicalState != null">
+        medical_state = #{medicalState,jdbcType=VARCHAR},
+      </if>
+      <if test="firstLanguage != null">
+        first_language = #{firstLanguage,jdbcType=VARCHAR},
+      </if>
+      <if test="firstRests != null">
+        first_rests = #{firstRests,jdbcType=VARCHAR},
+      </if>
+      <if test="secondLanguage != null">
+        second_language = #{secondLanguage,jdbcType=VARCHAR},
+      </if>
+      <if test="secondRests != null">
+        second_rests = #{secondRests,jdbcType=VARCHAR},
+      </if>
+      <if test="fatherCulture != null">
+        father_culture = #{fatherCulture,jdbcType=VARCHAR},
+      </if>
+      <if test="motherCulture != null">
+        mother_culture = #{motherCulture,jdbcType=VARCHAR},
+      </if>
+      <if test="trainingMethod != null">
+        training_method = #{trainingMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="trainingRests != null">
+        training_rests = #{trainingRests,jdbcType=VARCHAR},
+      </if>
+      <if test="perfection != null">
+        perfection = #{perfection,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="photo != null">
+        photo = #{photo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xfkj.model.XydChild">
+    update xyd_child
+    set parents_id = #{parentsId,jdbcType=INTEGER},
+      phone_number = #{phoneNumber,jdbcType=CHAR},
+      name = #{name,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=CHAR},
+      birthdate = #{birthdate,jdbcType=TIMESTAMP},
+      countiy = #{countiy,jdbcType=VARCHAR},
+      province = #{province,jdbcType=VARCHAR},
+      city = #{city,jdbcType=CHAR},
+      medical = #{medical,jdbcType=VARCHAR},
+      medical_state = #{medicalState,jdbcType=VARCHAR},
+      first_language = #{firstLanguage,jdbcType=VARCHAR},
+      first_rests = #{firstRests,jdbcType=VARCHAR},
+      second_language = #{secondLanguage,jdbcType=VARCHAR},
+      second_rests = #{secondRests,jdbcType=VARCHAR},
+      father_culture = #{fatherCulture,jdbcType=VARCHAR},
+      mother_culture = #{motherCulture,jdbcType=VARCHAR},
+      training_method = #{trainingMethod,jdbcType=VARCHAR},
+      training_rests = #{trainingRests,jdbcType=VARCHAR},
+      perfection = #{perfection,jdbcType=CHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=VARCHAR},
+       photo = #{photo,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectList" parameterType="com.xfkj.model.XydChild" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from xyd_child
+    where 1 = 1
+    <if test="parentsId != null">
+      AND parents_id = #{parentsId,jdbcType=INTEGER}
+    </if>
+    <if test="phoneNumber != null">
+      AND phone_number = #{phoneNumber,jdbcType=CHAR}
+    </if>
+    <if test="name != null">
+      AND name = #{name,jdbcType=VARCHAR}
+    </if>
+    <if test="sex != null">
+      AND  sex = #{sex,jdbcType=CHAR}
+    </if>
+    <if test="birthdate != null">
+      AND birthdate = #{birthdate,jdbcType=TIMESTAMP}
+    </if>
+    <if test="countiy != null">
+      AND countiy = #{countiy,jdbcType=VARCHAR}
+    </if>
+    <if test="province != null">
+      AND province = #{province,jdbcType=VARCHAR}
+    </if>
+    <if test="city != null">
+      AND city = #{city,jdbcType=CHAR}
+    </if>
+    <if test="medical != null">
+      AND  medical = #{medical,jdbcType=VARCHAR}
+    </if>
+    <if test="medicalState != null">
+      AND medical_state = #{medicalState,jdbcType=VARCHAR}
+    </if>
+    <if test="firstLanguage != null">
+      AND first_language = #{firstLanguage,jdbcType=VARCHAR}
+    </if>
+    <if test="firstRests != null">
+      AND  first_rests = #{firstRests,jdbcType=VARCHAR}
+    </if>
+    <if test="secondLanguage != null">
+      AND  second_language = #{secondLanguage,jdbcType=VARCHAR}
+    </if>
+    <if test="secondRests != null">
+      AND second_rests = #{secondRests,jdbcType=VARCHAR}
+    </if>
+    <if test="fatherCulture != null">
+      AND  father_culture = #{fatherCulture,jdbcType=VARCHAR}
+    </if>
+    <if test="motherCulture != null">
+      AND mother_culture = #{motherCulture,jdbcType=VARCHAR}
+    </if>
+    <if test="trainingMethod != null">
+      AND training_method = #{trainingMethod,jdbcType=VARCHAR}
+    </if>
+    <if test="trainingRests != null">
+      AND  training_rests = #{trainingRests,jdbcType=VARCHAR}
+    </if>
+    <if test="perfection != null">
+      AND  perfection = #{perfection,jdbcType=CHAR}
+    </if>
+    <if test="createTime != null">
+      AND create_time = #{createTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="updateTime != null">
+      AND  update_time = #{updateTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="status != null">
+      AND  status = #{status,jdbcType=VARCHAR}
+    </if>
+    <if test="photo != null">
+      AND  photo = #{photo,jdbcType=VARCHAR}
+    </if>
+  </select>
+
+  <select id="selectByParamCount" parameterType="com.xfkj.common.query.GenericQueryParam" resultType="Integer">
+    SELECT COUNT(1)
+    from xyd_child xcd, xyd_parents xps
+    where xcd.parents_id = xps.id
+    <if test="phonenumber != null and phonenumber != ''">
+      AND xps.phone_number = #{phonenumber,jdbcType=CHAR}
+    </if>
+    <if test="name != null and name != ''">
+      AND xcd.name LIKE concat('%', #{name}, '%')
+    </if>
+    <if test="sex != null and sex != ''">
+      AND  xcd.sex = #{sex,jdbcType=CHAR}
+    </if>
+    <if test="birthdate != null and birthdate != ''">
+      AND xcd.birthdate = #{birthdate,jdbcType=TIMESTAMP}
+    </if>
+    <if test="countiy != null and counriy != ''">
+      AND xcd.countiy = #{countiy,jdbcType=VARCHAR}
+    </if>
+    <if test="province != null and province != ''">
+      AND xcd.province = #{province,jdbcType=VARCHAR}
+    </if>
+    <if test="city != null and city != ''">
+      AND xcd.city = #{city,jdbcType=CHAR}
+    </if>
+    <if test="status != null and status != ''">
+      AND  xcd.status = #{status,jdbcType=VARCHAR}
+    </if>
+
+  </select>
+
+  <select id="selectByParamList" parameterType="com.xfkj.common.query.GenericQueryParam" resultMap="BaseResultMap">
+    SELECT
+    xcd.id, xcd.name, xcd.sex, xcd.birthdate, xcd.countiy, xcd.province, xcd.countiy, xcd.city,xcd.create_time, xcd.medical, xcd.medical_state,xcd.first_language,xcd.first_rests, xps.phone_number
+    from xyd_child xcd, xyd_parents xps
+    where xcd.parents_id = xps.id
+    <if test="phonenumber != null and phonenumber != ''">
+      AND xps.phone_number = #{phonenumber,jdbcType=CHAR}
+    </if>
+    <if test="name != null and name != ''">
+      AND xcd.name LIKE concat('%', #{name}, '%')
+    </if>
+    <if test="sex != null and sex != ''">
+      AND  xcd.sex = #{sex,jdbcType=CHAR}
+    </if>
+    <if test="birthdate != null and birthdate != ''">
+      AND xcd.birthdate = #{birthdate,jdbcType=TIMESTAMP}
+    </if>
+    <if test="countiy != null and counriy != ''">
+      AND xcd.countiy = #{countiy,jdbcType=VARCHAR}
+    </if>
+    <if test="province != null and province != ''">
+      AND xcd.province = #{province,jdbcType=VARCHAR}
+    </if>
+    <if test="city != null and city != ''">
+      AND xcd.city = #{city,jdbcType=CHAR}
+    </if>
+    <if test="status != null and status != ''">
+      AND  xcd.status = #{status,jdbcType=VARCHAR}
+    </if>
+    ORDER BY xcd.create_time ASC
+  </select>
+</mapper>

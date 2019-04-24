@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xfkj.mapper.XydPcidTypeMapper">
+  <resultMap id="BaseResultMap" type="com.xfkj.model.XydPcidType">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="is_optional" jdbcType="CHAR" property="isOptional" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="name_enum" jdbcType="INTEGER" property="nameEnum" />
+    <result column="sort" jdbcType="INTEGER" property="sort" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="states" jdbcType="VARCHAR" property="states" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, is_optional, name_enum, name, sort, title, states, create_time, update_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from xyd_pcid_type
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from xyd_pcid_type
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xfkj.model.XydPcidType">
+    insert into xyd_pcid_type (id, is_optional, name, name_enum,
+      sort, title, states, 
+      create_time, update_time)
+    values (#{id,jdbcType=INTEGER}, #{isOptional,jdbcType=CHAR}, #{name,jdbcType=VARCHAR}, #{nameEnum,jdbcType=INTEGER},
+      #{sort,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{states,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" useGeneratedKeys="true" keyProperty="id" parameterType="com.xfkj.model.XydPcidType">
+    insert into xyd_pcid_type
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="isOptional != null">
+        is_optional,
+      </if>
+      <if test="nameEnum != null">
+        name_enum,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="sort != null">
+        sort,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="states != null">
+        states,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="isOptional != null">
+        #{isOptional,jdbcType=CHAR},
+      </if>
+      <if test="nameEnum != null">
+        #{nameEnum,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null">
+        #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="states != null">
+        #{states,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xfkj.model.XydPcidType">
+    update xyd_pcid_type
+    <set>
+      <if test="isOptional != null">
+        is_optional = #{isOptional,jdbcType=CHAR},
+      </if>
+      <if test="nameEnum != null">
+        name_enum = #{nameEnum,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null">
+        sort = #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="states != null">
+        states = #{states,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xfkj.model.XydPcidType">
+    update xyd_pcid_type
+    set is_optional = #{isOptional,jdbcType=CHAR},
+      name_enum = #{nameEnum,jdbcType=INTEGER},
+      name = #{name,jdbcType=VARCHAR},
+      sort = #{sort,jdbcType=INTEGER},
+      title = #{title,jdbcType=VARCHAR},
+      states = #{states,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectList" parameterType="com.xfkj.model.XydPcidType" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from xyd_pcid_type
+    where 1 = 1
+    <if test="isOptional != null">
+     AND is_optional = #{isOptional,jdbcType=CHAR}
+    </if>
+    <if test="nameEnum != null">
+      AND name_enum = #{nameEnum,jdbcType=INTEGER}
+    </if>
+    <if test="name != null">
+      AND  name = #{name,jdbcType=VARCHAR}
+    </if>
+    <if test="sort != null">
+      AND  sort = #{sort,jdbcType=INTEGER}
+    </if>
+    <if test="title != null">
+      AND title = #{title,jdbcType=VARCHAR}
+    </if>
+    <if test="states != null">
+      AND states = #{states,jdbcType=VARCHAR}
+    </if>
+    <if test="createTime != null">
+      AND create_time = #{createTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="updateTime != null">
+      AND update_time = #{updateTime,jdbcType=TIMESTAMP}
+    </if>
+  </select>
+
+  <select id="selectByTypeSortList" parameterType="com.xfkj.model.XydPcidType" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from xyd_pcid_type
+    where 1 = 1
+    <if test="isOptional != null">
+      AND is_optional = #{isOptional,jdbcType=CHAR}
+    </if>
+    <if test="nameEnum != null">
+      AND name_enum = #{nameEnum,jdbcType=INTEGER}
+    </if>
+    <if test="name != null">
+      AND  name = #{name,jdbcType=VARCHAR}
+    </if>
+    <if test="sort != null">
+      AND  sort = #{sort,jdbcType=INTEGER}
+    </if>
+    <if test="states != null">
+      AND states = #{states,jdbcType=VARCHAR}
+    </if>
+    ORDER BY sort ASC
+  </select>
+</mapper>

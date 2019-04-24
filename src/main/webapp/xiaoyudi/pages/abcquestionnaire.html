@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Title</title>
+    <script type="text/javascript" src="../js/rem.js"></script>
+    <link rel="stylesheet" href="../css/currency.css">
+    <style>
+        body {
+            background: url("../img/questionnaire.png") no-repeat;
+            background-size: 100% 100%;
+            height: 100%;
+        }
+html{
+    height: 100%;
+}
+        .header {
+            height: 1.94rem;
+            width: 100%;
+            box-sizing: border-box;
+            padding-left: .48rem;
+            padding-right: .36rem;
+            color: #fffdec;
+            position: relative;
+            padding-top: .57rem;
+        }
+
+        .header .title {
+            font-size: .44rem;
+            line-height: .44rem;
+            font-family: STYuanti-SC-Bold;
+        }
+
+        .msg {
+            font-size: .26rem;
+            line-height: .26rem;
+            margin-top: .16rem;
+        }
+
+        .home_button {
+            width: .86rem;
+            position: absolute;
+            right: .36rem;
+            bottom: .36rem;
+        }
+
+        .top {
+            margin: .47rem .48rem .35rem .48rem;
+            height: .32rem;
+            line-height: .32rem;
+        }
+
+        .top > .l {
+            font-size: .32rem;
+            color: #14101e;
+        }
+
+        .top .r {
+            font-size: .28rem;
+            color: #c06d00;
+            cursor: pointer;
+        }
+
+        .top .r img {
+            width: .41rem;
+            margin-left: .16rem;
+        }
+
+        .dashed {
+            width: 6.74rem;
+            height: .1rem;
+            border-bottom: 1px dashed #92674a;
+            margin: 0 auto;
+        }
+
+        .centent {
+            overflow: auto;
+        }
+
+        .centent .title > div {
+            position: absolute;
+            left: -1.685rem;
+            top: .175rem;
+            z-index: -1;
+        }
+
+        .centent .title {
+            width: auto;
+            height: .6rem;
+            line-height: .6rem;
+            text-align: center;
+            font-size: .3rem;
+            color: #fffdec;
+            background: #92674a;
+            border-radius: 1rem;
+            margin: 0 auto .1rem auto;
+            position: relative;
+            display: table;
+            padding: 0 .5rem;
+        }
+
+        .centent li {
+            position: relative;
+            width: 6.9rem;
+            margin: .3rem auto 0 auto;
+            padding-bottom: 0.09rem;
+            border-bottom: 1px dashed #92674a;
+        }
+
+        .black_spot {
+            width: .1rem;
+            height: .1rem;
+            border-radius: 50%;
+            background: #14101e;
+            position: absolute;
+            top: .16rem;
+            left: 0rem;
+        }
+
+        li:last-child {
+            border-bottom: none;
+        }
+
+        li > .subject {
+            font-size: .28rem;
+            line-height: .4rem;
+            color: #14101e;
+            margin-left: .24rem;
+        }
+
+        .Submission {
+            width: 3.1rem;
+            height: .94rem;
+            margin: 0rem auto .4rem auto;
+            background: url("../img/button.png") no-repeat;
+            background-size: 100% 100%;
+            color: #fffdec;
+            font-size: .32rem;
+            text-align: center;
+            line-height: .74rem;
+            font-family: STYuanti-SC-Bold;
+            cursor: pointer;
+        }
+
+        .radio p:last-child {
+            margin-right: 0;
+        }
+
+        .radio p {
+            margin-right: .16rem;
+            text-align: center;
+            color: #14101e;
+            font-size: .28rem;
+            height: .27rem;
+            line-height: .28rem;
+            padding: 0.34rem 0.30rem 0.26rem;
+        }
+
+        .radio img {
+            width: .3rem;
+            margin-right: .14rem;
+            vertical-align: middle;
+        }
+
+        .selectColor {
+            color: #cd4744 !important;
+        }
+
+        .mask {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            opacity: .6;
+            z-index: 99;
+            display: none;
+        }
+
+        .dialog {
+            width: 6.61rem;
+            height: 4.15rem;
+            position: absolute;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+            background: url("../img/dialog.png") no-repeat;
+            background-size: 100% 100%;
+            z-index: 100;
+            padding-bottom: .4rem;
+            display: none;
+        }
+
+        .dialog > img {
+            position: absolute;
+            right: .38rem;
+            top: .7rem;
+            width: .65rem;
+        }
+
+        .msg1 {
+            width: 5.51rem;
+            margin: .85rem auto .58rem auto;
+            font-size: .28rem;
+            color: #14101e;
+            line-height: .4rem;
+        }
+
+        .button {
+            height: .69rem;
+        }
+
+        .button > .Submission {
+            width: 2.3rem;
+            margin-top: 0;
+        }
+
+        .button > .Submission:first-child {
+            margin-right: .62rem;
+            margin-left: .62rem;
+        }
+    </style>
+</head>
+<body>
+<div class="header">
+    <p class="title">ABC问卷</p>
+    <p class="msg">孤独症行为量表</p>
+    <img src="../img/home_button.png" class="home_button" alt="">
+</div>
+<div class="centent">
+    <div class="top clearfix">
+        <a href="answerNoteABC.html" class="r"><span>查看答题说明<img class="r" src="../img/button_right.png" alt=""></span></a>
+    </div>
+    <ul id="abcList">
+
+
+    </ul>
+</div>
+<div class="Submission" id="Submission">
+    确定
+</div>
+<div class="mask"></div>
+<div class="dialog">
+    <!--<img src="../img/close.png" alt="">-->
+    <p class="msg1">
+        您尚未填写完问卷评估，如果您现在退出，
+        我们将会为您已经填写的部分保留1周时间，如
+        果超过1周需要重新填写，因为孩子可能已经发
+        生了很大的进步！您确定退出吗？
+    </p>
+    <div class="button clearfix">
+        <div class="Submission l l1">
+            继续填写
+        </div>
+        <div class="Submission l l2">
+            确定退出
+        </div>
+    </div>
+</div>
+<script src="../js/vconsole.min.js"></script>
+<script>
+    window.vConsole = new window.VConsole({
+        defaultPlugins: ['system', 'network', 'element', 'storage'], // 可以在此设定要默认加载的面板
+        maxLogNumber: 1000,
+        // disableLogScrolling: true,
+        onReady: function() {
+            console.log('vConsole is ready.');
+        },
+        onClearLog: function() {
+            console.log('on clearLog');
+        }
+    });
+</script>
+<script src="../js/jquery-1.11.2.min.js"></script>
+<script src="../js/jquery.tmpl.min.js"></script>
+<script type="text/javascript" src="../js/centent.js"></script>
+<script src="../js/api.js"></script>
+<script type="text/x-jquery-tmpl" id="list">
+{{each(i,item) data}}
+    <li>
+        <div class="black_spot"></div>
+        <p class="subject">${i+1}. ${item.topicTitle}</p>
+        <div class="clearfix radio">
+            <p class="l ${item.answerid == 1 && item.answer == '没有' ? 'selectColor' : ''}" data-ind="1" data-val="没有" data-id="${item.id}"><img src="${item.answerid == 1 && item.answer == '没有' ? '../img/select.png' : '../img/no_select.png'}" alt="">没有</p>
+            <p class="l ${item.answerid == 2 && item.answer == '轻微' ? 'selectColor' : ''}" data-ind="2" data-val="轻微" data-id="${item.id}"><img src="${item.answerid == 2 && item.answer == '轻微' ? '../img/select.png' : '../img/no_select.png'}" alt="">轻微</p>
+            <p class="l ${item.answerid == 3 && item.answer == '明显' ? 'selectColor' : ''}" data-ind="3" data-val="明显" data-id="${item.id}"><img src="${item.answerid == 3 && item.answer == '明显' ? '../img/select.png' : '../img/no_select.png'}" alt="">明显</p>
+            <p class="l ${item.answerid == 4 && item.answer == '严重' ? 'selectColor' : ''}" data-ind="4" data-val="严重" data-id="${item.id}"><img src="${item.answerid == 4 && item.answer == '严重' ? '../img/select.png' : '../img/no_select.png'}" alt="">严重</p>
+        </div>
+    </li>
+{{/each}}
+</script>
+<script>
+
+    $(function () {
+
+        function getUrlParam(name) {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+            var r = window.location.search.substr(1).match(reg);  //匹配目标参数
+            if (r != null) return unescape(r[2]);
+            return null; //返回参数值
+        }
+
+
+
+        token = window.token;
+        var status = getUrlParam('status');
+        var id = getUrlParam('id');
+        var answerJSON = {};
+        var answerList = [];
+
+        // $('#Submission').click(function () {
+        //     window.location.href = 'abcPresentation.html'
+        // })
+        $('.home_button').click(function () {
+            $('.mask').show();
+            $('.dialog').show()
+        })
+        $('.l1').click(function () {
+            $('.mask').hide();
+            $('.dialog').hide()
+        });
+
+        //回显渲染
+        function echo(data, arr, state) {
+
+            data.forEach(function (items) {
+                arr.forEach(function (item) {
+                    if (item.id == items.topicId) {
+                        if(state == 'new'){
+                            item.answerid = items.sign
+                        }else{
+                            item.answerid = items.answerid
+                        }
+
+                        item.answer = items.answer
+                    }
+                });
+                answerJSON[items.topicId] = {
+                    topicId: items.topicId,
+                    answer: items.answer,
+                    answerid: state == 'new' ? items.sign : items.answerid
+                };
+            })
+            $('#abcList').empty();
+            $('#list').tmpl({data:arr}).appendTo('#abcList')
+        }
+
+        function getCache(arr) {
+            //    获取缓存7天的数据
+            get('/getCache', {type: 3}).then(
+                function (data) {
+                    if (data.code == 200) {
+                        echo(data.data, arr, 'old')
+                    } else {
+                        tips(data.msg);
+                    }
+
+                },
+                function (err) {
+                    console.log(err)
+                }
+            )
+        }
+
+        function mustAndResult(arr) {
+            //重新评估获取上次提交的数据
+            get('/getABC/outResult', {answerId: id}).then(
+                function (data) {
+                    console.log(JSON.parse(JSON.stringify(data)))
+                    if (data.code == 200) {
+                        echo(data.data, arr, 'new')
+                    } else {
+                        tips(data.msg);
+                    }
+
+                },
+                function (err) {
+                    console.log(err)
+                }
+            )
+        }
+
+        //请求题目
+        get('/getABC').then(
+            function (res) {
+                if (res.code == 200) {
+                    if (!status) {
+                        $('#abcList').empty();
+                        $('#list').tmpl(res).appendTo('#abcList')
+                    } else {
+                        if (status == '1' && id) {
+                            mustAndResult(res.data);
+                        } else {
+                            getCache(res.data);
+                        }
+                    }
+                } else {
+                    tips(res.msg);
+                }
+            },
+            function (err) {
+                console.log(err)
+            }
+        )
+        //做题
+        $('#abcList').delegate('.radio p', 'click', function () {
+            var  id = $(this).data('id');
+            var  ind = $(this).data('ind');
+            var  val = $(this).data('val');
+            var  radio = $(this).parents('.radio');
+            radio.find('p').removeClass('selectColor');
+            radio.find('img').attr('src', '../img/no_select.png');
+            $(this).addClass('selectColor');
+            $(this).find('img').attr('src', '../img/select.png')
+            answerJSON[id] = {
+                topicId: id,
+                answer: val,
+                answerid: ind,
+            };
+
+        });
+
+        //获取已做题的数据
+        function shuju() {
+            var n = [];
+            var score = 0;
+            for (var key in answerJSON) {
+                n.push(answerJSON[key]);
+                score = score += (answerJSON[key].answerid - 1)
+            }
+            var params = {
+                resultList: JSON.stringify(n),
+                score: score,
+
+            };
+            return params
+        }
+
+        // 提交请求
+        function tijiao(params, state) {
+            post('/addABCResult', params).then(
+                function (res) {
+                    console.log(res)
+                    if (res.code == 200) {
+
+                        if (state == 1) {
+                            window.location.href = 'abcPresentation.html'
+                        } else {
+                            if(window.webkit){
+                                window.webkit.messageHandlers.goBack.postMessage(null);
+                            }else{
+                                android.goBacktwo();
+                            }
+                            // android.goBacktwo();
+                        	// window.webkit.messageHandlers.goBack.postMessage(null);
+                        }
+
+                    } else {
+                        tips(res.msg);
+                    }
+                },
+                function (err) {
+                    console.log(err)
+                }
+            )
+        }
+
+        //提交
+        $('#Submission').click(function () {
+            var params = shuju();
+            params.pcdiCache = false;
+            console.log(params)
+            if($('.selectColor').length<$('#abcList').find('li').length){
+
+                tips('您还没有题目未做完，请继续答题')
+                var isHasFindNoSelector=false
+                $('#abcList').find('li').each(function (index,item) {
+                    if(!isHasFindNoSelector&&$(item).find('.selectColor').length===0){
+                        console.log($(item).position().top)
+                        console.log($('.centent').scrollTop($(item).position().top-$(item).parent().position().top))
+                        isHasFindNoSelector=true
+                        // $(window).scroll($(item).offset().top);
+
+                    }
+                })
+                return
+            }
+
+            tijiao(params, 1);
+        })
+        //中途退出
+        $('.l2').click(function () {
+            var params = shuju();
+            params.pcdiCache = true;
+            tijiao(params, 2)
+        })
+    })
+</script>
+</body>
+</html>

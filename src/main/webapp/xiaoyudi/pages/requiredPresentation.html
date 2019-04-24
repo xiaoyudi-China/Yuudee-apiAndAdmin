@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <script type="text/javascript" src="../js/rem.js"></script>
+    <link rel="stylesheet" href="../css/currency.css">
+    <style>
+        body {
+            /*background: url("../img/assessment.png") no-repeat;*/
+            position: relative;
+            padding-top: .65rem;
+            box-sizing: border-box;
+            /*height: 100%;*/
+            min-height: 100%;
+            background-size: cover;
+        }
+        html{
+            height: 100%;
+        }
+        .bottomStrip{
+            position: absolute;
+            /*left: 50%;*/
+            top: 0;
+            width: 100%;
+            height:100%;
+            z-index: -1;
+        }
+        body > .title {
+            font-family: STYuanti-SC-Bold;
+            font-size: .44rem;
+            color: #a36033;
+            margin: 0 auto .36rem auto;
+            text-align: center;
+            height: .44rem;
+            line-height: .44rem;
+        }
+
+        table {
+            font-size: .28rem;
+            color: #a36032;
+            width: 6.84rem;
+            margin: 0 auto .42rem auto;
+            border-right: 1px solid #a36032;
+            border-bottom: 1px solid #a36032;
+        }
+
+        table td {
+            border-left: 1px solid #a36032;
+            border-top: 1px solid #a36032;
+            padding: .1rem;
+        }
+
+        ul {
+            font-size: .28rem;
+            color: #14101e;
+            width: 6.34rem;
+            margin: 0 auto;
+        }
+
+        ul .title {
+            position: relative;
+            /*color: #14101e;*/
+            padding-left: .1rem;
+            height: .28rem;
+            line-height: .28rem;
+            margin-bottom: .33rem;
+        }
+
+        .title > .spot {
+            position: absolute;
+            width: .1rem;
+            height: .1rem;
+            background: #14101e;
+            left: -.17rem;
+            top: .1rem;
+            border-radius: 50%;
+        }
+
+        .msg1 {
+            margin-top: .4rem;
+            line-height: .42rem;
+            margin-bottom: .24rem;
+        }
+
+        .vocabularyNum {
+            height: 1.6rem;
+        }
+
+        .vocabularyNum > .text {
+            color: #cd4744;
+            line-height: .42rem;
+            width: 4.24rem;
+            margin-left: .33rem;
+            margin-top: .38rem;
+        }
+
+        .vocabularyNum > .circular {
+            width: 1.6rem;
+            height: 1.6rem;
+            border: 2px solid #cd4744;
+            border-radius: 50%;
+            box-sizing: border-box;
+            position: relative;
+            overflow: hidden;
+            margin-right: .62rem;
+        }
+
+        .vocabularyNum > .circular:last-child {
+            margin-right: 0;
+        }
+
+        .circular > div {
+            position: absolute;
+            left: 0;
+            top: 70%;
+            background: #cd4744;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .circular p {
+            text-align: center;
+        }
+
+        .circular p:nth-child(1) {
+            margin-top: .5rem;
+            height: .3rem;
+            line-height: .3rem;
+        }
+
+        .circular p:nth-child(2) {
+            margin-top: .35rem;
+            height: .26rem;
+            line-height: .26rem;
+        }
+
+        .circular span {
+            color: #cd4744;
+            font-size: .36rem;
+        }
+
+        .division {
+            position: relative;
+            width: .55rem;
+            margin: 0 auto .75rem auto;
+            font-size: .18rem;
+            color: #a36032;
+
+        }
+
+        .division > div {
+            width: 2.92rem;
+            position: absolute;
+            top: 49%;
+            height: 1px;
+            border-bottom: 1px dashed #a36032;
+            z-index: -1;
+        }
+
+        .lineL {
+            left: -2.91rem;
+            width: 2.88rem !important;
+        }
+
+        .lineR {
+            right: -2.9rem;
+        }
+
+        .type {
+            color: #333;
+        }
+
+        .Submission {
+            width: 3.1rem;
+            height: .94rem;
+            margin: .34rem auto .4rem .42rem;
+            background: url("../img/button.png") no-repeat;
+            background-size: 100% 100%;
+            color: #fffdec;
+            font-size: .32rem;
+            text-align: center;
+            line-height: .74rem;
+            font-family: STYuanti-SC-Bold;
+            cursor: pointer;
+
+        }
+
+        #charts {
+            position: absolute;
+            right: .12rem;
+            top: -.7rem;
+            width: 1.6rem;
+            height: 1.6rem;
+        }
+
+        .Score {
+            position: absolute;
+            right: .6rem;
+            top: 0;
+            font-size: .36rem;
+            color: #cd4744;
+        }
+
+        .Score span {
+            color: #14101e;
+            font-size: .28rem;
+        }
+        /*.bottomStrip{*/
+            /*position: absolute;*/
+            /*left: 0;*/
+            /*bottom: 0;*/
+            /*width: 100%;*/
+            /*height:.13rem;*/
+        /*}*/
+    </style>
+</head>
+<body>
+<p class="title">PCDI问卷报告</p>
+<table border="0" cellspacing="0" cellpadding="0" id="user">
+
+</table>
+<ul>
+    <li id="vocabulary">
+
+    </li>
+    <li id="title">
+
+
+    </li>
+</ul>
+<div class="clearfix" id="Hcore">
+    <div class="Submission l l1">
+        重新评估
+    </div>
+    <div class="Submission l l2">
+        确定
+    </div>
+</div>
+<img src="../img/assessment.png" class="bottomStrip" alt="">
+
+<!--<img src="../img/bottomStrip.png" class="bottomStrip" alt="">-->
+<script id="userI" type="text/x-jquery-tmpl">
+    <tbody>
+        <tr>
+            <td>儿童昵称</td>
+            <td>${name}</td>
+            <td>性别</td>
+            <td>${sex == '1' ? '女' : '男'}</td>
+            <td>年龄</td>
+            <td>${monthAge}</td>
+        </tr>
+        <tr>
+            <td>测试日期</td>
+            <td colspan="5">${resultData.createTime}</td>
+        </tr>
+    </tbody>
+
+</script>
+<script id="vocabularyI" type="text/x-jquery-tmpl">
+    <div class="title">
+        <div class="spot"></div>
+        在测试的120个幼儿常用词汇量掌握的结果
+    </div>
+    <div class="vocabularyNum clearfix">
+        <div class="circular l">
+            <p><span>${resultData.nounScore}</span>个</p>
+            <p class="type">名词</p>
+            <div></div>
+        </div>
+        <div class="circular l">
+            <p><span>${resultData.verbScore}</span>个</p>
+            <p class="type">动词</p>
+            <div></div>
+        </div>
+        <div class="circular l">
+            <p><span>${resultData.adjectiveScore}</span>个</p>
+            <p class="type">形容词</p>
+            <div></div>
+        </div>
+    </div>
+    <p class="msg1">
+        一共掌握了<span style="color: #cd4744">${allScore}</span>个常用词汇。
+        <span>
+        ${resultData.vocabulary}
+        </span>
+    </p>
+    <div class="division">
+        <span></span>
+        <div class="lineL"></div>
+        <div class="lineR"></div>
+    </div>
+</script>
+<script id="titleI" type="text/x-jquery-tmpl">
+    <div class="title" style="margin-bottom: .7rem">
+        <div class="spot"></div>
+        30个句子的语句表达能力评估结果
+        <div id="charts">
+
+        </div>
+        <p class="Score">${resultData.score}<span>%</span></p>
+    </div>
+
+    <p class="msg1">
+        ${resultData.title}
+    </p>
+
+</script>
+<script src="../js/jquery-1.11.2.min.js"></script>
+<script src="../js/jquery.tmpl.min.js"></script>
+<script type="text/javascript" src="../js/centent.js"></script>
+<script src="../js/api.js"></script>
+<script src="../js/echarts.min.js"></script>
+<script src="../js/moment.js"></script>
+<script>
+    $(function () {
+        var data;
+        $('img').click(function () {
+            window.history.back(-1);
+        })
+        $('.l1').click(function () {
+            window.location.href = 'pcdiRequired.html?status=1&id=' + data.resultData.id
+        })
+        $('.l2').click(function () {
+            if(window.webkit){
+                window.webkit.messageHandlers.goBack.postMessage(null);
+            }else{
+                android.goBackfour();
+            }
+
+        })
+        function getUrlParam(name) {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+            var r = window.location.search.substr(1).match(reg);  //匹配目标参数
+            if (r != null) return unescape(r[2]);
+            return null; //返回参数值
+        }
+        // console.log(1)
+        var status = getUrlParam('status');
+        if(status == 'core'){
+            $('.l1').hide();
+            $('.Submission.l').css('margin','.34rem auto')
+            $('.Submission.l').removeClass('l')
+        }
+        var option = {
+            tooltip: {
+                trigger: 'item',
+                show: false,
+            },
+            legend: {
+                orient: 'vertical',
+                x: 'left',
+                data: []
+            },
+            grid: {
+                top: 10,
+                left: 0,
+                right: 10,
+            },
+            series: [
+                {
+                    name: '访问来源',
+                    type: 'pie',
+                    // selectedMode: false,
+                    // clickable: false,
+                    silent:true,
+                    hoverAnimation: false,
+                    radius: ['70%', '100%'],
+                    avoidLabelOverlap: false,
+                    itemStyle: {
+                        color: function (row) {
+                            if (row.data.name === 'totalScore') {
+                                return 'rgba(189,158,125)'
+                            } else {
+                                return '#cd4744'
+                            }
+                        },
+                    },
+                    label: {
+                        normal: {
+                            show: false,
+                            position: 'center'
+                        },
+                        emphasis: {
+                            show: true,
+                            textStyle: {
+                                fontSize: '30',
+                                fontWeight: 'bold'
+                            }
+                        }
+                    },
+                    labelLine: {
+                        normal: {
+                            show: false
+                        }
+                    },
+                    data: [
+                        {value: 0, name: 'totalScore'},
+                        {value: 0, name: 'score'},
+                    ]
+                }
+            ]
+        }
+        get('/getReportInfo', {type: 1}).then(
+            function (res) {
+                console.log(res)
+
+                if (res.code == 200) {
+                    data = res.data;
+                    res.data.resultData.createTime = moment(res.data.resultData.createTime).format('YYYY年MM月DD日 HH:mm');
+                    if (res.data.resultData.anew != '1') {
+                        $('.l1').hide();
+                        $('.Submission.l').css('margin', '.34rem auto')
+                        $('.Submission.l').removeClass('l')
+                    }
+                    var resultData = res.data.resultData;
+                    res.data.allScore = resultData.nounScore+resultData.verbScore+resultData.adjectiveScore;
+
+                    res.data.Proportion = ((parseInt(res.data.resultData.score)/81)*100).toFixed(2);
+                    $('#user').empty();
+                    // 将月转成 xYxM
+                    var y = parseInt(res.data.monthAge / 12)
+                    var m = parseInt(res.data.monthAge % 12)
+                    y = y > 0 ? y + 'Y' : ''
+                    m = m > 0 ? m + 'M' : ''
+                    res.data.monthAge = y + m
+                    $('#userI').tmpl(res.data).appendTo('#user')
+                    $('#vocabulary').empty();
+                    $('#vocabularyI').tmpl(res.data).appendTo('#vocabulary')
+                    $('#title').empty();
+                    $('#titleI').tmpl(res.data).appendTo('#title')
+                    option.series[0].data[0].value = 100 - parseInt(res.data.resultData.score);
+                    option.series[0].data[1].value = parseInt(res.data.resultData.score);
+                    var myChart = echarts.init(document.getElementById('charts'));
+                    myChart.on('click',function (params) {
+                        console.log(params)
+                    })
+                    myChart.setOption(option);
+                } else {
+                    tips(res.msg);
+                }
+            },
+            function (err) {
+                console.log(err)
+            }
+        )
+
+
+        window.addEventListener("resize", function () {
+            setTimeout(function () {
+                myChart.resize();
+            }, 100)
+        });
+    })
+</script>
+</body>
+</html>

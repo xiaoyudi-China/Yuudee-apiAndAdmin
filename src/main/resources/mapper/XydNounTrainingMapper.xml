@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xfkj.mapper.XydNounTrainingMapper">
+  <resultMap id="BaseResultMap" type="com.xfkj.model.XydNounTraining">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="wire_image" jdbcType="VARCHAR" property="wireImage" />
+    <result column="wire_char" jdbcType="VARCHAR" property="wireChar" />
+    <result column="wire_record" jdbcType="VARCHAR" property="wireRecord" />
+    <result column="color_pen_char" jdbcType="VARCHAR" property="colorPenChar" />
+    <result column="color_pen_record" jdbcType="VARCHAR" property="colorPenRecord" />
+    <result column="group_image" jdbcType="VARCHAR" property="groupImage" />
+    <result column="group_record" jdbcType="VARCHAR" property="groupRecord" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="states" jdbcType="CHAR" property="states" />
+    <result column="group_word" jdbcType="VARCHAR" property="groupWord" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, wire_image, wire_char, wire_record, color_pen_char, color_pen_record, group_image, 
+    group_record, create_time, update_time, states,group_word
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from xyd_noun_training
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <select id="selectAllRand" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from xyd_noun_training ORDER BY rand() limit 10
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from xyd_noun_training
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xfkj.model.XydNounTraining">
+    insert into xyd_noun_training (id, wire_image, wire_char, 
+      wire_record, color_pen_char, color_pen_record, 
+      group_image, group_record, create_time, 
+      update_time, states,group_word)
+    values (#{id,jdbcType=INTEGER}, #{wireImage,jdbcType=VARCHAR}, #{wireChar,jdbcType=VARCHAR}, 
+      #{wireRecord,jdbcType=VARCHAR}, #{colorPenChar,jdbcType=VARCHAR}, #{colorPenRecord,jdbcType=VARCHAR}, 
+      #{groupImage,jdbcType=VARCHAR}, #{groupRecord,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{states,jdbcType=CHAR},#{groupWord,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xfkj.model.XydNounTraining">
+    insert into xyd_noun_training
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="wireImage != null">
+        wire_image,
+      </if>
+      <if test="wireChar != null">
+        wire_char,
+      </if>
+      <if test="wireRecord != null">
+        wire_record,
+      </if>
+      <if test="colorPenChar != null">
+        color_pen_char,
+      </if>
+      <if test="colorPenRecord != null">
+        color_pen_record,
+      </if>
+      <if test="groupImage != null">
+        group_image,
+      </if>
+      <if test="groupRecord != null">
+        group_record,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="states != null">
+        states,
+      </if>
+      <if test="groupWord != null">
+        group_word,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="wireImage != null">
+        #{wireImage,jdbcType=VARCHAR},
+      </if>
+      <if test="wireChar != null">
+        #{wireChar,jdbcType=VARCHAR},
+      </if>
+      <if test="wireRecord != null">
+        #{wireRecord,jdbcType=VARCHAR},
+      </if>
+      <if test="colorPenChar != null">
+        #{colorPenChar,jdbcType=VARCHAR},
+      </if>
+      <if test="colorPenRecord != null">
+        #{colorPenRecord,jdbcType=VARCHAR},
+      </if>
+      <if test="groupImage != null">
+        #{groupImage,jdbcType=VARCHAR},
+      </if>
+      <if test="groupRecord != null">
+        #{groupRecord,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="states != null">
+        #{states,jdbcType=CHAR},
+      </if>
+      <if test="groupWord != null">
+        #{groupWord},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xfkj.model.XydNounTraining">
+    update xyd_noun_training
+    <set>
+      <if test="wireImage != null">
+        wire_image = #{wireImage,jdbcType=VARCHAR},
+      </if>
+      <if test="wireChar != null">
+        wire_char = #{wireChar,jdbcType=VARCHAR},
+      </if>
+      <if test="wireRecord != null">
+        wire_record = #{wireRecord,jdbcType=VARCHAR},
+      </if>
+      <if test="colorPenChar != null">
+        color_pen_char = #{colorPenChar,jdbcType=VARCHAR},
+      </if>
+      <if test="colorPenRecord != null">
+        color_pen_record = #{colorPenRecord,jdbcType=VARCHAR},
+      </if>
+      <if test="groupImage != null">
+        group_image = #{groupImage,jdbcType=VARCHAR},
+      </if>
+      <if test="groupRecord != null">
+        group_record = #{groupRecord,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="states != null">
+        states = #{states,jdbcType=CHAR},
+      </if>
+      <if test="groupWord != null">
+        group_word = #{groupWord},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xfkj.model.XydNounTraining">
+    update xyd_noun_training
+    set wire_image = #{wireImage,jdbcType=VARCHAR},
+      wire_char = #{wireChar,jdbcType=VARCHAR},
+      wire_record = #{wireRecord,jdbcType=VARCHAR},
+      color_pen_char = #{colorPenChar,jdbcType=VARCHAR},
+      color_pen_record = #{colorPenRecord,jdbcType=VARCHAR},
+      group_image = #{groupImage,jdbcType=VARCHAR},
+      group_record = #{groupRecord,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      states = #{states,jdbcType=CHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectByParamCount" parameterType="com.xfkj.common.query.GenericQueryParam" resultType="Integer">
+    select
+    count(id)
+    from xyd_noun_training
+    <where> 1=1
+      <if test="groupword != null">
+        and group_word = #{groupword}
+      </if>
+    </where>
+  </select>
+
+  <select id="selectByParamList" parameterType="com.xfkj.common.query.GenericQueryParam" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from
+    xyd_noun_training
+    <where> 1=1
+      <if test="groupword != null">
+        and group_word LIKE concat('%', #{groupword}, '%')
+      </if>
+    </where>
+  </select>
+</mapper>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <script type="text/javascript" src="../js/rem.js"></script>
+    <link rel="stylesheet" href="../css/currency.css">
+    <style>
+        body {
+            background: url("../img/assessment.png") no-repeat;
+            position: relative;
+            padding-top: .65rem;
+            box-sizing: border-box;
+        }
+
+        .left_button {
+            position: fixed;
+            left: .35rem;
+            top: .35rem;
+            height: .865rem;
+            /*width: .78rem;*/
+            cursor: pointer;
+        }
+
+        .title {
+            font-family: STYuanti-SC-Bold;
+            font-size: .44rem;
+            color: #a36033;
+            margin: 0 auto .9rem auto;
+            text-align: center;
+        }
+
+        .text {
+            margin: 0 .5rem;
+            color: #14101e;
+            text-indent: .88rem;
+            font-size: .28rem;
+            line-height: .56rem;
+        }
+    </style>
+</head>
+<body>
+<img src="../img/left_button.png" class="left_button" alt="">
+<p class="title">PCDI答题说明</p>
+<p class="text">
+    这是一份了解幼儿汉语言词汇和沟通能力的量 表。如果您的孩子还不会说该词或者只是重复别人，请填“不会说”（选择第一个圆圈）；如果您的孩子会说该词而不是马上重复别人说过的词，请填“会说”（可选择第二个圆圈）。假如您的孩子对该词的发音不准（例如：火车说成“火些”）或他的说法有所不同（例一：葡萄说成“萄”；例二：老鼠说成“耗子”），仍算做会说。当遇到“面/面条”这种中间划有“/”的词汇时，对会说“/”两侧中的一个词即为“会说”。这个词表是用于不同年龄的孩子，完全有可能您的孩子现在只知道这个词表中较少的词，甚至根本不知道，也属于正常范围，请不要为孩子究竟知道其中多少个字词而担心。
+<script src="../js/jquery-1.11.2.min.js"></script>
+<script>
+    $(function () {
+        $('img').click(function () {
+            window.history.back(-1);
+        })
+    })
+</script>
+</body>
+</html>

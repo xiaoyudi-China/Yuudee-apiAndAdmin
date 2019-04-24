@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xfkj.mapper.XydAreaMapper">
+  <resultMap id="BaseResultMap" type="com.xfkj.model.XydArea">
+    <id column="areaId" jdbcType="INTEGER" property="areaid" />
+    <result column="areaCode" jdbcType="VARCHAR" property="areacode" />
+    <result column="areaName" jdbcType="VARCHAR" property="areaname" />
+    <result column="level" jdbcType="TINYINT" property="level" />
+    <result column="cityCode" jdbcType="VARCHAR" property="citycode" />
+    <result column="center" jdbcType="VARCHAR" property="center" />
+    <result column="parentId" jdbcType="INTEGER" property="parentid" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    areaId, areaCode, areaName, level, cityCode, center, parentId, create_time,update_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from xyd_area
+    where areaId = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from xyd_area
+    where areaId = #{areaid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xfkj.model.XydArea">
+    insert into xyd_area (areaId, areaCode, areaName, 
+      level, cityCode, center, 
+      parentId , create_time,update_time)
+    values (#{areaid,jdbcType=INTEGER}, #{areacode,jdbcType=VARCHAR}, #{areaname,jdbcType=VARCHAR}, 
+      #{level,jdbcType=TINYINT}, #{citycode,jdbcType=VARCHAR}, #{center,jdbcType=VARCHAR}, 
+      #{parentid,jdbcType=INTEGER}, #{create_time,jdbcType=TIMESTAMP}, #{update_time,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xfkj.model.XydArea">
+    insert into xyd_area
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="areaid != null">
+        areaId,
+      </if>
+      <if test="areacode != null">
+        areaCode,
+      </if>
+      <if test="areaname != null">
+        areaName,
+      </if>
+      <if test="level != null">
+        level,
+      </if>
+      <if test="citycode != null">
+        cityCode,
+      </if>
+      <if test="center != null">
+        center,
+      </if>
+      <if test="parentid != null">
+        parentId,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="areaid != null">
+        #{areaid,jdbcType=INTEGER},
+      </if>
+      <if test="areacode != null">
+        #{areacode,jdbcType=VARCHAR},
+      </if>
+      <if test="areaname != null">
+        #{areaname,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null">
+        #{level,jdbcType=TINYINT},
+      </if>
+      <if test="citycode != null">
+        #{citycode,jdbcType=VARCHAR},
+      </if>
+      <if test="center != null">
+        #{center,jdbcType=VARCHAR},
+      </if>
+      <if test="parentid != null">
+        #{parentid,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xfkj.model.XydArea">
+    update xyd_area
+    <set>
+      <if test="areacode != null">
+        areaCode = #{areacode,jdbcType=VARCHAR},
+      </if>
+      <if test="areaname != null">
+        areaName = #{areaname,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null">
+        level = #{level,jdbcType=TINYINT},
+      </if>
+      <if test="citycode != null">
+        cityCode = #{citycode,jdbcType=VARCHAR},
+      </if>
+      <if test="center != null">
+        center = #{center,jdbcType=VARCHAR},
+      </if>
+      <if test="parentid != null">
+        parentId = #{parentid,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time =  #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where areaId = #{areaid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xfkj.model.XydArea">
+    update xyd_area
+    set areaCode = #{areacode,jdbcType=VARCHAR},
+      areaName = #{areaname,jdbcType=VARCHAR},
+      level = #{level,jdbcType=TINYINT},
+      cityCode = #{citycode,jdbcType=VARCHAR},
+      center = #{center,jdbcType=VARCHAR},
+      parentId = #{parentid,jdbcType=INTEGER},
+      create_time =  #{createTime,jdbcType=TIMESTAMP},
+       update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where areaId = #{areaid,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectList" parameterType="com.xfkj.model.XydArea" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from xyd_area
+    where  1 = 1
+    <if test="areacode != null">
+     AND areaCode = #{areacode,jdbcType=VARCHAR}
+    </if>
+    <if test="areaname != null">
+     AND areaName = #{areaname,jdbcType=VARCHAR}
+    </if>
+    <if test="level != null">
+     AND level = #{level,jdbcType=TINYINT}
+    </if>
+    <if test="citycode != null">
+      AND cityCode = #{citycode,jdbcType=VARCHAR}
+    </if>
+    <if test="center != null">
+      AND center = #{center,jdbcType=VARCHAR}
+    </if>
+    <if test="parentid != null">
+      AND  parentId = #{parentid,jdbcType=INTEGER}
+    </if>
+  </select>
+
+  <select id="selectByParamCount" parameterType="com.xfkj.common.query.GenericQueryParam" resultType="Integer">
+    SELECT COUNT(1)
+    from xyd_area
+    <trim prefix="WHERE" prefixOverrides="AND | OR">
+      <if test="areacode != null">
+        AND areaCode = #{areacode,jdbcType=VARCHAR}
+      </if>
+      <if test="areaname != null">
+        AND areaName LIKE #{areaname,jdbcType=VARCHAR}
+      </if>
+      <if test="level != null">
+        AND level = #{level,jdbcType=TINYINT}
+      </if>
+      <if test="citycode != null">
+        AND cityCode = #{citycode,jdbcType=VARCHAR}
+      </if>
+      <if test="center != null">
+        AND center = #{center,jdbcType=VARCHAR}
+      </if>
+      <if test="parentid != null">
+        AND parentId = #{parentid,jdbcType=INTEGER}
+      </if>
+    </trim>
+  </select>
+
+  <select id="selectByParamList" parameterType="com.xfkj.common.query.GenericQueryParam" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    from xyd_area
+    <trim prefix="WHERE" prefixOverrides="AND | OR">
+      <if test="areacode != null">
+       AND areaCode = #{areacode,jdbcType=VARCHAR}
+      </if>
+      <if test="areaname != null">
+        AND areaName LIKE #{areaname,jdbcType=VARCHAR}
+      </if>
+      <if test="level != null">
+        AND level = #{level,jdbcType=TINYINT}
+      </if>
+      <if test="citycode != null">
+        AND cityCode = #{citycode,jdbcType=VARCHAR}
+      </if>
+      <if test="center != null">
+        AND center = #{center,jdbcType=VARCHAR}
+      </if>
+      <if test="parentid != null">
+        AND parentId = #{parentid,jdbcType=INTEGER}
+      </if>
+    </trim>
+    ORDER BY create_time DESC
+  </select>
+  
+  <delete id="deleteChilCity"  parameterType="java.lang.Integer">
+    delete from xyd_area
+    where parentId = #{parentid,jdbcType=INTEGER}
+  </delete>
+</mapper>

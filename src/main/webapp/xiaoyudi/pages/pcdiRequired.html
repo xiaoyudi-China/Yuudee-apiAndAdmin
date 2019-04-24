@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Title</title>
+    <script type="text/javascript" src="../js/rem.js"></script>
+    <link rel="stylesheet" href="../css/currency.css">
+    <link rel="stylesheet" href="../css/pcdiRequired.css">
+</head>
+<body>
+<div class="header">
+    <p class="title">PCDI必填问卷</p>
+    <p class="msg">汉语沟通发展量表：词汇及句子</p>
+    <img src="../img/home_button.png" class="home_button" alt="">
+</div>
+<div class="centent">
+    <div class="top clearfix">
+        <span class="l">必做部分</span>
+        <a href="answerNote.html" class="r"><span>查看答题说明<img class="r" src="../img/button_right.png" alt=""></span></a>
+    </div>
+    <div id="topicList">
+        <!--<div class="title">-->
+        <!--C-小孩组合字-->
+        <!--<div class="dashed"></div>-->
+        <!--</div>-->
+        <!--<p class="notes">-->
+        <!--注：“有时”即指孩子用过一次以上；“经常”即指需-->
+        <!--要用到时候大部分会用到。-->
+        <!--</p>-->
+        <!--<ul>-->
+        <!--<li>-->
+        <!--<div class="black_spot"></div>-->
+        <!--<p class="subject">您的孩子有没有开始把几个字组合在一起？(例：“妈妈车”.“地饼干”)</p>-->
+        <!--<div class="clearfix radio">-->
+        <!--<p class="l"><img src="../img/no_select.png" alt="">还没有</p>-->
+        <!--<p class="l selectColor"><img src="../img/select.png" alt="">有时会</p>-->
+        <!--<p class="l"><img src="../img/no_select.png" alt="">经常会</p>-->
+        <!--</div>-->
+        <!--<p class="subject" style="margin-bottom: 0;">请列出您孩子最近说过的三个最长的句子</p>-->
+        <!--<div class="input_box" style="margin-top: .24rem"><input type="text" placeholder="请输入句子1"></div>-->
+        <!--<div class="input_box"><input type="text" placeholder="请输入句子2"></div>-->
+        <!--<div class="input_box"><input type="text" placeholder="请输入句子3"></div>-->
+        <!--</li>-->
+        <!--</ul>-->
+    </div>
+    <!--<div class="title" style="margin-bottom: .26rem">-->
+    <!--D-复杂性-->
+    <!--<div class="dashed"></div>-->
+    <!--</div>-->
+
+</div>
+<div class="Submission" id="determine">
+    确定
+</div>
+<div class="mask"></div>
+<div class="dialog">
+    <!--<img src="../img/close.png" alt="">-->
+    <p class="Htitle">您已经完成了PCDI必做部分问卷</p>
+    <p class="msg1">
+        如您愿意全部完成必做和选做部分，将可以获得幼童汉语言发展水平的完整评估。仅完成必做部分不会影响小雨滴2训练的使用，但将无法获取完整评估打分。
+        接下来的选做部分将花费您10-15分钟时间。
+    </p>
+    <div class="button clearfix">
+        <div class="Submission l l1">
+            确定提交
+        </div>
+        <div class="Submission l l2">
+            继续评估
+        </div>
+    </div>
+</div>
+<div class="dialog1">
+    <!--<img src="../img/close.png" alt="">-->
+    <p class="msg1">
+        您尚未填写完问卷评估，如果您现在退出，
+        我们将会为您已经填写的部分保留1周时间，如
+        果超过1周需要重新填写，因为孩子可能已经发
+        生了很大的进步！您确定退出吗？
+    </p>
+    <div class="button clearfix">
+        <div class="Submission l l3">
+            继续填写
+        </div>
+        <div class="Submission l l4">
+            确定退出
+        </div>
+    </div>
+</div>
+<div class="dialog2">
+    <!--<img src="../img/close.png" alt="">-->
+    <p class="msg1" style="margin-bottom: 1.58rem;">
+        您尚未填写完问卷评估，无法提交。
+    </p>
+    <div class="button clearfix">
+        <div class="Submission l l6">
+            取消
+        </div>
+        <div class="Submission l l6">
+            确定
+        </div>
+    </div>
+</div>
+
+<script src="../js/jquery-1.11.2.min.js"></script>
+<script src="../js/jquery.tmpl.min.js"></script>
+<script type="text/javascript" src="../js/centent.js"></script>
+<script src="../js/api.js"></script>
+<script src="../js/vconsole.min.js"></script>
+<script type="text/x-jquery-tmpl" id="list">
+    <div style="position:relative">
+        <div class="title">
+            ${pcidType.name}
+            <div class="dashed"></div>
+        </div>
+    </div>
+    {{if pcidType.title != ''}}
+    <p class="notes" >
+       ${pcidType.title}
+    </p>
+    {{/if}}
+    <ul>
+    {{each(i,item) pcidList}}
+        <li>
+            <div class="black_spot"></div>
+            <p class="subject">${i+1}. ${item.topicTitle}</p>
+            <div class="clearfix radio">
+            <!--<p class="l selectColor"><img src="../img/select.png" alt="">${o}</p>-->
+                {{each(ind,o) item.topicResultOne}}
+                    {{if item.topicResultOne.length <= 3}}
+                        <p class="l ${ind+1 == item.answerid && o == item.answer ? 'selectColor' : ''}" style="margin-right:.2rem;" citype="${item.type}" cihui="${pcidType.nameEnum == 5 ? true : false}" jifen="${item.isScore == '1' ? true : false}" juzi="${pcidType.nameEnum == 4 ? true : false}" data-isother="${item.isOtherOptions}" data-id="${pcidType.id}|${item.id}" data-pcdiTypeId="${item.pcdiTypeId}" data-input="${item.childOptions != null ? item.childOptions : null}" data-val="${o}"><img src="${ind+1 == item.answerid && o == item.answer ? '../img/select.png' : '../img/no_select.png'}" alt="">${o}</p>
+                    {{else}}
+                        <p class="l ${ind+1 == item.answerid && o == item.answer ? 'selectColor' : ''}" citype="${item.type}" cihui="${pcidType.nameEnum == 5 ? true : false}" jifen="${item.isScore == '1' ? true : false}" juzi="${pcidType.nameEnum == 4 ? true : false}" style="margin-right:.1rem;" data-isother="${item.isOtherOptions}" data-id="${pcidType.id}|${item.id}" data-pcdiTypeId="${item.pcdiTypeId}" data-input="${item.childOptions != null ? item.childOptions : null}" data-val="${o}"><img src="${ind+1 == item.answerid && o == item.answer ? '../img/select.png' : '../img/no_select.png'}" alt="">${o}</p>
+                    {{/if}}
+                {{/each}}
+
+            </div>
+            {{if item.childOptions != null}}
+                <div style="display:none;" class="input_child">
+                    <p class="subject" style="margin-bottom: 0;">请列出您孩子最近说过的三个最长的句子</p>
+                    <div class="input_box" style="margin-top: .24rem"><input data-id="${pcidType.id}|${item.id}" type="text" placeholder="请输入句子1"></div>
+                    <div class="input_box"><input data-id="${pcidType.id}|${item.id}" type="text" placeholder="请输入句子2"></div>
+                    <div class="input_box"><input data-id="${pcidType.id}|${item.id}" type="text" placeholder="请输入句子3"></div>
+                </div>
+            {{/if}}
+        </li>
+    {{/each}}
+    </ul>
+
+
+</script>
+<script>
+    var timer;
+    var move = function (obj, y, t, options) {
+        options = options || {}
+        options.type = options.type || 'buffer'
+        options.time = options.time || 100
+        let count = parseInt(options.time / 30)
+        let n = 0
+        let a
+        let cur
+        clearInterval(timer)
+        timer = setInterval(function () {
+            n++
+            switch (options.type) {
+                case 'linear':        // 匀速
+                    // var cur=y*n/count;
+                    a = n / count
+                    if (t < y) {
+                        cur = t + (y - t) * a
+                    } else {
+                        cur = t - (t - y) * a
+                    }
+                    break
+                case 'buffer':        // 缓冲
+                    a = 1 - n / count;
+                    if (t < y) {
+                        console.log(455)
+                        cur = t + (y - t) * (1 - a * a * a)
+                    } else {
+                        cur = t - (t - y) * (1 - a * a * a)
+                    }
+                    break
+                case 'ease-in':        // 加速
+                    a = n / count
+                    cur = y * (a * a * a)
+                    break
+            }
+            window.scrollTo(0, cur)
+            if (n === count) {
+                clearInterval(timer)
+                options.end && options.end()
+            }
+        }, 30)
+    }
+    $(function () {
+        window.vConsole = new window.VConsole({
+            defaultPlugins: ['system', 'network', 'element', 'storage'], // 可以在此设定要默认加载的面板
+            maxLogNumber: 1000,
+            // disableLogScrolling: true,
+            onReady: function() {
+                console.log('vConsole is ready.');
+            },
+            onClearLog: function() {
+                console.log('on clearLog');
+            }
+        });
+        var y = 0
+        $('#topicList').on('focus', 'input', function () {
+            clearInterval(timer)
+            y = $('.centent').scrollTop()
+        })
+        $('#topicList').on('blur', 'input', function () {
+            let t = $('.centent').scrollTop()
+            move(this, y, t)
+        })
+        function getUrlParam(name) {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+            var r = window.location.search.substr(1).match(reg);  //匹配目标参数
+            if (r != null) return unescape(r[2]);
+            return null; //返回参数值
+        }
+        console.log(getUrlParam('token'))
+        var resultId;
+        var status = getUrlParam('status');
+        var id = getUrlParam('id');
+        var answerJSON = {};
+        var answerList = [];
+        var totalNumber = 0;
+        $('.home_button').click(function () {
+            $('.mask').show();
+            $('.dialog1').show()
+        })
+        $('.l3').click(function () {
+            $('.mask').hide();
+            $('.dialog1').hide()
+        })
+        //确定中途退出
+        $('.l4').click(function () {
+            var data = getAnswer();
+            data.resultList = JSON.stringify(data.resultList)
+            delete data.nounCount
+            delete data.verbCount
+            delete data.adjCount
+            delete data.score
+            data.pcdiCache = true
+            console.log(JSON.parse(JSON.stringify(data)))
+            post('/addPcdiResult', data).then(
+                function (res) {
+                    console.log(res)
+                    if (res.code == 200) {
+                        console.log(window)
+                        if(window.webkit){
+                            window.webkit.messageHandlers.goBack.postMessage(null);
+                        }else{
+                            android.goBack();
+                        }
+                    } else {
+                        tips(res.msg);
+                    }
+                },
+                function (err) {
+                    console.log(err)
+                }
+            )
+        })
+        $('.l6').click(function () {
+            $('.mask').hide();
+            $('.dialog2').hide()
+        })
+        $('.l1').click(function () {
+            window.location.href = 'requiredPresentation.html'
+        })
+        $('.l2').click(function () {
+            console.log(resultId)
+            window.location.href = 'pcdiNonCompulsory.html?id=' + resultId + '&pcdiNonId=' + id
+
+        })
+
+        //回显渲染
+        function echo(data, json, state) {
+            console.log(data)
+            data.data.forEach(function (items) {
+                items.answerid = state == 'new' ? items.sign : items.answerid
+                json[items.topicType].pcidList.forEach(function (item) {
+                    if (JSON.stringify(item.id) == items.topicId) {
+                        if (state == 'new') {
+                            item.answerid = items.sign
+                            item.subAnswer = [items.answerOne, items.answerTwo, items.answerThree]
+                        } else {
+                            item.answerid = items.answerid
+                            item.subAnswer = items.subAnswer
+                        }
+                        item.answer = items.answer
+                        if (state == 'new') {
+                            if (item.isScore == '1') {
+                                items.jifen = 'true'
+                            }
+                            items.type = parseInt(item.type)
+                        }
+                    }
+                });
+                if (state == 'new') {
+                    if (json[items.topicType].pcidType.nameEnum == 4) {
+                        items.juzi = true
+                    }
+                    if (json[items.topicType].pcidType.nameEnum == 5) {
+                        items.cihui = true
+                    }
+
+                }
+                items.subAnswer = state == 'new' ? [items.answerOne, items.answerTwo, items.answerThree] : items.subAnswer
+                answerJSON[items.topicType + '|' + items.topicId] = items;
+            });
+            var n = [];
+            for (var key in json) {
+                n.push(json[key])
+            }
+            $('#topicList').empty();
+            $('#list').tmpl(n).appendTo('#topicList')
+            console.log(answerJSON)
+        }
+
+        function getCache(json) {
+            //    获取缓存7天的数据
+            get('/getCache', {type: 1}).then(
+                function (data) {
+                    console.log(data)
+                    if (data.code == 200) {
+                        echo(data, json, 'old')
+                    } else {
+                        tips(data.msg);
+                    }
+
+                },
+                function (err) {
+                    console.log(err)
+                }
+            )
+        }
+
+        function mustAndResult(json) {
+            //重新评估获取上次提交的数据
+            get('/getPcdi/mustAndResult', {answerId: id}).then(
+                function (data) {
+                    console.log(JSON.parse(JSON.stringify(data)))
+                    if (data.code == 200) {
+                        echo(data, json, 'new')
+                    } else {
+                        tips(data.msg);
+                    }
+
+                },
+                function (err) {
+                    console.log(err)
+                }
+            )
+        }
+
+        //获取题
+        get('/getPcdi/must').then(
+            function (res) {
+                console.log(res)
+                if (res.code == 200) {
+                    var json = {};
+                    res.data.forEach(function (items) {
+                        totalNumber = totalNumber += items.pcidList.length;
+                        items.pcidList.forEach(function (item) {
+                            item.topicResultOne = item.topicResultOne.split('|')
+                        })
+                        json[items.pcidType.id] = items;
+                    })
+                    console.log(status)
+                    if (!status) {
+                        $('#topicList').empty();
+                        $('#list').tmpl(res.data).appendTo('#topicList')
+                    } else {
+                        if (id) {
+                            mustAndResult(json);
+                        } else {
+                            getCache(json);
+                        }
+                    }
+                } else {
+                    tips(res.msg);
+                }
+
+            },
+            function (err) {
+                console.log(err)
+            }
+        )
+        //做题
+
+        $('#topicList').delegate('.radio p', 'click', function () {
+            var childInd = $(this).data('input');
+            var id = $(this).data('id');
+            var isOtherOptions = $(this).data('isother');
+            var pcdiTypeId = $(this).data('pcditypeid');
+            var ind = $(this).index();
+            var val = $(this).data('val');
+            var juzi = $(this).attr('juzi');
+            var jifen = $(this).attr('jifen');
+            var citype = $(this).attr('citype');
+            var cihui = $(this).attr('cihui');
+            var radio = $(this).parents('.radio');
+            radio.find('p').removeClass('selectColor');
+            radio.find('img').attr('src', '../img/no_select.png');
+            $(this).addClass('selectColor');
+            $(this).find('img').attr('src', '../img/select.png')
+            var childOptions = $(this).parents('li').find('.input_child');
+            if (childInd != '') {
+                if (JSON.stringify(childInd).indexOf(JSON.stringify(ind)) != -1) {
+                    childOptions.show();
+                } else {
+                    childOptions.hide();
+                }
+            }
+            ;
+            answerJSON[id] = {
+                topicId: id.split('|')[1],
+                topicType: pcdiTypeId,
+                answer: val,
+                answerid: ind,
+                isOtherOptions: typeof(isOtherOptions) != 'string' ? JSON.stringify(isOtherOptions) : isOtherOptions,
+                subAnswer: []
+            };
+
+            if (juzi == 'true') {
+                answerJSON[id].juzi = true
+                answerJSON[id].jifen = jifen
+            } else if (cihui == 'true') {
+                answerJSON[id].cihui = true
+                answerJSON[id].type = citype
+            }
+        });
+
+        //获取已做题的数据
+        function getAnswer() {
+            $('ul input').each(function (i, item) {
+                var id = $(item).data('id');
+                if (answerJSON[id] && $(item).val() != '') {
+                    answerJSON[id].subAnswer.push($(item).val())
+                }
+            });
+            var nounCount = 0;
+            var verbCount = 0;
+            var adjCount = 0;
+            var score = 0;
+            var answerJSON1 = JSON.parse(JSON.stringify(answerJSON));
+            for (var key in answerJSON1) {
+                var obj = answerJSON1[key]
+                for (var i = 0; i < 3; i++) {
+                    if (!obj.subAnswer[i]) {
+                        obj.subAnswer[i] = ''
+                    }
+                }
+                if (obj.juzi == true && obj.jifen == 'true') {
+                    score = score + parseInt(obj.answerid)
+                } else if (obj.cihui == true && obj.answerid == 1) {
+                    if (obj.type == '1') {
+                        nounCount = nounCount += 1
+                    } else if (obj.type == '2') {
+                        verbCount = verbCount += 1
+                    } else {
+                        adjCount = adjCount += 1
+                    }
+                }
+                delete obj.juzi
+                delete obj.jifen
+                delete obj.type
+                delete obj.cihui
+                obj.answer = obj.answer.toString()
+                answerList.push(obj)
+            }
+            var params = {
+                nounCount: nounCount,
+                verbCount: verbCount,
+                adjCount: adjCount,
+                score: score,
+                pcdiCache: false,
+                resultList: answerList
+
+            }
+            return params
+        }
+
+        //提交
+        $('#determine').click(function () {
+            var data = getAnswer();
+            console.log(data)
+            // console.log(JSON.parse(JSON.stringify(data)))
+            console.log(data.resultList.length, totalNumber)
+            if (data.resultList.length < totalNumber) {
+                tips('您尚未填写完问卷评估，无法提交。');
+                var isHasFindNoSelector=false
+                console.log( $('#topicList').find('li').length)
+                console.log(answerList)
+                $('#topicList').find('li').each(function (index,item) {
+                    if(!isHasFindNoSelector&&$(item).find('.selectColor').length===0){
+                        console.log(item)
+                        console.log($(item).position().top)
+                        console.log($('.centent').scrollTop($(item).position().top-$(item).parent().parent().position().top))
+                        isHasFindNoSelector=true
+                        // $(window).scroll($(item).offset().top);
+
+                    }
+                })
+                answerJSON = {};
+                return
+            } else {
+                data.resultList = JSON.stringify(data.resultList)
+                console.log(data)
+                post('/addPcdiResult', data).then(
+                    function (res) {
+                        // console.log(res)
+                        if (res.code == 200) {
+                            resultId = res.data.id
+                            $('.mask').show();
+                            $('.dialog').show()
+                        } else {
+                            tips(res.msg);
+                        }
+                    },
+                    function (err) {
+                        console.log(err)
+                    }
+                )
+            }
+        });
+    })
+</script>
+</body>
+</html>

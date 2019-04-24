@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xfkj.mapper.XydPcidMustVocabularyMapper">
+  <resultMap id="BaseResultMap" type="com.xfkj.model.XydPcidMustVocabulary">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="pcdi_type_id" jdbcType="INTEGER" property="pcdiTypeId" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
+    <result column="sort" jdbcType="INTEGER" property="sort" />
+    <result column="score" jdbcType="VARCHAR" property="isScore" />
+    <result column="topic_title" jdbcType="VARCHAR" property="topicTitle" />
+    <result column="topic_result_one" jdbcType="VARCHAR" property="topicResultOne" />
+    <result column="topic_result_two" jdbcType="VARCHAR" property="topicResultTwo" />
+    <result column="states" jdbcType="VARCHAR" property="states" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="sign" jdbcType="VARCHAR" property="sign" />
+    <result column="answer" jdbcType="VARCHAR" property="answer" />
+    <result column="answer_one" jdbcType="VARCHAR" property="answerOne" />
+    <result column="answer_two" jdbcType="VARCHAR" property="answerTwo" />
+    <result column="answer_three" jdbcType="VARCHAR" property="answerThree" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, pcdi_type_id, type, sort, score, topic_title, topic_result_one, topic_result_two, states,
+    create_time, update_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from xyd_pcid_must_vocabulary
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from xyd_pcid_must_vocabulary
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xfkj.model.XydPcidMustVocabulary">
+    insert into xyd_pcid_must_vocabulary (id, pcdi_type_id, type, 
+      sort, topic_title, topic_result_one, 
+      topic_result_two, states, create_time, 
+      update_time)
+    values (#{id,jdbcType=INTEGER}, #{pcdiTypeId,jdbcType=INTEGER}, #{type,jdbcType=VARCHAR}, 
+      #{sort,jdbcType=INTEGER}, #{topicTitle,jdbcType=VARCHAR}, #{topicResultOne,jdbcType=VARCHAR}, 
+      #{topicResultTwo,jdbcType=VARCHAR}, #{states,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xfkj.model.XydPcidMustVocabulary">
+    insert into xyd_pcid_must_vocabulary
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="pcdiTypeId != null">
+        pcdi_type_id,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="sort != null">
+        sort,
+      </if>
+      <if test="isScore != null">
+        score,
+      </if>
+      <if test="topicTitle != null">
+        topic_title,
+      </if>
+      <if test="topicResultOne != null">
+        topic_result_one,
+      </if>
+      <if test="topicResultTwo != null">
+        topic_result_two,
+      </if>
+      <if test="states != null">
+        states,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="pcdiTypeId != null">
+        #{pcdiTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null">
+        #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="isScore != null">
+        #{isScore, jdbcType=VARCHAR},
+      </if>
+      <if test="topicTitle != null">
+        #{topicTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="topicResultOne != null">
+        #{topicResultOne,jdbcType=VARCHAR},
+      </if>
+      <if test="topicResultTwo != null">
+        #{topicResultTwo,jdbcType=VARCHAR},
+      </if>
+      <if test="states != null">
+        #{states,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xfkj.model.XydPcidMustVocabulary">
+    update xyd_pcid_must_vocabulary
+    <set>
+      <if test="pcdiTypeId != null">
+        pcdi_type_id = #{pcdiTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null">
+        sort = #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="isScore != null">
+        score = #{isScore,jdbcType=VARCHAR},
+      </if>
+      <if test="topicTitle != null">
+        topic_title = #{topicTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="topicResultOne != null">
+        topic_result_one = #{topicResultOne,jdbcType=VARCHAR},
+      </if>
+      <if test="topicResultTwo != null">
+        topic_result_two = #{topicResultTwo,jdbcType=VARCHAR},
+      </if>
+      <if test="states != null">
+        states = #{states,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xfkj.model.XydPcidMustVocabulary">
+    update xyd_pcid_must_vocabulary
+    set pcdi_type_id = #{pcdiTypeId,jdbcType=INTEGER},
+      type = #{type,jdbcType=VARCHAR},
+      sort = #{sort,jdbcType=INTEGER},
+      score = #{isScore,jdbcType=VARCHAR},
+      topic_title = #{topicTitle,jdbcType=VARCHAR},
+      topic_result_one = #{topicResultOne,jdbcType=VARCHAR},
+      topic_result_two = #{topicResultTwo,jdbcType=VARCHAR},
+      states = #{states,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectByTypeLis" parameterType="com.xfkj.model.XydPcidMustVocabulary" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from xyd_pcid_must_vocabulary
+    where 1 = 1
+    <if test="pcdiTypeId != null">
+     AND pcdi_type_id = #{pcdiTypeId,jdbcType=INTEGER}
+    </if>
+    <if test="type != null">
+      AND type = #{type,jdbcType=VARCHAR}
+    </if>
+    <if test="sort != null">
+      AND sort = #{sort,jdbcType=INTEGER}
+    </if>
+    <if test="topicTitle != null">
+      AND topic_title = #{topicTitle,jdbcType=VARCHAR}
+    </if>
+    <if test="topicResultOne != null">
+      AND topic_result_one = #{topicResultOne,jdbcType=VARCHAR}
+    </if>
+    <if test="topicResultTwo != null">
+      AND topic_result_two = #{topicResultTwo,jdbcType=VARCHAR}
+    </if>
+    <if test="states != null">
+      AND states = #{states,jdbcType=VARCHAR}
+    </if>
+    <if test="createTime != null">
+      AND create_time = #{createTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="updateTime != null">
+      AND update_time = #{updateTime,jdbcType=TIMESTAMP}
+    </if>
+    ORDER BY create_time ASC
+  </select>
+
+  <select id="selectByTypeAndOutLis"  resultMap="BaseResultMap">
+    select
+    xpmv.*, xar.answer,xar.sign,xar.answer_one, xar.answer_two, xar.answer_three
+    from xyd_pcid_must_vocabulary xpmv, xyd_answer_results xar
+    where xar.answer_id = #{answerRecordId} AND xpmv.id = xar.topic_id and xpmv.pcdi_type_id = #{pcidTypeId} AND xar.topic_type = #{pcidTypeId}
+    AND xpmv.states = "1"
+    ORDER BY xpmv.create_time ASC
+  </select>
+</mapper>
