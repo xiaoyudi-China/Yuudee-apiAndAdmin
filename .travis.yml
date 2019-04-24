@@ -1,1 +1,1 @@
-language: javajdk:- oraclejdk8sudo: falsescript: mvn clean verifyafter_success:- mvn clean test## 生成测试报告- mvn jacoco:report## 获取travis解密的token ,并调用coveralls-plugin上传报告- mvn coveralls:report -DrepoToken=T82gNnaOPm9NRLCvQMLDDzEgw61UPyFLr
+language: javajdk:- oraclejdk8sudo: falsescript: mvn clean verifyafter_success:- mvn clean test## 生成测试报告- mvn jacoco:report## 获取travis解密的token ,并调用coveralls-plugin上传报告- mvn coveralls:report -DrepoToken=T82gNnaOPm9NRLCvQMLDDzEgw61UPyFLr- bash <(curl -s https://codecov.io/bash)
