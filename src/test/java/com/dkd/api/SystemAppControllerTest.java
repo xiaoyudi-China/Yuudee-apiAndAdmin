@@ -116,7 +116,7 @@ public class SystemAppControllerTest {
         System.out.println("=====getAppStartImage result:" + result);
     }
 
-    @Test
+   /* @Test
     public void getCityList() throws Exception{
         ResultActions resultActions = this.mockMvc.
                 perform(MockMvcRequestBuilders.request(HttpMethod.POST,reqUrl+"/getCityList")
@@ -139,8 +139,8 @@ public class SystemAppControllerTest {
         System.out.println("=====getThisCityList mvcResult:" + mvcResult.getResponse().getStatus());
         String result = mvcResult.getResponse().getContentAsString();
         System.out.println("=====getThisCityList result:" + result);
-    }
-/*
+    }*/
+
     @Test
     public void verifyPhone() throws Exception{
         ResultActions resultActions = this.mockMvc.
@@ -152,5 +152,5 @@ public class SystemAppControllerTest {
         System.out.println("=====verifyPhone mvcResult:" + mvcResult.getResponse().getStatus());
         String result = mvcResult.getResponse().getContentAsString();
         System.out.println("=====verifyPhone result:" + result);
-    }*/
+    }
 }
