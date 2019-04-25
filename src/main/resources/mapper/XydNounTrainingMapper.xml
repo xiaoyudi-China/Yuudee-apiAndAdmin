@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.xfkj.mapper.XydNounTrainingMapper">
-  <resultMap id="BaseResultMap" type="com.xfkj.model.XydNounTraining">
+<mapper namespace="com.dkd.mapper.XydNounTrainingMapper">
+  <resultMap id="BaseResultMap" type="com.dkd.model.XydNounTraining">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="wire_image" jdbcType="VARCHAR" property="wireImage" />
     <result column="wire_char" jdbcType="VARCHAR" property="wireChar" />
@@ -35,7 +35,7 @@
     delete from xyd_noun_training
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.xfkj.model.XydNounTraining">
+  <insert id="insert" parameterType="com.dkd.model.XydNounTraining">
     insert into xyd_noun_training (id, wire_image, wire_char, 
       wire_record, color_pen_char, color_pen_record, 
       group_image, group_record, create_time, 
@@ -45,7 +45,7 @@
       #{groupImage,jdbcType=VARCHAR}, #{groupRecord,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
       #{updateTime,jdbcType=TIMESTAMP}, #{states,jdbcType=CHAR},#{groupWord,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.xfkj.model.XydNounTraining">
+  <insert id="insertSelective" parameterType="com.dkd.model.XydNounTraining">
     insert into xyd_noun_training
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -124,7 +124,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.xfkj.model.XydNounTraining">
+  <update id="updateByPrimaryKeySelective" parameterType="com.dkd.model.XydNounTraining">
     update xyd_noun_training
     <set>
       <if test="wireImage != null">
@@ -163,7 +163,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.xfkj.model.XydNounTraining">
+  <update id="updateByPrimaryKey" parameterType="com.dkd.model.XydNounTraining">
     update xyd_noun_training
     set wire_image = #{wireImage,jdbcType=VARCHAR},
       wire_char = #{wireChar,jdbcType=VARCHAR},
@@ -178,7 +178,7 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
 
-  <select id="selectByParamCount" parameterType="com.xfkj.common.query.GenericQueryParam" resultType="Integer">
+  <select id="selectByParamCount" parameterType="com.dkd.common.query.GenericQueryParam" resultType="Integer">
     select
     count(id)
     from xyd_noun_training
@@ -189,7 +189,7 @@
     </where>
   </select>
 
-  <select id="selectByParamList" parameterType="com.xfkj.common.query.GenericQueryParam" resultMap="BaseResultMap">
+  <select id="selectByParamList" parameterType="com.dkd.common.query.GenericQueryParam" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List"/>
     from

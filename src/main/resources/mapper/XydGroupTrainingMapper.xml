@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.xfkj.mapper.XydGroupTrainingMapper">
-  <resultMap id="BaseResultMap" type="com.xfkj.model.XydGroupTraining">
+<mapper namespace="com.dkd.mapper.XydGroupTrainingMapper">
+  <resultMap id="BaseResultMap" type="com.dkd.model.XydGroupTraining">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="user_id" jdbcType="INTEGER" property="userId" />
     <result column="training_idlist" jdbcType="VARCHAR" property="trainingIdlist" />
@@ -47,7 +47,7 @@
     delete from xyd_group_training
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.xfkj.model.XydGroupTraining">
+  <insert id="insert" parameterType="com.dkd.model.XydGroupTraining">
     insert into xyd_group_training (id, user_id, training_idlist, 
       scene, module, start_time, 
       end_time, stay_time, pass, 
@@ -59,7 +59,7 @@
       #{accuracy,jdbcType=DECIMAL}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
       #{states,jdbcType=CHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.xfkj.model.XydGroupTraining">
+  <insert id="insertSelective" parameterType="com.dkd.model.XydGroupTraining">
     <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
       SELECT LAST_INSERT_ID() AS id
     </selectKey>
@@ -147,7 +147,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.xfkj.model.XydGroupTraining">
+  <update id="updateByPrimaryKeySelective" parameterType="com.dkd.model.XydGroupTraining">
     update xyd_group_training
     <set>
       <if test="userId != null">
@@ -192,7 +192,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.xfkj.model.XydGroupTraining">
+  <update id="updateByPrimaryKey" parameterType="com.dkd.model.XydGroupTraining">
     update xyd_group_training
     set user_id = #{userId,jdbcType=INTEGER},
       training_idlist = #{trainingIdlist,jdbcType=VARCHAR},
@@ -317,7 +317,7 @@
     AND states = "1" AND to_days(create_time) = to_days(#{dayDate})
   </select>
 
-  <select id="selectByList"  parameterType="com.xfkj.model.XydGroupTraining" resultMap="BaseResultMap">
+  <select id="selectByList" parameterType="com.dkd.model.XydGroupTraining" resultMap="BaseResultMap">
     select
     *
     from xyd_group_training
@@ -403,7 +403,7 @@
     ON dd.date = ff.weeks
   </select>
 
-  <select id="selectStatisticsCount"  parameterType="com.xfkj.model.XydGroupTraining"   resultType="java.lang.Integer">
+  <select id="selectStatisticsCount" parameterType="com.dkd.model.XydGroupTraining" resultType="java.lang.Integer">
     select  COUNT(distinct user_id)
     from xyd_group_training
     where 1 = 1

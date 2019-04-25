@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.xfkj.mapper.XydVerbTrainingMapper">
-  <resultMap id="BaseResultMap" type="com.xfkj.model.XydVerbTraining">
+<mapper namespace="com.dkd.mapper.XydVerbTrainingMapper">
+  <resultMap id="BaseResultMap" type="com.dkd.model.XydVerbTraining">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="start_slideshow" jdbcType="VARCHAR" property="startSlideshow" />
     <result column="end_slideshow" jdbcType="VARCHAR" property="endSlideshow" />
@@ -70,7 +70,7 @@
     delete from xyd_verb_training
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.xfkj.model.XydVerbTraining">
+  <insert id="insert" parameterType="com.dkd.model.XydVerbTraining">
     insert into xyd_verb_training (id, start_slideshow, end_slideshow, 
       verb_type, verb_char, verb_record, 
       card_image, card_char, card_record, 
@@ -84,7 +84,7 @@
       #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{states,jdbcType=CHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.xfkj.model.XydVerbTraining">
+  <insert id="insertSelective" parameterType="com.dkd.model.XydVerbTraining">
     insert into xyd_verb_training
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -181,7 +181,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.xfkj.model.XydVerbTraining">
+  <update id="updateByPrimaryKeySelective" parameterType="com.dkd.model.XydVerbTraining">
     update xyd_verb_training
     <set>
       <if test="startSlideshow != null">
@@ -229,7 +229,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.xfkj.model.XydVerbTraining">
+  <update id="updateByPrimaryKey" parameterType="com.dkd.model.XydVerbTraining">
     update xyd_verb_training
     set start_slideshow = #{startSlideshow,jdbcType=VARCHAR},
       end_slideshow = #{endSlideshow,jdbcType=VARCHAR},
@@ -248,7 +248,7 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
 
-  <select id="selectByParamCount" parameterType="com.xfkj.common.query.GenericQueryParam" resultType="Integer">
+  <select id="selectByParamCount" parameterType="com.dkd.common.query.GenericQueryParam" resultType="Integer">
     select
     count(id)
     from xyd_verb_training
@@ -259,7 +259,7 @@
     </where>
   </select>
 
-  <select id="selectByParamList" parameterType="com.xfkj.common.query.GenericQueryParam" resultMap="BaseResultMap">
+  <select id="selectByParamList" parameterType="com.dkd.common.query.GenericQueryParam" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List"/>
     from

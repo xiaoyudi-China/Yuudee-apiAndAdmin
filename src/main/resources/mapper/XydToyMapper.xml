@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.xfkj.mapper.XydToyMapper">
-    <resultMap id="BaseResultMap" type="com.xfkj.model.XydToy">
+<mapper namespace="com.dkd.mapper.XydToyMapper">
+    <resultMap id="BaseResultMap" type="com.dkd.model.XydToy">
         <id column="id" property="id" jdbcType="INTEGER"/>
         <result column="user_id" property="userId" jdbcType="INTEGER"/>
         <result column="number" property="number" jdbcType="INTEGER"/>
@@ -18,7 +18,7 @@
         where id = #{id,jdbcType=INTEGER}
     </select>
 
-    <select id="selectByEntity" resultMap="BaseResultMap" parameterType="com.xfkj.model.XydToy">
+    <select id="selectByEntity" resultMap="BaseResultMap" parameterType="com.dkd.model.XydToy">
         select
         <include refid="Base_Column_List"/>
         from xyd_toy
@@ -40,7 +40,7 @@
     delete from xyd_toy
     where id = #{id,jdbcType=INTEGER}
   </delete>
-    <insert id="insert" parameterType="com.xfkj.model.XydToy">
+    <insert id="insert" parameterType="com.dkd.model.XydToy">
     insert into xyd_toy (id, user_id, number, 
       status)
     values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{number,jdbcType=INTEGER}, 
@@ -56,7 +56,7 @@
         </foreach >
     </insert>
 
-    <insert id="insertSelective" parameterType="com.xfkj.model.XydToy">
+    <insert id="insertSelective" parameterType="com.dkd.model.XydToy">
         insert into xyd_toy
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null">
@@ -87,7 +87,7 @@
             </if>
         </trim>
     </insert>
-    <update id="updateByPrimaryKeySelective" parameterType="com.xfkj.model.XydToy">
+    <update id="updateByPrimaryKeySelective" parameterType="com.dkd.model.XydToy">
         update xyd_toy
         <set>
             <if test="userId != null">
@@ -102,7 +102,7 @@
         </set>
         where id = #{id,jdbcType=INTEGER}
     </update>
-    <update id="updateByUserId" parameterType="com.xfkj.model.XydToy">
+    <update id="updateByUserId" parameterType="com.dkd.model.XydToy">
         update xyd_toy
         <set>
             <if test="status != ''">
@@ -111,19 +111,19 @@
         </set>
         where user_id = #{userId,jdbcType=INTEGER} and module=#{module}
     </update>
-    <update id="updateUseToy" parameterType="com.xfkj.model.XydToy">
+    <update id="updateUseToy" parameterType="com.dkd.model.XydToy">
         update xyd_toy
             set status = #{status,jdbcType=CHAR}
         where user_id = #{userId,jdbcType=INTEGER} and number=#{number} and module=#{module}
     </update>
 
-    <update id="emptyUpdateUseToy" parameterType="com.xfkj.model.XydToy">
+    <update id="emptyUpdateUseToy" parameterType="com.dkd.model.XydToy">
         update xyd_toy
         set status = #{status,jdbcType=CHAR}
         where user_id = #{userId,jdbcType=INTEGER} and module=#{module}
     </update>
 
-    <update id="updateByPrimaryKey" parameterType="com.xfkj.model.XydToy">
+    <update id="updateByPrimaryKey" parameterType="com.dkd.model.XydToy">
     update xyd_toy
     set user_id = #{userId,jdbcType=INTEGER},
       number = #{number,jdbcType=INTEGER},

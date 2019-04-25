@@ -1,7 +1,6 @@
 package com.dkd.api;
 
-import com.xfkj.XiaoyudiApplication;
-import com.xfkj.api.TestApp;
+import com.dkd.XiaoyudiApplication;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

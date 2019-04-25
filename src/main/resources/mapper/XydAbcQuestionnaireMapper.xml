@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.xfkj.mapper.XydAbcQuestionnaireMapper">
-  <resultMap id="BaseResultMap" type="com.xfkj.model.XydAbcQuestionnaire">
+<mapper namespace="com.dkd.mapper.XydAbcQuestionnaireMapper">
+  <resultMap id="BaseResultMap" type="com.dkd.model.XydAbcQuestionnaire">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="topic_title" jdbcType="VARCHAR" property="topicTitle" />
     <result column="sort" jdbcType="INTEGER" property="sort" />
@@ -24,7 +24,7 @@
     delete from xyd_abc_questionnaire
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.xfkj.model.XydAbcQuestionnaire">
+  <insert id="insert" parameterType="com.dkd.model.XydAbcQuestionnaire">
     insert into xyd_abc_questionnaire (id, topic_title, sort, 
       states, create_time, update_time
       )
@@ -32,7 +32,7 @@
       #{states,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.xfkj.model.XydAbcQuestionnaire">
+  <insert id="insertSelective" parameterType="com.dkd.model.XydAbcQuestionnaire">
     insert into xyd_abc_questionnaire
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -75,7 +75,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.xfkj.model.XydAbcQuestionnaire">
+  <update id="updateByPrimaryKeySelective" parameterType="com.dkd.model.XydAbcQuestionnaire">
     update xyd_abc_questionnaire
     <set>
       <if test="topicTitle != null">
@@ -96,7 +96,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.xfkj.model.XydAbcQuestionnaire">
+  <update id="updateByPrimaryKey" parameterType="com.dkd.model.XydAbcQuestionnaire">
     update xyd_abc_questionnaire
     set topic_title = #{topicTitle,jdbcType=VARCHAR},
       sort = #{sort,jdbcType=INTEGER},
@@ -106,7 +106,7 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
 
-  <select id="selectList" parameterType="com.xfkj.model.XydAbcQuestionnaire" resultMap="BaseResultMap">
+  <select id="selectList" parameterType="com.dkd.model.XydAbcQuestionnaire" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
     from xyd_abc_questionnaire
@@ -137,7 +137,7 @@
     ORDER BY xaq.sort
   </select>
 
-  <select id="selectByParamCount" parameterType="com.xfkj.common.query.GenericQueryParam" resultType="Integer">
+  <select id="selectByParamCount" parameterType="com.dkd.common.query.GenericQueryParam" resultType="Integer">
     SELECT COUNT(1)
     from xyd_abc_questionnaire
     where 1 = 1
@@ -158,7 +158,7 @@
     </if>
   </select>
 
-  <select id="selectByParamList" parameterType="com.xfkj.common.query.GenericQueryParam" resultMap="BaseResultMap">
+  <select id="selectByParamList" parameterType="com.dkd.common.query.GenericQueryParam" resultMap="BaseResultMap">
     SELECT
     <include refid="Base_Column_List" />
     from xyd_abc_questionnaire
@@ -181,7 +181,7 @@
     ORDER BY sort
   </select>
 
-  <select id="selectByEntityList" parameterType="com.xfkj.model.XydAbcQuestionnaire" resultMap="BaseResultMap">
+  <select id="selectByEntityList" parameterType="com.dkd.model.XydAbcQuestionnaire" resultMap="BaseResultMap">
     SELECT
     <include refid="Base_Column_List" />
     from xyd_abc_questionnaire

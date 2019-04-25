@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.xfkj.mapper.XydChildMapper">
-  <resultMap id="BaseResultMap" type="com.xfkj.model.XydChild">
+<mapper namespace="com.dkd.mapper.XydChildMapper">
+  <resultMap id="BaseResultMap" type="com.dkd.model.XydChild">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="parents_id" jdbcType="INTEGER" property="parentsId" />
     <result column="phone_number" jdbcType="CHAR" property="phoneNumber" />
@@ -43,7 +43,7 @@
     delete from xyd_child
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.xfkj.model.XydChild">
+  <insert id="insert" parameterType="com.dkd.model.XydChild">
     insert into xyd_child (id, parents_id, phone_number, 
       name, sex, birthdate, 
       countiy, province, city, 
@@ -61,7 +61,7 @@
       #{trainingRests,jdbcType=VARCHAR}, #{perfection,jdbcType=CHAR}, #{createTime,jdbcType=TIMESTAMP}, 
       #{updateTime,jdbcType=TIMESTAMP}, #{status,jdbcType=VARCHAR}, #{photo,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" useGeneratedKeys="true" keyProperty="id" parameterType="com.xfkj.model.XydChild">
+  <insert id="insertSelective" useGeneratedKeys="true" keyProperty="id" parameterType="com.dkd.model.XydChild">
     insert into xyd_child
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -212,7 +212,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.xfkj.model.XydChild">
+  <update id="updateByPrimaryKeySelective" parameterType="com.dkd.model.XydChild">
     update xyd_child
     <set>
       <if test="parentsId != null">
@@ -287,7 +287,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.xfkj.model.XydChild">
+  <update id="updateByPrimaryKey" parameterType="com.dkd.model.XydChild">
     update xyd_child
     set parents_id = #{parentsId,jdbcType=INTEGER},
       phone_number = #{phoneNumber,jdbcType=CHAR},
@@ -314,7 +314,7 @@
        photo = #{photo,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <select id="selectList" parameterType="com.xfkj.model.XydChild" resultMap="BaseResultMap">
+  <select id="selectList" parameterType="com.dkd.model.XydChild" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
     from xyd_child
@@ -390,7 +390,7 @@
     </if>
   </select>
 
-  <select id="selectByParamCount" parameterType="com.xfkj.common.query.GenericQueryParam" resultType="Integer">
+  <select id="selectByParamCount" parameterType="com.dkd.common.query.GenericQueryParam" resultType="Integer">
     SELECT COUNT(1)
     from xyd_child xcd, xyd_parents xps
     where xcd.parents_id = xps.id
@@ -421,7 +421,7 @@
 
   </select>
 
-  <select id="selectByParamList" parameterType="com.xfkj.common.query.GenericQueryParam" resultMap="BaseResultMap">
+  <select id="selectByParamList" parameterType="com.dkd.common.query.GenericQueryParam" resultMap="BaseResultMap">
     SELECT
     xcd.id, xcd.name, xcd.sex, xcd.birthdate, xcd.countiy, xcd.province, xcd.countiy, xcd.city,xcd.create_time, xcd.medical, xcd.medical_state,xcd.first_language,xcd.first_rests, xps.phone_number
     from xyd_child xcd, xyd_parents xps

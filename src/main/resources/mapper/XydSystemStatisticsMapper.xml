@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.xfkj.mapper.XydSystemStatisticsMapper">
-  <resultMap id="BaseResultMap" type="com.xfkj.model.XydSystemStatistics">
+<mapper namespace="com.dkd.mapper.XydSystemStatisticsMapper">
+  <resultMap id="BaseResultMap" type="com.dkd.model.XydSystemStatistics">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="user_id" jdbcType="INTEGER" property="userId" />
     <result column="learning_time" jdbcType="INTEGER" property="learningTime" />
@@ -45,7 +45,7 @@
     delete from xyd_system_statistics
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.xfkj.model.XydSystemStatistics">
+  <insert id="insert" parameterType="com.dkd.model.XydSystemStatistics">
     insert into xyd_system_statistics (id, user_id, learning_time,rate,
       module, pass_number, states, 
       create_time, update_time, player)
@@ -53,7 +53,7 @@
       #{module,jdbcType=VARCHAR}, #{passNumber,jdbcType=INTEGER}, #{states,jdbcType=VARCHAR}, 
       #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{player,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="com.xfkj.model.XydSystemStatistics">
+  <insert id="insertSelective" parameterType="com.dkd.model.XydSystemStatistics">
     insert into xyd_system_statistics
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -144,7 +144,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.xfkj.model.XydSystemStatistics">
+  <update id="updateByPrimaryKeySelective" parameterType="com.dkd.model.XydSystemStatistics">
     update xyd_system_statistics
     <set>
       <if test="userId != null">
@@ -189,7 +189,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.xfkj.model.XydSystemStatistics">
+  <update id="updateByPrimaryKey" parameterType="com.dkd.model.XydSystemStatistics">
     update xyd_system_statistics
     set user_id = #{userId,jdbcType=INTEGER},
       learning_time = #{learningTime,jdbcType=INTEGER},
@@ -209,7 +209,7 @@
     from xyd_system_statistics
     where user_id = #{userId}
   </select>
-  <select id="selectPlayerResultList" parameterType="com.xfkj.model.XydSystemStatistics" resultMap="BaseResultMap">
+  <select id="selectPlayerResultList" parameterType="com.dkd.model.XydSystemStatistics" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
     from xyd_system_statistics
@@ -232,7 +232,7 @@
     ORDER BY create_time ASC
   </select>
 
-  <select id="selectSumRate" parameterType="com.xfkj.model.XydSystemStatistics" resultType="java.lang.Double">
+  <select id="selectSumRate" parameterType="com.dkd.model.XydSystemStatistics" resultType="java.lang.Double">
     select
     SUM(rate1)
     from xyd_system_statistics
@@ -245,7 +245,7 @@
     </if>
   </select>
 
-  <select id="selectList" parameterType="com.xfkj.model.XydSystemStatistics" resultMap="BaseResultMap">
+  <select id="selectList" parameterType="com.dkd.model.XydSystemStatistics" resultMap="BaseResultMap">
     select
       <include refid="Base_Column_List" />
     from xyd_system_statistics
@@ -268,7 +268,7 @@
     ORDER BY create_time DESC
   </select>
 
-  <select id="selectPlayerCount" parameterType="com.xfkj.model.XydSystemStatistics" resultType="java.lang.Integer">
+  <select id="selectPlayerCount" parameterType="com.dkd.model.XydSystemStatistics" resultType="java.lang.Integer">
     select
     COUNT(distinct user_id)
     from xyd_system_statistics

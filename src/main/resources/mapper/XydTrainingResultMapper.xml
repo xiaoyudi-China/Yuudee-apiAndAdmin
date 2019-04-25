@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.xfkj.mapper.XydTrainingResultMapper">
-    <resultMap id="BaseResultMap" type="com.xfkj.model.XydTrainingResult">
+<mapper namespace="com.dkd.mapper.XydTrainingResultMapper">
+    <resultMap id="BaseResultMap" type="com.dkd.model.XydTrainingResult">
         <id column="id" jdbcType="INTEGER" property="id"/>
         <result column="user_id" jdbcType="INTEGER" property="userId"/>
         <result column="name" jdbcType="VARCHAR" property="name"/>
@@ -56,7 +56,7 @@
     delete from xyd_training_result
     where id = #{id,jdbcType=INTEGER}
   </delete>
-    <insert id="insert" parameterType="com.xfkj.model.XydTrainingResult">
+    <insert id="insert" parameterType="com.dkd.model.XydTrainingResult">
     insert into xyd_training_result (id, user_id, name, 
       courseware_id, group_id, scene, 
       module, start_time, end_time, 
@@ -70,7 +70,7 @@
       #{errorType,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
       #{states,jdbcType=CHAR},#{stayTimeList})
   </insert>
-    <insert id="insertSelective" parameterType="com.xfkj.model.XydTrainingResult">
+    <insert id="insertSelective" parameterType="com.dkd.model.XydTrainingResult">
         insert into xyd_training_result
         <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
             SELECT LAST_INSERT_ID() AS id
@@ -184,7 +184,7 @@
 
         </trim>
     </insert>
-    <update id="updateByPrimaryKeySelective" parameterType="com.xfkj.model.XydTrainingResult">
+    <update id="updateByPrimaryKeySelective" parameterType="com.dkd.model.XydTrainingResult">
         update xyd_training_result
         <set>
             <if test="userId != null">
@@ -235,7 +235,7 @@
         </set>
         where id = #{id,jdbcType=INTEGER}
     </update>
-    <update id="updateByPrimaryKey" parameterType="com.xfkj.model.XydTrainingResult">
+    <update id="updateByPrimaryKey" parameterType="com.dkd.model.XydTrainingResult">
     update xyd_training_result
     set user_id = #{userId,jdbcType=INTEGER},
       name = #{name,jdbcType=VARCHAR},
@@ -255,7 +255,7 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
 
-    <select id="selectByParamCount" parameterType="com.xfkj.common.query.GenericQueryParam" resultType="Integer">
+    <select id="selectByParamCount" parameterType="com.dkd.common.query.GenericQueryParam" resultType="Integer">
         select
         count(id)
         from xyd_training_result as x
@@ -289,7 +289,7 @@
      end_time,stay_time, pass, disturb_name, error_type, create_time, update_time,
       states,stay_time_list from xyd_training_result where module = #{module} and scene = #{scene} and states = 1 GROUP BY user_id
   </select>
-    <select id="selectByParamList" parameterType="com.xfkj.common.query.GenericQueryParam" resultMap="BaseResultMap">
+    <select id="selectByParamList" parameterType="com.dkd.common.query.GenericQueryParam" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
         from
@@ -321,7 +321,7 @@
 
 
 
-    <select id="selectByParamStatCount" parameterType="com.xfkj.common.query.GenericQueryParam" resultType="Integer">
+    <select id="selectByParamStatCount" parameterType="com.dkd.common.query.GenericQueryParam" resultType="Integer">
        SELECT COUNT(1)
        FROM (
         SELECT *
@@ -343,7 +343,7 @@
        ) AS result
     </select>
 
-    <select id="selectByParamStatList" parameterType="com.xfkj.common.query.GenericQueryParam" resultMap="BaseResultMap">
+    <select id="selectByParamStatList" parameterType="com.dkd.common.query.GenericQueryParam" resultMap="BaseResultMap">
         SELECT courseware_id,scene, name, module, COUNT(DISTINCT user_id) as countUser, COUNT(id) countid, COUNT(pass ='1' or NULL) countPass,
         AVG(func_splitString(stay_time_list,',',1)) duration1, AVG(func_splitString(stay_time_list,',',2)) duration2,
         AVG(func_splitString(stay_time_list,',',3)) duration3, AVG(func_splitString(stay_time_list,',',4)) duration4

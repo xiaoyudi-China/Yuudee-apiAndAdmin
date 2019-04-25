@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.xfkj.mapper.XydParentsMapper">
-    <resultMap id="BaseResultMap" type="com.xfkj.model.XydParents">
+<mapper namespace="com.dkd.mapper.XydParentsMapper">
+    <resultMap id="BaseResultMap" type="com.dkd.model.XydParents">
         <id column="id" jdbcType="INTEGER" property="id"/>
         <result column="nickname" jdbcType="VARCHAR" property="nickname"/>
         <result column="age" jdbcType="INTEGER" property="age"/>
@@ -32,7 +32,7 @@
     delete from xyd_parents
     where id = #{id,jdbcType=INTEGER}
   </delete>
-    <insert id="insert" parameterType="com.xfkj.model.XydParents">
+    <insert id="insert" parameterType="com.dkd.model.XydParents">
     insert into xyd_parents (id, nickname, age, 
       sex, qcellcore_id, phone_number, 
       password, create_time, child_id, 
@@ -42,7 +42,7 @@
       #{password,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{childId,jdbcType=INTEGER}, 
       #{updateTime,jdbcType=TIMESTAMP}, #{token,jdbcType=VARCHAR}, #{status,jdbcType=CHAR}, #{feel,jdbcType=VARCHAR})
   </insert>
-    <insert id="insertSelective" keyProperty="id" useGeneratedKeys="true" parameterType="com.xfkj.model.XydParents">
+    <insert id="insertSelective" keyProperty="id" useGeneratedKeys="true" parameterType="com.dkd.model.XydParents">
         insert into xyd_parents
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null">
@@ -127,7 +127,7 @@
             </if>
         </trim>
     </insert>
-    <update id="updateByPrimaryKeySelective" parameterType="com.xfkj.model.XydParents">
+    <update id="updateByPrimaryKeySelective" parameterType="com.dkd.model.XydParents">
         update xyd_parents
         <set>
             <if test="nickname != null">
@@ -169,7 +169,7 @@
         </set>
         where id = #{id,jdbcType=INTEGER}
     </update>
-    <update id="updateByPrimaryKey" parameterType="com.xfkj.model.XydParents">
+    <update id="updateByPrimaryKey" parameterType="com.dkd.model.XydParents">
     update xyd_parents
     set nickname = #{nickname,jdbcType=VARCHAR},
       age = #{age,jdbcType=INTEGER},
@@ -185,7 +185,7 @@
       feel = #{feel,jdbcType=CHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
-    <select id="selectList" parameterType="com.xfkj.model.XydParents" resultMap="BaseResultMap">
+    <select id="selectList" parameterType="com.dkd.model.XydParents" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
         from xyd_parents
@@ -225,7 +225,7 @@
         </if>
     </select>
 
-    <select id="selectByParamCount" parameterType="com.xfkj.common.query.GenericQueryParam" resultType="Integer">
+    <select id="selectByParamCount" parameterType="com.dkd.common.query.GenericQueryParam" resultType="Integer">
         SELECT COUNT(1)
         from xyd_parents xp, xyd_phone_qcellcore xpq
         where xp.qcellcore_id = xpq.id
@@ -246,7 +246,7 @@
         </if>
     </select>
 
-    <select id="selectByParamList" parameterType="com.xfkj.common.query.GenericQueryParam" resultMap="BaseResultMap">
+    <select id="selectByParamList" parameterType="com.dkd.common.query.GenericQueryParam" resultMap="BaseResultMap">
         SELECT
         xp.*, xpq.phone_prefix, xpq.name
         from xyd_parents xp, xyd_phone_qcellcore xpq
@@ -269,7 +269,7 @@
         ORDER BY xp.create_time ASC
     </select>
 
-    <select id="selectRegisterCount" parameterType="com.xfkj.model.XydParents" resultType="java.lang.Integer">
+    <select id="selectRegisterCount" parameterType="com.dkd.model.XydParents" resultType="java.lang.Integer">
         select
         COUNT(distinct phone_number)
         from xyd_parents

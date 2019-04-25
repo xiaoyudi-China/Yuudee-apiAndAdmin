@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.xfkj.mapper.XydManageAccessMapper">
-  <resultMap id="BaseResultMap" type="com.xfkj.model.XydManageAccess">
+<mapper namespace="com.dkd.mapper.XydManageAccessMapper">
+  <resultMap id="BaseResultMap" type="com.dkd.model.XydManageAccess">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="access_name" jdbcType="VARCHAR" property="accessName" />
     <result column="remark" jdbcType="VARCHAR" property="remark" />
@@ -28,7 +28,7 @@
     delete from xyd_manage_access
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.xfkj.model.XydManageAccess">
+  <insert id="insert" parameterType="com.dkd.model.XydManageAccess">
     insert into xyd_manage_access (id, access_name, remark, 
       sort, parent_access, parent_id, 
       access, status, is_deleted, 
@@ -38,7 +38,7 @@
       #{access,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, #{isDeleted,jdbcType=INTEGER}, 
       #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="com.xfkj.model.XydManageAccess">
+  <insert id="insertSelective" parameterType="com.dkd.model.XydManageAccess">
     insert into xyd_manage_access
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -111,7 +111,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.xfkj.model.XydManageAccess">
+  <update id="updateByPrimaryKeySelective" parameterType="com.dkd.model.XydManageAccess">
     update xyd_manage_access
     <set>
       <if test="accessName != null">
@@ -147,7 +147,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.xfkj.model.XydManageAccess">
+  <update id="updateByPrimaryKey" parameterType="com.dkd.model.XydManageAccess">
     update xyd_manage_access
     set access_name = #{accessName,jdbcType=VARCHAR},
       remark = #{remark,jdbcType=VARCHAR},
@@ -163,7 +163,7 @@
   </update>
 
 
-  <select id="selectByEntityList" parameterType="com.xfkj.model.XydManageAccess" resultMap="BaseResultMap">
+  <select id="selectByEntityList" parameterType="com.dkd.model.XydManageAccess" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
     from xyd_manage_access
@@ -203,7 +203,7 @@
     </if>
   </select>
 
-  <select id="selectByRoleAccessList" parameterType="com.xfkj.model.XydManageAccess" resultMap="BaseResultMap">
+  <select id="selectByRoleAccessList" parameterType="com.dkd.model.XydManageAccess" resultMap="BaseResultMap">
     select
     ema.*
     from xyd_manage_access as ema, xyd_access_role as ear

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.xfkj.mapper.XydNounTestMapper">
-  <resultMap id="BaseResultMap" type="com.xfkj.model.XydNounTest">
+<mapper namespace="com.dkd.mapper.XydNounTestMapper">
+  <resultMap id="BaseResultMap" type="com.dkd.model.XydNounTest">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="card_color_image" jdbcType="VARCHAR" property="cardColorImage" />
     <result column="card_color_char" jdbcType="VARCHAR" property="cardColorChar" />
@@ -41,7 +41,7 @@
     delete from xyd_noun_test
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.xfkj.model.XydNounTest">
+  <insert id="insert" parameterType="com.dkd.model.XydNounTest">
     insert into xyd_noun_test (id, card_color_image, card_color_char, 
       card_color_record, frist_assist_time, card_wire_image, 
       card_wire_char, card_wire_record, second_assist_time, 
@@ -55,7 +55,7 @@
       #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{states,jdbcType=CHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.xfkj.model.XydNounTest">
+  <insert id="insertSelective" parameterType="com.dkd.model.XydNounTest">
     insert into xyd_noun_test
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -152,7 +152,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.xfkj.model.XydNounTest">
+  <update id="updateByPrimaryKeySelective" parameterType="com.dkd.model.XydNounTest">
     update xyd_noun_test
     <set>
       <if test="cardColorImage != null">
@@ -200,7 +200,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.xfkj.model.XydNounTest">
+  <update id="updateByPrimaryKey" parameterType="com.dkd.model.XydNounTest">
     update xyd_noun_test
     set card_color_image = #{cardColorImage,jdbcType=VARCHAR},
       card_color_char = #{cardColorChar,jdbcType=VARCHAR},
@@ -219,7 +219,7 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
 
-  <select id="selectByParamCount" parameterType="com.xfkj.common.query.GenericQueryParam" resultType="Integer">
+  <select id="selectByParamCount" parameterType="com.dkd.common.query.GenericQueryParam" resultType="Integer">
     select
     count(id)
     from xyd_noun_test
@@ -230,7 +230,7 @@
     </where>
   </select>
 
-  <select id="selectByParamList" parameterType="com.xfkj.common.query.GenericQueryParam" resultMap="BaseResultMap">
+  <select id="selectByParamList" parameterType="com.dkd.common.query.GenericQueryParam" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List"/>
     from

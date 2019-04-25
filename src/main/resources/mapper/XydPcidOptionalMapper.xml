@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.xfkj.mapper.XydPcidOptionalMapper">
-  <resultMap id="BaseResultMap" type="com.xfkj.model.XydPcidOptional">
+<mapper namespace="com.dkd.mapper.XydPcidOptionalMapper">
+  <resultMap id="BaseResultMap" type="com.dkd.model.XydPcidOptional">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="pcdi_type_id" jdbcType="INTEGER" property="pcdiTypeId" />
     <result column="topic_title" jdbcType="VARCHAR" property="topicTitle" />
@@ -28,7 +28,7 @@
     delete from xyd_pcid_optional
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.xfkj.model.XydPcidOptional">
+  <insert id="insert" parameterType="com.dkd.model.XydPcidOptional">
     insert into xyd_pcid_optional (id, pcdi_type_id, topic_title, 
       topic_result_one, topic_result_two, states, 
       create_time, update_time)
@@ -36,7 +36,7 @@
       #{topicResultOne,jdbcType=VARCHAR}, #{topicResultTwo,jdbcType=VARCHAR}, #{states,jdbcType=VARCHAR}, 
       #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="com.xfkj.model.XydPcidOptional">
+  <insert id="insertSelective" parameterType="com.dkd.model.XydPcidOptional">
     insert into xyd_pcid_optional
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -91,7 +91,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.xfkj.model.XydPcidOptional">
+  <update id="updateByPrimaryKeySelective" parameterType="com.dkd.model.XydPcidOptional">
     update xyd_pcid_optional
     <set>
       <if test="pcdiTypeId != null">
@@ -118,7 +118,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.xfkj.model.XydPcidOptional">
+  <update id="updateByPrimaryKey" parameterType="com.dkd.model.XydPcidOptional">
     update xyd_pcid_optional
     set pcdi_type_id = #{pcdiTypeId,jdbcType=INTEGER},
       topic_title = #{topicTitle,jdbcType=VARCHAR},
@@ -130,7 +130,7 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
 
-  <select id="selectList" parameterType="com.xfkj.model.XydPcidOptional" resultMap="BaseResultMap">
+  <select id="selectList" parameterType="com.dkd.model.XydPcidOptional" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
     from xyd_pcid_optional
@@ -158,7 +158,7 @@
     </if>
   </select>
 
-  <select id="selectByTypeLis" parameterType="com.xfkj.model.XydPcidOptional" resultMap="BaseResultMap">
+  <select id="selectByTypeLis" parameterType="com.dkd.model.XydPcidOptional" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
     from xyd_pcid_optional
@@ -196,7 +196,7 @@
     ORDER BY xpo.create_time ASC
   </select>
 
-  <select id="selectByParamCount" parameterType="com.xfkj.common.query.GenericQueryParam" resultType="Integer">
+  <select id="selectByParamCount" parameterType="com.dkd.common.query.GenericQueryParam" resultType="Integer">
     SELECT COUNT(1)
     from xyd_pcid_optional xpo , xyd_pcid_type xpt
     where xpt.is_optional = "2" AND xpo.pcdi_type_id = xpt.id
@@ -212,7 +212,7 @@
     ORDER BY xpo.create_time ASC
   </select>
 
-  <select id="selectByParamList" parameterType="com.xfkj.common.query.GenericQueryParam" resultMap="BaseResultMap">
+  <select id="selectByParamList" parameterType="com.dkd.common.query.GenericQueryParam" resultMap="BaseResultMap">
     SELECT
     xpo.*, xpt.name_enum, xpt.name
     from xyd_pcid_optional xpo , xyd_pcid_type xpt

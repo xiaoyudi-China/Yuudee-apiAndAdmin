@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.xfkj.mapper.XydAreaMapper">
-  <resultMap id="BaseResultMap" type="com.xfkj.model.XydArea">
+<mapper namespace="com.dkd.mapper.XydAreaMapper">
+  <resultMap id="BaseResultMap" type="com.dkd.model.XydArea">
     <id column="areaId" jdbcType="INTEGER" property="areaid" />
     <result column="areaCode" jdbcType="VARCHAR" property="areacode" />
     <result column="areaName" jdbcType="VARCHAR" property="areaname" />
@@ -25,7 +25,7 @@
     delete from xyd_area
     where areaId = #{areaid,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.xfkj.model.XydArea">
+  <insert id="insert" parameterType="com.dkd.model.XydArea">
     insert into xyd_area (areaId, areaCode, areaName, 
       level, cityCode, center, 
       parentId , create_time,update_time)
@@ -33,7 +33,7 @@
       #{level,jdbcType=TINYINT}, #{citycode,jdbcType=VARCHAR}, #{center,jdbcType=VARCHAR}, 
       #{parentid,jdbcType=INTEGER}, #{create_time,jdbcType=TIMESTAMP}, #{update_time,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="com.xfkj.model.XydArea">
+  <insert id="insertSelective" parameterType="com.dkd.model.XydArea">
     insert into xyd_area
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="areaid != null">
@@ -94,7 +94,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.xfkj.model.XydArea">
+  <update id="updateByPrimaryKeySelective" parameterType="com.dkd.model.XydArea">
     update xyd_area
     <set>
       <if test="areacode != null">
@@ -124,7 +124,7 @@
     </set>
     where areaId = #{areaid,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.xfkj.model.XydArea">
+  <update id="updateByPrimaryKey" parameterType="com.dkd.model.XydArea">
     update xyd_area
     set areaCode = #{areacode,jdbcType=VARCHAR},
       areaName = #{areaname,jdbcType=VARCHAR},
@@ -137,7 +137,7 @@
     where areaId = #{areaid,jdbcType=INTEGER}
   </update>
 
-  <select id="selectList" parameterType="com.xfkj.model.XydArea" resultMap="BaseResultMap">
+  <select id="selectList" parameterType="com.dkd.model.XydArea" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
     from xyd_area
@@ -162,7 +162,7 @@
     </if>
   </select>
 
-  <select id="selectByParamCount" parameterType="com.xfkj.common.query.GenericQueryParam" resultType="Integer">
+  <select id="selectByParamCount" parameterType="com.dkd.common.query.GenericQueryParam" resultType="Integer">
     SELECT COUNT(1)
     from xyd_area
     <trim prefix="WHERE" prefixOverrides="AND | OR">
@@ -187,7 +187,7 @@
     </trim>
   </select>
 
-  <select id="selectByParamList" parameterType="com.xfkj.common.query.GenericQueryParam" resultMap="BaseResultMap">
+  <select id="selectByParamList" parameterType="com.dkd.common.query.GenericQueryParam" resultMap="BaseResultMap">
     SELECT
     <include refid="Base_Column_List" />
     from xyd_area

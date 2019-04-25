@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.xfkj.mapper.XydSentenceResolveTestMapper">
-  <resultMap id="BaseResultMap" type="com.xfkj.model.XydSentenceResolveTest">
+<mapper namespace="com.dkd.mapper.XydSentenceResolveTestMapper">
+  <resultMap id="BaseResultMap" type="com.dkd.model.XydSentenceResolveTest">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="start_slideshow" jdbcType="VARCHAR" property="startSlideshow" />
     <result column="card_one_image" jdbcType="VARCHAR" property="cardOneImage" />
@@ -50,7 +50,7 @@
     delete from xyd_sentence_resolve_test
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.xfkj.model.XydSentenceResolveTest">
+  <insert id="insert" parameterType="com.dkd.model.XydSentenceResolveTest">
     insert into xyd_sentence_resolve_test (id, start_slideshow, card_one_image, 
       card_one_char, card_one_record, card_one_time, 
       card_two_image, card_two_char, card_two_record, 
@@ -68,7 +68,7 @@
       #{groupChar,jdbcType=VARCHAR}, #{groupRecord,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
       #{updateTime,jdbcType=TIMESTAMP}, #{states,jdbcType=CHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.xfkj.model.XydSentenceResolveTest">
+  <insert id="insertSelective" parameterType="com.dkd.model.XydSentenceResolveTest">
     insert into xyd_sentence_resolve_test
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -213,7 +213,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.xfkj.model.XydSentenceResolveTest">
+  <update id="updateByPrimaryKeySelective" parameterType="com.dkd.model.XydSentenceResolveTest">
     update xyd_sentence_resolve_test
     <set>
       <if test="startSlideshow != null">
@@ -285,7 +285,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.xfkj.model.XydSentenceResolveTest">
+  <update id="updateByPrimaryKey" parameterType="com.dkd.model.XydSentenceResolveTest">
     update xyd_sentence_resolve_test
     set start_slideshow = #{startSlideshow,jdbcType=VARCHAR},
       card_one_image = #{cardOneImage,jdbcType=VARCHAR},
@@ -312,7 +312,7 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
 
-  <select id="selectByParamCount" parameterType="com.xfkj.common.query.GenericQueryParam" resultType="Integer">
+  <select id="selectByParamCount" parameterType="com.dkd.common.query.GenericQueryParam" resultType="Integer">
     select
     count(id)
     from xyd_sentence_resolve_test
@@ -323,7 +323,7 @@
     </where>
   </select>
 
-  <select id="selectByParamList" parameterType="com.xfkj.common.query.GenericQueryParam" resultMap="BaseResultMap">
+  <select id="selectByParamList" parameterType="com.dkd.common.query.GenericQueryParam" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List"/>
     from

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.xfkj.mapper.XydResultAnalyzeMapper">
-  <resultMap id="BaseResultMap" type="com.xfkj.model.XydResultAnalyze">
+<mapper namespace="com.dkd.mapper.XydResultAnalyzeMapper">
+  <resultMap id="BaseResultMap" type="com.dkd.model.XydResultAnalyze">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="is_optional" jdbcType="CHAR" property="isOptional" />
     <result column="month_age" jdbcType="INTEGER" property="monthAge" />
@@ -28,7 +28,7 @@
     delete from xyd_result_analyze
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.xfkj.model.XydResultAnalyze">
+  <insert id="insert" parameterType="com.dkd.model.XydResultAnalyze">
     insert into xyd_result_analyze (id, is_optional, month_age, 
       sex, state_score, end_score, 
       state_percent, end_percent, create_time, 
@@ -38,7 +38,7 @@
       #{statePercent,jdbcType=INTEGER}, #{endPercent,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
       #{updateTime,jdbcType=TIMESTAMP}, #{states,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.xfkj.model.XydResultAnalyze">
+  <insert id="insertSelective" parameterType="com.dkd.model.XydResultAnalyze">
     insert into xyd_result_analyze
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -111,7 +111,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.xfkj.model.XydResultAnalyze">
+  <update id="updateByPrimaryKeySelective" parameterType="com.dkd.model.XydResultAnalyze">
     update xyd_result_analyze
     <set>
       <if test="isOptional != null">
@@ -147,7 +147,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.xfkj.model.XydResultAnalyze">
+  <update id="updateByPrimaryKey" parameterType="com.dkd.model.XydResultAnalyze">
     update xyd_result_analyze
     set is_optional = #{isOptional,jdbcType=CHAR},
       month_age = #{monthAge,jdbcType=INTEGER},

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.xfkj.mapper.XydTrainingHelptimeMapper">
-  <resultMap id="BaseResultMap" type="com.xfkj.model.XydTrainingHelptime">
+<mapper namespace="com.dkd.mapper.XydTrainingHelptimeMapper">
+  <resultMap id="BaseResultMap" type="com.dkd.model.XydTrainingHelptime">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="topic_type" jdbcType="INTEGER" property="topicType" />
     <result column="sort" jdbcType="INTEGER" property="sort" />
@@ -20,7 +20,7 @@
     where id = #{id,jdbcType=INTEGER}
   </select>
 
-  <select id="selectByEntity" parameterType="com.xfkj.model.XydTrainingHelptime" resultMap="BaseResultMap">
+  <select id="selectByEntity" parameterType="com.dkd.model.XydTrainingHelptime" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
     from xyd_training_helptime
@@ -34,7 +34,7 @@
     limit 1
   </select>
 
-  <select id="selectByEntityList" parameterType="com.xfkj.model.XydTrainingHelptime" resultMap="BaseResultMap">
+  <select id="selectByEntityList" parameterType="com.dkd.model.XydTrainingHelptime" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
     from xyd_training_helptime
@@ -55,7 +55,7 @@
     delete from xyd_training_helptime
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.xfkj.model.XydTrainingHelptime">
+  <insert id="insert" parameterType="com.dkd.model.XydTrainingHelptime">
     insert into xyd_training_helptime (id, topic_type, sort, 
       help_time, states, create_time, 
       update_time)
@@ -63,7 +63,7 @@
       #{helpTime,jdbcType=INTEGER}, #{states,jdbcType=CHAR}, #{createTime,jdbcType=TIMESTAMP}, 
       #{updateTime,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="com.xfkj.model.XydTrainingHelptime">
+  <insert id="insertSelective" parameterType="com.dkd.model.XydTrainingHelptime">
     insert into xyd_training_helptime
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -112,7 +112,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.xfkj.model.XydTrainingHelptime">
+  <update id="updateByPrimaryKeySelective" parameterType="com.dkd.model.XydTrainingHelptime">
     update xyd_training_helptime
     <set>
       <if test="topicType != null">
@@ -136,7 +136,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.xfkj.model.XydTrainingHelptime">
+  <update id="updateByPrimaryKey" parameterType="com.dkd.model.XydTrainingHelptime">
     update xyd_training_helptime
     set topic_type = #{topicType,jdbcType=INTEGER},
       sort = #{sort,jdbcType=INTEGER},

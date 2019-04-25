@@ -1,6 +1,6 @@
 package com.dkd.manage;
 
-import com.xfkj.common.config.Global;
+import com.dkd.common.config.Global;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

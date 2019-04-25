@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.xfkj.mapper.XydAnswerRecordMapper">
-  <resultMap id="BaseResultMap" type="com.xfkj.model.XydAnswerRecord">
+<mapper namespace="com.dkd.mapper.XydAnswerRecordMapper">
+  <resultMap id="BaseResultMap" type="com.dkd.model.XydAnswerRecord">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="user_id" jdbcType="INTEGER" property="userId" />
     <result column="parents_id" jdbcType="INTEGER" property="parentsId" />
@@ -23,7 +23,7 @@
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
   </resultMap>
-  <resultMap id="BaseResultMap1" type="com.xfkj.model.model_extends.XyydAnswerRecordExtends">
+  <resultMap id="BaseResultMap1" type="com.dkd.model.model_extends.XyydAnswerRecordExtends">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="user_id" jdbcType="INTEGER" property="userId" />
     <result column="parents_id" jdbcType="INTEGER" property="parentsId" />
@@ -60,7 +60,7 @@
     delete from xyd_answer_record
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.xfkj.model.XydAnswerRecord">
+  <insert id="insert" parameterType="com.dkd.model.XydAnswerRecord">
     insert into xyd_answer_record (id, user_id, parents_id,
       type, score, is_valid, percent,
       count, adjective_score, noun_score, 
@@ -74,7 +74,7 @@
       #{learningTime,jdbcType=INTEGER}, #{rateAll,jdbcType=DECIMAL}, #{anew,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, #{states,jdbcType=VARCHAR},
       #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" useGeneratedKeys="true" keyProperty="id" parameterType="com.xfkj.model.XydAnswerRecord">
+  <insert id="insertSelective" useGeneratedKeys="true" keyProperty="id" parameterType="com.dkd.model.XydAnswerRecord">
     insert into xyd_answer_record
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -201,7 +201,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.xfkj.model.XydAnswerRecord">
+  <update id="updateByPrimaryKeySelective" parameterType="com.dkd.model.XydAnswerRecord">
     update xyd_answer_record
     <set>
       <if test="userId != null">
@@ -264,7 +264,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.xfkj.model.XydAnswerRecord">
+  <update id="updateByPrimaryKey" parameterType="com.dkd.model.XydAnswerRecord">
     update xyd_answer_record
     set user_id = #{userId,jdbcType=INTEGER},
       parents_id = #{parentsId,jdbcType=INTEGER},
@@ -287,7 +287,7 @@
       update_time = #{updateTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <select id="selectList" parameterType="com.xfkj.model.XydAnswerRecord" resultMap="BaseResultMap">
+  <select id="selectList" parameterType="com.dkd.model.XydAnswerRecord" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
     from xyd_answer_record
@@ -494,7 +494,7 @@
     ORDER BY create_time
   </select>
 
-  <select id="selectByParamCount" parameterType="com.xfkj.common.query.GenericQueryParam" resultType="Integer">
+  <select id="selectByParamCount" parameterType="com.dkd.common.query.GenericQueryParam" resultType="Integer">
     SELECT COUNT(1) FROM xyd_answer_record xar, xyd_parents xp, xyd_child xc
     WHERE xar.parents_id = xp.id and xar.user_id = xc.id
     <if test="type != null">
@@ -523,7 +523,7 @@
     </if>
   </select>
 
-  <select id="selectExtendsByParamList" parameterType="com.xfkj.common.query.GenericQueryParam" resultMap="BaseResultMap1">
+  <select id="selectExtendsByParamList" parameterType="com.dkd.common.query.GenericQueryParam" resultMap="BaseResultMap1">
     SELECT xar.*, xp.phone_number,xc.name,xc.sex, xc.birthdate FROM xyd_answer_record xar, xyd_parents xp, xyd_child xc
     WHERE xar.parents_id = xp.id and xar.user_id = xc.id
     <if test="type != null">
@@ -561,7 +561,7 @@
       AND type = #{type,jdbcType=VARCHAR}
     </if>
   </select>
-  <select id="selectByTypeList"  parameterType="com.xfkj.model.XydAnswerRecord" resultMap="BaseResultMap">
+  <select id="selectByTypeList" parameterType="com.dkd.model.XydAnswerRecord" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
     from xyd_answer_record

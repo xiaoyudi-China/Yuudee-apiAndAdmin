@@ -8,7 +8,7 @@
   	<display-name>"general Tags"</display-name>
      <tag>
         <name>page</name>
-        <tag-class>com.xfkj.common.paging.Pages</tag-class>
+        <tag-class>com.dkd.common.paging.Pages</tag-class>
    		<body-content>empty</body-content>
 	    <attribute>
 	      <name>commonList</name>

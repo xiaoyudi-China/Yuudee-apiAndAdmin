@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.xfkj.mapper.XydAnswerResultsMapper">
-  <resultMap id="BaseResultMap" type="com.xfkj.model.XydAnswerResults">
+<mapper namespace="com.dkd.mapper.XydAnswerResultsMapper">
+  <resultMap id="BaseResultMap" type="com.dkd.model.XydAnswerResults">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="answer_id" jdbcType="INTEGER" property="answerId" />
     <result column="topic_id" jdbcType="INTEGER" property="topicId" />
@@ -30,7 +30,7 @@
     delete from xyd_answer_results
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.xfkj.model.XydAnswerResults">
+  <insert id="insert" parameterType="com.dkd.model.XydAnswerResults">
     insert into xyd_answer_results (id, answer_id, topic_id, 
       topic_type, is_other_options, answer,sign,
       answer_one, answer_two, answer_three, 
@@ -42,7 +42,7 @@
       #{states,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.xfkj.model.XydAnswerResults">
+  <insert id="insertSelective" parameterType="com.dkd.model.XydAnswerResults">
     insert into xyd_answer_results
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -127,7 +127,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.xfkj.model.XydAnswerResults">
+  <update id="updateByPrimaryKeySelective" parameterType="com.dkd.model.XydAnswerResults">
     update xyd_answer_results
     <set>
       <if test="answerId != null">
@@ -169,7 +169,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.xfkj.model.XydAnswerResults">
+  <update id="updateByPrimaryKey" parameterType="com.dkd.model.XydAnswerResults">
     update xyd_answer_results
     set answer_id = #{answerId,jdbcType=INTEGER},
       topic_id = #{topicId,jdbcType=INTEGER},
@@ -220,7 +220,7 @@
     </foreach >
   </insert>
 
-  <select id="selectList" parameterType="com.xfkj.model.XydAnswerResults" resultMap="BaseResultMap">
+  <select id="selectList" parameterType="com.dkd.model.XydAnswerResults" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
     from xyd_answer_results

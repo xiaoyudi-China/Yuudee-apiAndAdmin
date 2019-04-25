@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.xfkj.mapper.XydManageRoleMapper">
-  <resultMap id="BaseResultMap" type="com.xfkj.model.XydManageRole">
+<mapper namespace="com.dkd.mapper.XydManageRoleMapper">
+  <resultMap id="BaseResultMap" type="com.dkd.model.XydManageRole">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="role_name" jdbcType="VARCHAR" property="roleName" />
     <result column="remark" jdbcType="VARCHAR" property="remark" />
@@ -24,7 +24,7 @@
     delete from xyd_manage_role
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.xfkj.model.XydManageRole">
+  <insert id="insert" parameterType="com.dkd.model.XydManageRole">
     insert into xyd_manage_role (id, role_name, remark, 
       role, status, is_deleted, 
       create_time, update_time)
@@ -32,7 +32,7 @@
       #{role,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, #{isDeleted,jdbcType=INTEGER}, 
       #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" keyProperty="id" useGeneratedKeys="true" parameterType="com.xfkj.model.XydManageRole">
+  <insert id="insertSelective" keyProperty="id" useGeneratedKeys="true" parameterType="com.dkd.model.XydManageRole">
     insert into xyd_manage_role
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -87,7 +87,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.xfkj.model.XydManageRole">
+  <update id="updateByPrimaryKeySelective" parameterType="com.dkd.model.XydManageRole">
     update xyd_manage_role
     <set>
       <if test="roleName != null">
@@ -114,7 +114,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.xfkj.model.XydManageRole">
+  <update id="updateByPrimaryKey" parameterType="com.dkd.model.XydManageRole">
     update xyd_manage_role
     set role_name = #{roleName,jdbcType=VARCHAR},
       remark = #{remark,jdbcType=VARCHAR},
@@ -126,7 +126,7 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
 
-  <select id="selectByUserRoleList" resultMap="BaseResultMap" parameterType="com.xfkj.model.XydManageRole">
+  <select id="selectByUserRoleList" resultMap="BaseResultMap" parameterType="com.dkd.model.XydManageRole">
     select
     emr.*
     from
@@ -153,7 +153,7 @@
     </where>
   </select>
 
-  <select id="selectByRoleList" resultMap="BaseResultMap" parameterType="com.xfkj.model.XydManageRole">
+  <select id="selectByRoleList" resultMap="BaseResultMap" parameterType="com.dkd.model.XydManageRole">
     select
     <include refid="Base_Column_List"/>
     from
@@ -186,7 +186,7 @@
     </where>
   </select>
 
-  <select id="selectByParamCount" parameterType="com.xfkj.common.query.GenericQueryParam" resultType="Integer">
+  <select id="selectByParamCount" parameterType="com.dkd.common.query.GenericQueryParam" resultType="Integer">
     select
     count(id)
     from xyd_manage_role
@@ -218,7 +218,7 @@
     </where>
   </select>
 
-  <select id="selectByParamList" parameterType="com.xfkj.common.query.GenericQueryParam" resultMap="BaseResultMap">
+  <select id="selectByParamList" parameterType="com.dkd.common.query.GenericQueryParam" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List"/>
     from

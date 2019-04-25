@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.xfkj.mapper.XydPcidMustMapper">
-  <resultMap id="BaseResultMap" type="com.xfkj.model.XydPcidMust">
+<mapper namespace="com.dkd.mapper.XydPcidMustMapper">
+  <resultMap id="BaseResultMap" type="com.dkd.model.XydPcidMust">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="pcdi_type_id" jdbcType="INTEGER" property="pcdiTypeId" />
     <result column="describes" jdbcType="VARCHAR" property="describes" />
@@ -41,7 +41,7 @@
     delete from xyd_pcid_must
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.xfkj.model.XydPcidMust">
+  <insert id="insert" parameterType="com.dkd.model.XydPcidMust">
     insert into xyd_pcid_must (id, pcdi_type_id, describes, 
       topic_title, sort, topic_result_one, 
       topic_result_two, topic_result_three, topic_result_four, 
@@ -55,7 +55,7 @@
       #{childOptions,jdbcType=VARCHAR}, #{isScore,jdbcType=CHAR}, #{states,jdbcType=VARCHAR}, 
       #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="com.xfkj.model.XydPcidMust">
+  <insert id="insertSelective" parameterType="com.dkd.model.XydPcidMust">
     insert into xyd_pcid_must
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -164,7 +164,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.xfkj.model.XydPcidMust">
+  <update id="updateByPrimaryKeySelective" parameterType="com.dkd.model.XydPcidMust">
     update xyd_pcid_must
     <set>
       <if test="pcdiTypeId != null">
@@ -218,7 +218,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.xfkj.model.XydPcidMust">
+  <update id="updateByPrimaryKey" parameterType="com.dkd.model.XydPcidMust">
     update xyd_pcid_must
     set pcdi_type_id = #{pcdiTypeId,jdbcType=INTEGER},
       describes = #{describes,jdbcType=VARCHAR},
@@ -239,7 +239,7 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
 
-  <select id="selectByTypeLis" parameterType="com.xfkj.model.XydPcidMust" resultMap="BaseResultMap">
+  <select id="selectByTypeLis" parameterType="com.dkd.model.XydPcidMust" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
     from xyd_pcid_must
@@ -274,7 +274,7 @@
     ORDER BY xpm.create_time ASC
   </select>
 
-  <select id="selectByParamCount" parameterType="com.xfkj.common.query.GenericQueryParam" resultType="Integer">
+  <select id="selectByParamCount" parameterType="com.dkd.common.query.GenericQueryParam" resultType="Integer">
     SELECT COUNT(1)
     from (
       SELECT a.`id`, a.topic_title,a.describes ,a.create_time, t.name,"0" as result from xyd_pcid_must a ,xyd_pcid_type t
@@ -307,7 +307,7 @@
     ) c
   </select>
 
-  <select id="selectByParamList" parameterType="com.xfkj.common.query.GenericQueryParam" resultMap="BaseResultMap">
+  <select id="selectByParamList" parameterType="com.dkd.common.query.GenericQueryParam" resultMap="BaseResultMap">
       SELECT c.*
       from (
         SELECT a.`id`, a.topic_title,a.describes ,a.create_time, t.name,"0" as result

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.xfkj.mapper.XydExperienceRecordMapper">
-  <resultMap id="BaseResultMap" type="com.xfkj.model.XydExperienceRecord">
+<mapper namespace="com.dkd.mapper.XydExperienceRecordMapper">
+  <resultMap id="BaseResultMap" type="com.dkd.model.XydExperienceRecord">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="parents_id" jdbcType="INTEGER" property="parentsId" />
     <result column="module" jdbcType="VARCHAR" property="module" />
@@ -23,7 +23,7 @@
     delete from xyd_experience_record
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.xfkj.model.XydExperienceRecord">
+  <insert id="insert" parameterType="com.dkd.model.XydExperienceRecord">
     insert into xyd_experience_record (id, parents_id, module, 
       child_module, create_time, update_time, 
       states)
@@ -31,7 +31,7 @@
       #{childModule,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
       #{states,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.xfkj.model.XydExperienceRecord">
+  <insert id="insertSelective" parameterType="com.dkd.model.XydExperienceRecord">
     insert into xyd_experience_record
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -80,7 +80,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.xfkj.model.XydExperienceRecord">
+  <update id="updateByPrimaryKeySelective" parameterType="com.dkd.model.XydExperienceRecord">
     update xyd_experience_record
     <set>
       <if test="parentsId != null">
@@ -104,7 +104,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.xfkj.model.XydExperienceRecord">
+  <update id="updateByPrimaryKey" parameterType="com.dkd.model.XydExperienceRecord">
     update xyd_experience_record
     set parents_id = #{parentsId,jdbcType=INTEGER},
       module = #{module,jdbcType=VARCHAR},
@@ -114,7 +114,7 @@
       states = #{states,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <select id="selectByList" parameterType="com.xfkj.model.XydExperienceRecord" resultMap="BaseResultMap">
+  <select id="selectByList" parameterType="com.dkd.model.XydExperienceRecord" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
     from xyd_experience_record
@@ -132,7 +132,7 @@
       AND states = #{states,jdbcType=VARCHAR}
     </if>
   </select>
-  <select id="selectRegisterCount" parameterType="com.xfkj.model.XydExperienceRecord" resultType="java.lang.Integer">
+  <select id="selectRegisterCount" parameterType="com.dkd.model.XydExperienceRecord" resultType="java.lang.Integer">
     select
     COUNT(1)
     from xyd_experience_record

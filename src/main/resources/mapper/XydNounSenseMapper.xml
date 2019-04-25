@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.xfkj.mapper.XydNounSenseMapper">
-  <resultMap id="BaseResultMap" type="com.xfkj.model.XydNounSense">
+<mapper namespace="com.dkd.mapper.XydNounSenseMapper">
+  <resultMap id="BaseResultMap" type="com.dkd.model.XydNounSense">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="card_adjective_image" jdbcType="VARCHAR" property="cardAdjectiveImage" />
     <result column="card_adjective_char" jdbcType="VARCHAR" property="cardAdjectiveChar" />
@@ -52,7 +52,7 @@
     delete from xyd_noun_sense
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.xfkj.model.XydNounSense">
+  <insert id="insert" parameterType="com.dkd.model.XydNounSense">
     insert into xyd_noun_sense (id, card_adjective_image, card_adjective_char, 
       card_adjective_record, frist_assist_time, card_noun_image, 
       card_noun_char, card_noun_record, second_assist_time, 
@@ -66,7 +66,7 @@
       #{disturbType,jdbcType=VARCHAR}, #{idioType,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
       #{updateTime,jdbcType=TIMESTAMP}, #{states,jdbcType=CHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.xfkj.model.XydNounSense">
+  <insert id="insertSelective" parameterType="com.dkd.model.XydNounSense">
     insert into xyd_noun_sense
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -175,7 +175,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.xfkj.model.XydNounSense">
+  <update id="updateByPrimaryKeySelective" parameterType="com.dkd.model.XydNounSense">
     update xyd_noun_sense
     <set>
       <if test="cardAdjectiveImage != null">
@@ -229,7 +229,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.xfkj.model.XydNounSense">
+  <update id="updateByPrimaryKey" parameterType="com.dkd.model.XydNounSense">
     update xyd_noun_sense
     set card_adjective_image = #{cardAdjectiveImage,jdbcType=VARCHAR},
       card_adjective_char = #{cardAdjectiveChar,jdbcType=VARCHAR},
@@ -249,7 +249,7 @@
       states = #{states,jdbcType=CHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <select id="selectByParamCount" parameterType="com.xfkj.common.query.GenericQueryParam" resultType="Integer">
+  <select id="selectByParamCount" parameterType="com.dkd.common.query.GenericQueryParam" resultType="Integer">
     select
     count(id)
     from xyd_noun_sense
@@ -260,7 +260,7 @@
     </where>
   </select>
 
-  <select id="selectByParamList" parameterType="com.xfkj.common.query.GenericQueryParam" resultMap="BaseResultMap">
+  <select id="selectByParamList" parameterType="com.dkd.common.query.GenericQueryParam" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List"/>
     from
