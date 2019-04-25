@@ -7,12 +7,10 @@ import com.xfkj.common.emun.MedicalTypeEnum;
 import com.xfkj.common.utils.*;
 import com.xfkj.model.*;
 import com.xfkj.service.*;
-import org.hamcrest.core.Is;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
-import redis.clients.jedis.Jedis;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
@@ -45,7 +43,7 @@ public class UserAppController {
     @Autowired
     private RedisService redisService ;
 
-    @RequestMapping(value = "testRedis")
+    @RequestMapping(value = "/testRedis")
     public String testResd(@RequestParam(value = "mxg")String mxg){
         return (String) redisService.get("mxg");
     }
