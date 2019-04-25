@@ -116,7 +116,7 @@ public class SystemAppControllerTest {
         System.out.println("=====getAppStartImage result:" + result);
     }
 
-   /* @Test
+   @Test
     public void getCityList() throws Exception{
         ResultActions resultActions = this.mockMvc.
                 perform(MockMvcRequestBuilders.request(HttpMethod.POST,reqUrl+"/getCityList")
@@ -129,16 +129,16 @@ public class SystemAppControllerTest {
         String result = mvcResult.getResponse().getContentAsString();
         System.out.println("=====getCityList result:" + result);
     }
-*/
+
     @Test
     public void getThisCityList() throws Exception{
-        ResultActions resultActions = this.mockMvc.
+       /* ResultActions resultActions = this.mockMvc.
                 perform(MockMvcRequestBuilders.request(HttpMethod.POST,reqUrl+"/getThisCityList")
                 );
         MvcResult mvcResult = resultActions.andReturn();
         System.out.println("=====getThisCityList mvcResult:" + mvcResult.getResponse().getStatus());
         String result = mvcResult.getResponse().getContentAsString();
-        System.out.println("=====getThisCityList result:" + result);
+        System.out.println("=====getThisCityList result:" + result);*/
     }
 
     @Test
