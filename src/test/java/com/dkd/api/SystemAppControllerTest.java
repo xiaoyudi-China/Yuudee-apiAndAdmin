@@ -51,7 +51,7 @@ public class SystemAppControllerTest {
         System.out.println("=====fileUpload result:" + result);
     }
 
-    /*@Test
+    @Test
     public void deleteFileUpload() throws Exception{
         ResultActions resultActions = this.mockMvc.
                 perform(MockMvcRequestBuilders.request(HttpMethod.POST,reqUrl+"/oss/deleteFileUpload")
@@ -63,7 +63,7 @@ public class SystemAppControllerTest {
         String result = mvcResult.getResponse().getContentAsString();
         System.out.println("=====deleteFileUpload result:" + result);
     }
-
+    /*
     @Test
     public void getQcellcoreList() throws Exception{
         ResultActions resultActions = this.mockMvc.
