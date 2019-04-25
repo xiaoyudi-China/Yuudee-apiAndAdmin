@@ -129,7 +129,7 @@ public class SystemAppControllerTest {
         String result = mvcResult.getResponse().getContentAsString();
         System.out.println("=====getCityList result:" + result);
     }
-
+*/
     @Test
     public void getThisCityList() throws Exception{
         ResultActions resultActions = this.mockMvc.
@@ -139,7 +139,7 @@ public class SystemAppControllerTest {
         System.out.println("=====getThisCityList mvcResult:" + mvcResult.getResponse().getStatus());
         String result = mvcResult.getResponse().getContentAsString();
         System.out.println("=====getThisCityList result:" + result);
-    }*/
+    }
 
     @Test
     public void verifyPhone() throws Exception{
