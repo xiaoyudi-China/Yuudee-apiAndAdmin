@@ -115,7 +115,7 @@ public class SystemAppControllerTest {
         String result = mvcResult.getResponse().getContentAsString();
         System.out.println("=====getAppStartImage result:" + result);
     }
-  /*
+
     @Test
     public void getCityList() throws Exception{
         ResultActions resultActions = this.mockMvc.
@@ -140,7 +140,7 @@ public class SystemAppControllerTest {
         String result = mvcResult.getResponse().getContentAsString();
         System.out.println("=====getThisCityList result:" + result);
     }
-
+/*
     @Test
     public void verifyPhone() throws Exception{
         ResultActions resultActions = this.mockMvc.
