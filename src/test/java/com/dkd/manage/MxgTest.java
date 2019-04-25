@@ -1,4 +1,4 @@
-package com.xfkj;
+package com.dkd.manage;
 
 import com.xfkj.common.config.Global;
 import org.springframework.beans.factory.annotation.Autowired;
