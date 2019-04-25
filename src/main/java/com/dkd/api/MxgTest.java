@@ -1,4 +1,4 @@
-package com.dkd.manage;
+package com.dkd.api;
 
 import com.dkd.common.config.Global;
 import org.springframework.beans.factory.annotation.Autowired;
