@@ -8,11 +8,13 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.ResultActions;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -58,4 +60,16 @@ public class TestAppTest {
 
     }
 
+    @Test
+    public void getMap() throws Exception{
+
+        ResultActions resultActions = this.mockMvc.
+                perform(MockMvcRequestBuilders.request(HttpMethod.POST,"/app/mxg").param("code","1")
+                        .param("phonePrefix","phonePrefix")
+                        .param("phoneNumber","18812341234"));
+        MvcResult mvcResult = resultActions.andReturn();
+        System.out.println("=====客户端获得反馈状态:" + mvcResult.getResponse().getStatus());
+        String result = mvcResult.getResponse().getContentAsString();
+        System.out.println("=====客户端获得反馈数据:" + result);
+    }
 }

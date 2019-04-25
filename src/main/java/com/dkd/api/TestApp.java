@@ -24,7 +24,7 @@ import java.util.Map;
  */
 @Controller
 @RequestMapping(value = "/app")
-public class TestApp implements Runnable {
+public class TestApp {
     @Autowired
     private XydParentsService xydParentsService;
     @Autowired
@@ -67,11 +67,6 @@ public class TestApp implements Runnable {
         xydPhoneQcellcore.setPhonePrefix("1");
         Map map = AliyunSendUtil.sendCountryText("17795591253", xydPhoneQcellcore, global.getWnounMSM());
         return map;
-
-    }
-
-    @Override
-    public void run() {
 
     }
 }
