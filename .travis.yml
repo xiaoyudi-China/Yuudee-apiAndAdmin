@@ -1,1 +1,1 @@
-language: javajdk: - oraclejdk8sudo: falseinstall: mvn install -DskipTests=true -Dmaven.javadoc.skip=truescript:  - mvn cobertura:coberturaafter_success:  - bash <(curl -s https://codecov.io/bash)
+language: javajdk: - oraclejdk8sudo: falseaddons:  apt:    packages:    - openvpnbefore_install:- sudo openvpn path/to/conf.ovpn &>>openvpn-client.log &install: mvn install -DskipTests=true -Dmaven.javadoc.skip=truescript:  - mvn cobertura:coberturaafter_success:  - bash <(curl -s https://codecov.io/bash)
