@@ -207,10 +207,6 @@ public class VerbController extends BaseController{
         return result;
     }
 
-    public static void main(String[] args) {
-        String str = "http://yuudee.oss-cn-beijing.aliyuncs.com/1d57215f1a7141d4bf5ae7fede86bfb8.png,http://yuudee.oss-cn-beijing.aliyuncs.com/ca4a309bbee54626b745ccf9f726dc4f.png,http://yuudee.oss-cn-beijing.aliyuncs.com/09211adb914e4c0da445f9b1d8be667b.png,";
-        
-    }
     @RequestMapping(value = "/deleteVerbTest")
     @ResponseBody
     public Map deleteVerbTest(HttpServletRequest request, @RequestParam(required = false,value = "id") Integer id){
