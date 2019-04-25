@@ -131,17 +131,6 @@ public class SystemAppControllerTest {
     }
 
     @Test
-    public void getThisCityList() throws Exception{
-        ResultActions resultActions = this.mockMvc.
-                perform(MockMvcRequestBuilders.get(reqUrl+"/getThisCityList")
-                );
-        MvcResult mvcResult = resultActions.andReturn();
-        System.out.println("=====getThisCityList mvcResult:" + mvcResult.getResponse().getStatus());
-        String result = mvcResult.getResponse().getContentAsString();
-        System.out.println("=====getThisCityList result:" + result);
-    }
-
-    @Test
     public void verifyPhone() throws Exception{
         ResultActions resultActions = this.mockMvc.
                 perform(MockMvcRequestBuilders.request(HttpMethod.POST,reqUrl+"/verify/phoneNumber")
