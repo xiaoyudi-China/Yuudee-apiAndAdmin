@@ -63,7 +63,7 @@ public class SystemAppControllerTest {
         String result = mvcResult.getResponse().getContentAsString();
         System.out.println("=====deleteFileUpload result:" + result);
     }
-    /*
+
     @Test
     public void getQcellcoreList() throws Exception{
         ResultActions resultActions = this.mockMvc.
@@ -87,7 +87,7 @@ public class SystemAppControllerTest {
         String result = mvcResult.getResponse().getContentAsString();
         System.out.println("=====productInfo result:" + result);
     }
-
+ /*
     @Test
     public void getAboutUs() throws Exception{
         ResultActions resultActions = this.mockMvc.
