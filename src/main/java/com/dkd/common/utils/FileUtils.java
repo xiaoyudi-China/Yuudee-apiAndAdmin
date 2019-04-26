@@ -465,6 +465,7 @@ public class FileUtils {
                 return imagesinfo;
             }
         } catch (Exception e) {
+            e.printStackTrace();
 
         }
         return imagesinfos;
