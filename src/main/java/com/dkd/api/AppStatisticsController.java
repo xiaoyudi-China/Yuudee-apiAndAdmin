@@ -15,8 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.math.BigDecimal;
-import java.text.ParseException;
 import java.util.*;
 
 /**
@@ -438,16 +436,4 @@ public class AppStatisticsController {
         }
         return resultMap;
     }
-
-    public static void main(String[] arges) throws ParseException {
-        Date ti = DateUtil.parseDate("2018-02-20");
-        Date date= DateUtil.getFirstDayByDate(ti);
-        System.out.println(DateUtil.getDate(date));
-        date = DateUtil.getDayZeroClock(date, -7);
-        System.out.println(DateUtil.getDate(date));
-        BigDecimal a = new BigDecimal(1);
-        BigDecimal c = a.divide(new BigDecimal(4));
-        System.out.print(c);
-    }
-
 }
