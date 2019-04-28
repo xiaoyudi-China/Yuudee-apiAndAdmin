@@ -40,7 +40,6 @@ import static org.mockito.Mockito.when;
 @PrepareForTest(value = {MyMD5Util.class,XydManageAccount.class})
 public class IndexControllerDupTest {
     private final Logger logger = LoggerFactory.getLogger(IndexControllerTest.class);
-
     private MockMvc mockMvc;
     @InjectMocks
     private IndexController indexController;
