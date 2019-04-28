@@ -1,6 +1,5 @@
 package com.dkd.manage;
 
-import com.dkd.XiaoyudiApplication;
 import com.dkd.common.config.Global;
 import com.dkd.common.utils.MyMD5Util;
 import com.dkd.model.XydManageAccount;
@@ -13,15 +12,10 @@ import org.mockito.Mock;
 import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
-import org.powermock.modules.junit4.PowerMockRunnerDelegate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpMethod;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.TestPropertySource;
-import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.ResultActions;
@@ -29,12 +23,10 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import java.io.UnsupportedEncodingException;
-import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.mockito.Mockito.when;
-import static org.powermock.api.mockito.PowerMockito.whenNew;
 
 /**
  * @author dongxiaohong
@@ -166,8 +158,6 @@ public class IndexControllerTest2 {
                         .param("password","123456")
                         .param("roleIds","1,2,3")
                 );
-
-
         MvcResult mvcResult1 = resultActions1.andReturn();
         System.out.println("=====updatePassword mvcResult:" + mvcResult1.getResponse().getStatus());
         String result1 = mvcResult1.getResponse().getContentAsString();
