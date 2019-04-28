@@ -179,7 +179,7 @@ public class CityContollerTest {
 
     @Test
     public void cityUpdateOrAdd6() throws Exception {
-        ResultActions resultActions = this.mockMvc.perform(MockMvcRequestBuilders.post(reqUrl + "/addCity").param("level", "1").param("areaname", "小强1小强1小").param("parentid", "0").param("areaCode", "00"));
+        ResultActions resultActions = this.mockMvc.perform(MockMvcRequestBuilders.post(reqUrl + "/addCity").param("areaid", "525").param("level", "3").param("areaname", "中卫市　").param("parentid", "522").param("areaCode", "小强小强小强小强小强小强小强小强小强小强小强小强小强小强小强小强小强小强小强小强小强小"));
         MvcResult mvcResult = resultActions.andReturn();
         logger.info("=====cityUpdateOrAdd6 mvcResult:" + mvcResult.getResponse().getStatus());
         String result = mvcResult.getResponse().getContentAsString();

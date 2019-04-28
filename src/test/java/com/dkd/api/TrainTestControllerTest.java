@@ -231,6 +231,18 @@ public class TrainTestControllerTest {
     }
 
     @Test
+    public void getNounTraining3() throws Exception{
+        ResultActions resultActions = this.mockMvc.
+                perform(MockMvcRequestBuilders.request(HttpMethod.POST,reqUrl+"/getNoun")
+                        .param("token",token)
+                );
+        MvcResult mvcResult = resultActions.andReturn();
+        System.out.println("=====getNounTraining3 mvcResult:" + mvcResult.getResponse().getStatus());
+        String result = mvcResult.getResponse().getContentAsString();
+        System.out.println("=====getNounTraining3 result:" + result);
+    }
+
+    @Test
     public void getVerbTraining() throws Exception{
         ResultActions resultActions = this.mockMvc.
                 perform(MockMvcRequestBuilders.request(HttpMethod.POST,reqUrl+"/getVerb")
