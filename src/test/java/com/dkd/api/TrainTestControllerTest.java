@@ -37,7 +37,13 @@ public class TrainTestControllerTest {
     @Autowired
     private WebApplicationContext webApplicationContext;
     private  String token;
+    private  String token1;
+    private  String token2;
+    private  String token3;
     private  String mobile="18564656666";
+    private  String mobile1="18254664666";
+    private  String mobile2="13405947470";
+    private  String mobile3="13237852010";
 
     @Before
     public void setUp() throws Exception {
@@ -58,6 +64,55 @@ public class TrainTestControllerTest {
         String parents =  JSONObject.fromObject(tokenJson).optString("parents");
         token =  JSONObject.fromObject(parents).optString("token");
         logger.info("=====generalLogin result token:" + token);
+
+
+        ResultActions resultActions1 = this.mockMvc.
+                perform(MockMvcRequestBuilders.post(loginReqUrl + "/generalLogin")
+                        .param("phone",mobile1)
+                        .param("password","123456")
+                        .param("qcellcoreId","1")
+                );
+        MvcResult mvcResult1 = resultActions1.andReturn();
+        logger.info("=====generalLogin mvcResult:" + mvcResult1.getResponse().getStatus());
+        String result1 = mvcResult1.getResponse().getContentAsString();
+        logger.info("=====generalLogin result :" + result1);
+        JSONObject jsonObject1 = JSONObject.fromObject(result1);
+        String  tokenJson1 =  jsonObject1.optString("data");
+        String parents1 =  JSONObject.fromObject(tokenJson1).optString("parents");
+        token1 =  JSONObject.fromObject(parents1).optString("token");
+        logger.info("=====generalLogin result token:" + token1);
+
+        ResultActions resultActions2 = this.mockMvc.
+                perform(MockMvcRequestBuilders.post(loginReqUrl + "/generalLogin")
+                        .param("phone",mobile2)
+                        .param("password","123456")
+                        .param("qcellcoreId","1")
+                );
+        MvcResult mvcResult2 = resultActions2.andReturn();
+        logger.info("=====generalLogin mvcResult:" + mvcResult2.getResponse().getStatus());
+        String result2 = mvcResult2.getResponse().getContentAsString();
+        logger.info("=====generalLogin result :" + result2);
+        JSONObject jsonObject2 = JSONObject.fromObject(result2);
+        String  tokenJson2 =  jsonObject2.optString("data");
+        String parents2 =  JSONObject.fromObject(tokenJson2).optString("parents");
+        token2 =  JSONObject.fromObject(parents2).optString("token");
+        logger.info("=====generalLogin result token:" + token2);
+
+        ResultActions resultActions3 = this.mockMvc.
+                perform(MockMvcRequestBuilders.post(loginReqUrl + "/generalLogin")
+                        .param("phone",mobile3)
+                        .param("password","123456")
+                        .param("qcellcoreId","1")
+                );
+        MvcResult mvcResult3 = resultActions3.andReturn();
+        logger.info("=====generalLogin mvcResult:" + mvcResult3.getResponse().getStatus());
+        String result3 = mvcResult3.getResponse().getContentAsString();
+        logger.info("=====generalLogin result :" + result3);
+        JSONObject jsonObject3 = JSONObject.fromObject(result3);
+        String  tokenJson3 =  jsonObject3.optString("data");
+        String parents3 =  JSONObject.fromObject(tokenJson3).optString("parents");
+        token3 =  JSONObject.fromObject(parents3).optString("token");
+        logger.info("=====generalLogin result token:" + token3);
     }
 
     @After
@@ -85,6 +140,18 @@ public class TrainTestControllerTest {
         System.out.println("=====getFortifier1 mvcResult:" + mvcResult.getResponse().getStatus());
         String result = mvcResult.getResponse().getContentAsString();
         System.out.println("=====getFortifier1 result:" + result);
+    }
+
+    @Test
+    public void getFortifier2() throws Exception{
+        ResultActions resultActions = this.mockMvc.
+                perform(MockMvcRequestBuilders.request(HttpMethod.POST,reqUrl+"/getFortifier")
+                        .param("token",token1)
+                );
+        MvcResult mvcResult = resultActions.andReturn();
+        System.out.println("=====getFortifier2 mvcResult:" + mvcResult.getResponse().getStatus());
+        String result = mvcResult.getResponse().getContentAsString();
+        System.out.println("=====getFortifier2 result:" + result);
     }
 
     @Test
@@ -171,6 +238,34 @@ public class TrainTestControllerTest {
     }
 
     @Test
+    public void addFortifier6() throws Exception{
+        ResultActions resultActions = this.mockMvc.
+                perform(MockMvcRequestBuilders.request(HttpMethod.POST,reqUrl+"/addFortifier")
+                        .param("token",token1)
+                        .param("module","2")
+                        .param("state","0")
+                );
+        MvcResult mvcResult = resultActions.andReturn();
+        System.out.println("=====addFortifier6 mvcResult:" + mvcResult.getResponse().getStatus());
+        String result = mvcResult.getResponse().getContentAsString();
+        System.out.println("=====addFortifier6 result:" + result);
+    }
+
+    @Test
+    public void addFortifier7() throws Exception{
+        ResultActions resultActions = this.mockMvc.
+                perform(MockMvcRequestBuilders.request(HttpMethod.POST,reqUrl+"/addFortifier")
+                        .param("token",token)
+                        .param("module","3")
+                        .param("state","1")
+                );
+        MvcResult mvcResult = resultActions.andReturn();
+        System.out.println("=====addFortifier7 mvcResult:" + mvcResult.getResponse().getStatus());
+        String result = mvcResult.getResponse().getContentAsString();
+        System.out.println("=====addFortifier7 result:" + result);
+    }
+
+    @Test
     public void getSystemStatistics() throws Exception{
         ResultActions resultActions = this.mockMvc.
                 perform(MockMvcRequestBuilders.request(HttpMethod.POST,reqUrl+"/getSystemStatistics")
@@ -192,6 +287,43 @@ public class TrainTestControllerTest {
         System.out.println("=====getSystemStatistics1 mvcResult:" + mvcResult.getResponse().getStatus());
         String result = mvcResult.getResponse().getContentAsString();
         System.out.println("=====getSystemStatistics1 result:" + result);
+    }
+
+
+    @Test
+    public void getSystemStatistics2() throws Exception{
+        ResultActions resultActions = this.mockMvc.
+                perform(MockMvcRequestBuilders.request(HttpMethod.POST,reqUrl+"/getSystemStatistics")
+                        .param("token",token1)
+                );
+        MvcResult mvcResult = resultActions.andReturn();
+        System.out.println("=====getSystemStatistics2 mvcResult:" + mvcResult.getResponse().getStatus());
+        String result = mvcResult.getResponse().getContentAsString();
+        System.out.println("=====getSystemStatistics2 result:" + result);
+    }
+
+    @Test
+    public void getSystemStatistics3() throws Exception{
+        ResultActions resultActions = this.mockMvc.
+                perform(MockMvcRequestBuilders.request(HttpMethod.POST,reqUrl+"/getSystemStatistics")
+                        .param("token",token2)
+                );
+        MvcResult mvcResult = resultActions.andReturn();
+        System.out.println("=====getSystemStatistics3 mvcResult:" + mvcResult.getResponse().getStatus());
+        String result = mvcResult.getResponse().getContentAsString();
+        System.out.println("=====getSystemStatistics3 result:" + result);
+    }
+
+    @Test
+    public void getSystemStatistics4() throws Exception{
+        ResultActions resultActions = this.mockMvc.
+                perform(MockMvcRequestBuilders.request(HttpMethod.POST,reqUrl+"/getSystemStatistics")
+                        .param("token",token)
+                );
+        MvcResult mvcResult = resultActions.andReturn();
+        System.out.println("=====getSystemStatistics4 mvcResult:" + mvcResult.getResponse().getStatus());
+        String result = mvcResult.getResponse().getContentAsString();
+        System.out.println("=====getSystemStatistics4 result:" + result);
     }
 
     @Test
@@ -240,6 +372,42 @@ public class TrainTestControllerTest {
         System.out.println("=====getNounTraining3 mvcResult:" + mvcResult.getResponse().getStatus());
         String result = mvcResult.getResponse().getContentAsString();
         System.out.println("=====getNounTraining3 result:" + result);
+    }
+
+    @Test
+    public void getNounTraining4() throws Exception{
+        ResultActions resultActions = this.mockMvc.
+                perform(MockMvcRequestBuilders.request(HttpMethod.POST,reqUrl+"/getNoun")
+                        .param("token",token1)
+                );
+        MvcResult mvcResult = resultActions.andReturn();
+        System.out.println("=====getNounTraining4 mvcResult:" + mvcResult.getResponse().getStatus());
+        String result = mvcResult.getResponse().getContentAsString();
+        System.out.println("=====getNounTraining4 result:" + result);
+    }
+
+    @Test
+    public void getNounTraining5() throws Exception{
+        ResultActions resultActions = this.mockMvc.
+                perform(MockMvcRequestBuilders.request(HttpMethod.POST,reqUrl+"/getNoun")
+                        .param("token",token2)
+                );
+        MvcResult mvcResult = resultActions.andReturn();
+        System.out.println("=====getNounTraining5 mvcResult:" + mvcResult.getResponse().getStatus());
+        String result = mvcResult.getResponse().getContentAsString();
+        System.out.println("=====getNounTraining5 result:" + result);
+    }
+
+    @Test
+    public void getNounTraining6() throws Exception{
+        ResultActions resultActions = this.mockMvc.
+                perform(MockMvcRequestBuilders.request(HttpMethod.POST,reqUrl+"/getNoun")
+                        .param("token",token3)
+                );
+        MvcResult mvcResult = resultActions.andReturn();
+        System.out.println("=====getNounTraining6 mvcResult:" + mvcResult.getResponse().getStatus());
+        String result = mvcResult.getResponse().getContentAsString();
+        System.out.println("=====getNounTraining6 result:" + result);
     }
 
     @Test
