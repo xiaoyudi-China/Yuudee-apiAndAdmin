@@ -106,6 +106,24 @@ public class CityContollerTest {
     }
 
     @Test
+    public void cityDelete3() throws Exception {
+        ResultActions resultActions = this.mockMvc.perform(MockMvcRequestBuilders.post(reqUrl + "/deleteCity"));
+        MvcResult mvcResult = resultActions.andReturn();
+        logger.info("=====cityDelete3 mvcResult:" + mvcResult.getResponse().getStatus());
+        String result = mvcResult.getResponse().getContentAsString();
+        logger.info("=====cityDelete3 result:" + result);
+    }
+
+    @Test
+    public void cityDelete4() throws Exception {
+        ResultActions resultActions = this.mockMvc.perform(MockMvcRequestBuilders.post(reqUrl + "/deleteCity").param("areaid", ""));
+        MvcResult mvcResult = resultActions.andReturn();
+        logger.info("=====cityDelete4 mvcResult:" + mvcResult.getResponse().getStatus());
+        String result = mvcResult.getResponse().getContentAsString();
+        logger.info("=====cityDelete4 result:" + result);
+    }
+
+    @Test
     public void cityUpdateOrAdd() throws Exception {
         ResultActions resultActions = this.mockMvc.perform(MockMvcRequestBuilders.post(reqUrl + "/addCity").param("areaid", "0").param("level", "1").param("areaname", "小强").param("parentid", "0").param("areaCode", "00"));
         MvcResult mvcResult = resultActions.andReturn();
@@ -130,5 +148,41 @@ public class CityContollerTest {
         logger.info("=====cityUpdateOrAdd2 mvcResult:" + mvcResult.getResponse().getStatus());
         String result = mvcResult.getResponse().getContentAsString();
         logger.info("=====cityUpdateOrAdd2 result:" + result);
+    }
+
+    @Test
+    public void cityUpdateOrAdd3() throws Exception {
+        ResultActions resultActions = this.mockMvc.perform(MockMvcRequestBuilders.post(reqUrl + "/addCity").param("areaid", "2").param("level", "1").param("areaname", "小强33").param("parentid", "0").param("areaCode", "00"));
+        MvcResult mvcResult = resultActions.andReturn();
+        logger.info("=====cityUpdateOrAdd3 mvcResult:" + mvcResult.getResponse().getStatus());
+        String result = mvcResult.getResponse().getContentAsString();
+        logger.info("=====cityUpdateOrAdd3 result:" + result);
+    }
+
+    @Test
+    public void cityUpdateOrAdd4() throws Exception {
+        ResultActions resultActions = this.mockMvc.perform(MockMvcRequestBuilders.post(reqUrl + "/addCity").param("areaid", "").param("level", "1").param("areaname", "小强").param("parentid", "0").param("areaCode", "00"));
+        MvcResult mvcResult = resultActions.andReturn();
+        logger.info("=====cityUpdateOrAdd4 mvcResult:" + mvcResult.getResponse().getStatus());
+        String result = mvcResult.getResponse().getContentAsString();
+        logger.info("=====cityUpdateOrAdd4 result:" + result);
+    }
+
+    @Test
+    public void cityUpdateOrAdd5() throws Exception {
+        ResultActions resultActions = this.mockMvc.perform(MockMvcRequestBuilders.post(reqUrl + "/addCity").param("level", "1").param("areaname", "小强1").param("parentid", "0").param("areaCode", "00"));
+        MvcResult mvcResult = resultActions.andReturn();
+        logger.info("=====cityUpdateOrAdd5 mvcResult:" + mvcResult.getResponse().getStatus());
+        String result = mvcResult.getResponse().getContentAsString();
+        logger.info("=====cityUpdateOrAdd5 result:" + result);
+    }
+
+    @Test
+    public void cityUpdateOrAdd6() throws Exception {
+        ResultActions resultActions = this.mockMvc.perform(MockMvcRequestBuilders.post(reqUrl + "/addCity").param("level", "1").param("areaname", "小强1小强1小").param("parentid", "0").param("areaCode", "00"));
+        MvcResult mvcResult = resultActions.andReturn();
+        logger.info("=====cityUpdateOrAdd6 mvcResult:" + mvcResult.getResponse().getStatus());
+        String result = mvcResult.getResponse().getContentAsString();
+        logger.info("=====cityUpdateOrAdd6 result:" + result);
     }
 }
