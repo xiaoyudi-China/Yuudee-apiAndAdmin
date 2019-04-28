@@ -178,14 +178,27 @@ public class TrainingController extends BaseController {
                     Integer a4 = 0;
                     for(XydTrainingResult trainingResult1 : list1){
                         if(trainingResult1.getModule().equals("1")||trainingResult1.equals("2")||trainingResult1.equals("3")){
-                            a1 += Integer.parseInt(trainingResult1.getStayTimeList().split(",")[0]);
-                            a2 += Integer.parseInt(trainingResult1.getStayTimeList().split(",")[1]);
+                            if(!IsObjectNullUtils.is(trainingResult1.getStayTimeList())) {
+                                    a1 += Integer.parseInt(trainingResult1.getStayTimeList().split(",")[0]);
+                                    if (trainingResult1.getStayTimeList().split(",").length > 1) {
+                                        a2 += Integer.parseInt(trainingResult1.getStayTimeList().split(",")[1]);
+                                    }
+                            }
                             t=true;
                         }else if(trainingResult1.getModule().equals("4")){
-                            a1 += Integer.parseInt(trainingResult1.getStayTimeList().split(",")[0]);
-                            a2 += Integer.parseInt(trainingResult1.getStayTimeList().split(",")[1]);
-                            a3 += Integer.parseInt(trainingResult1.getStayTimeList().split(",")[2]);
-                            a4 += Integer.parseInt(trainingResult1.getStayTimeList().split(",")[3]);
+                            if(!IsObjectNullUtils.is(trainingResult1.getStayTimeList())) {
+
+                                    a1 += Integer.parseInt(trainingResult1.getStayTimeList().split(",")[0]);
+                                    if (trainingResult1.getStayTimeList().split(",").length > 1) {
+                                        a2 += Integer.parseInt(trainingResult1.getStayTimeList().split(",")[1]);
+                                    }
+                                    if (trainingResult1.getStayTimeList().split(",").length > 2) {
+                                        a3 += Integer.parseInt(trainingResult1.getStayTimeList().split(",")[2]);
+                                    }
+                                    if (trainingResult1.getStayTimeList().split(",").length > 3) {
+                                        a4 += Integer.parseInt(trainingResult1.getStayTimeList().split(",")[3]);
+                                    }
+                            }
                         }
                     }
                     if(t){
