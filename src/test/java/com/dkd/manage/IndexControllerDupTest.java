@@ -12,10 +12,12 @@ import org.mockito.Mock;
 import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
+import org.powermock.modules.junit4.PowerMockRunnerDelegate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
+import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.ResultActions;
@@ -34,12 +36,12 @@ import static org.mockito.Mockito.when;
  */
 
 @RunWith(PowerMockRunner.class)
+@PowerMockRunnerDelegate(SpringRunner.class)
 @PrepareForTest(value = {MyMD5Util.class,XydManageAccount.class})
-public class IndexControllerTest2 {
+public class IndexControllerDupTest {
     private final Logger logger = LoggerFactory.getLogger(IndexControllerTest.class);
 
     private MockMvc mockMvc;
-    @Autowired
     @InjectMocks
     private IndexController indexController;
     private String reqUrl = "/manage/account";
