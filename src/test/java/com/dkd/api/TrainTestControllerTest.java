@@ -57,7 +57,7 @@ public class TrainTestControllerTest {
         this.mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
         String tokenCache = "userToken"+mobile;
         Object tokenObj = redisService.get(tokenCache);
-        if(tokenObj!=null) {
+        if(tokenObj==null) {
             ResultActions resultActions = this.mockMvc.
                     perform(MockMvcRequestBuilders.post(loginReqUrl + "/generalLogin")
                             .param("phone", mobile)
@@ -80,7 +80,7 @@ public class TrainTestControllerTest {
         }
         String tokenCache1 = "userToken"+mobile1;
         Object tokenObj1 = redisService.get(tokenCache1);
-        if(tokenObj1!=null) {
+        if(tokenObj1==null) {
             ResultActions resultActions1 = this.mockMvc.
                     perform(MockMvcRequestBuilders.post(loginReqUrl + "/generalLogin")
                             .param("phone",mobile1)
@@ -103,7 +103,7 @@ public class TrainTestControllerTest {
         }
         String tokenCache2 = "userToken"+mobile2;
         Object tokenObj2 = redisService.get(tokenCache2);
-        if(tokenObj2!=null) {
+        if(tokenObj2==null) {
             ResultActions resultActions2 = this.mockMvc.
                     perform(MockMvcRequestBuilders.post(loginReqUrl + "/generalLogin")
                             .param("phone",mobile2)
@@ -126,7 +126,7 @@ public class TrainTestControllerTest {
         }
         String tokenCache3 = "userToken"+mobile3;
         Object tokenObj3 = redisService.get(tokenCache3);
-        if(tokenObj3!=null) {
+        if(tokenObj3==null) {
             ResultActions resultActions3 = this.mockMvc.
                     perform(MockMvcRequestBuilders.post(loginReqUrl + "/generalLogin")
                             .param("phone",mobile3)
@@ -142,14 +142,15 @@ public class TrainTestControllerTest {
             String parents3 =  JSONObject.fromObject(tokenJson3).optString("parents");
             token3 =  JSONObject.fromObject(parents3).optString("token");
             logger.info("=====generalLogin result token:" + token3);
-                redisService.set(tokenCache3,token3,24*60*60L);
-            }else {
+            redisService.set(tokenCache3,token3,24*60*60L);
+        } else {
             token3 = String.valueOf(tokenObj3);
             System.err.println("已登录tokenCache:"+tokenCache3+" :"+tokenObj3);
         }
+
         String tokenCache4 = "userToken"+mobile4;
         Object tokenObj4 = redisService.get(tokenCache4);
-        if(tokenObj4!=null) {
+        if(tokenObj4==null) {
             ResultActions resultActions4 = this.mockMvc.
                     perform(MockMvcRequestBuilders.post(loginReqUrl + "/generalLogin")
                             .param("phone",mobile4)
@@ -172,7 +173,7 @@ public class TrainTestControllerTest {
         }
         String tokenCache5 = "userToken"+mobile5;
         Object tokenObj5 = redisService.get(tokenCache5);
-        if(tokenObj5!=null) {
+        if(tokenObj5==null) {
             ResultActions resultActions5 = this.mockMvc.
                     perform(MockMvcRequestBuilders.post(loginReqUrl + "/generalLogin")
                             .param("phone",mobile5)
@@ -195,7 +196,7 @@ public class TrainTestControllerTest {
         }
         String tokenCache6 = "userToken"+mobile6;
         Object tokenObj6 = redisService.get(tokenCache6);
-        if(tokenObj5!=null) {
+        if(tokenObj5==null) {
             ResultActions resultActions6 = this.mockMvc.
                     perform(MockMvcRequestBuilders.post(loginReqUrl + "/generalLogin")
                             .param("phone",mobile6)
