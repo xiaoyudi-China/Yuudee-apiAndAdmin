@@ -1,0 +1,1 @@
+package com.dkd.common.web;import org.junit.Test;public class BaseControllerTest {    @Test    public void test() {        BaseController baseController = new BaseController();        baseController.getPageNum(null,null);        baseController.getPageSize(null);    }}
