@@ -211,6 +211,7 @@ public class TrainTestControllerTest {
             String parents6 =  JSONObject.fromObject(tokenJson6).optString("parents");
             token6 =  JSONObject.fromObject(parents6).optString("token");
             logger.info("=====generalLogin result token:" + token6);
+            redisService.set(tokenCache6,token6,24*60*60L);
         }else {
             token6 = String.valueOf(tokenObj6);
             System.err.println("已登录tokenCache:"+tokenCache6+" :"+tokenObj6);
