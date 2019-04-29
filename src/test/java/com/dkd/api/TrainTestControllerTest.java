@@ -28,7 +28,6 @@ import org.springframework.web.context.WebApplicationContext;
 @Transactional
 public class TrainTestControllerTest {
     private final Logger logger = LoggerFactory.getLogger(TrainTestControllerTest.class);
-
     private MockMvc mockMvc;
     @Autowired
     private TrainTestController trainTestController;
