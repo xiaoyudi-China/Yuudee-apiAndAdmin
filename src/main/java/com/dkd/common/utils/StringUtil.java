@@ -4,9 +4,7 @@ import org.springframework.web.util.HtmlUtils;
 import org.springframework.web.util.JavaScriptUtils;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
-import java.net.URLDecoder;
 import java.util.regex.Pattern;
 
 public class StringUtil {
@@ -444,22 +442,6 @@ public class StringUtil {
 		String referer = src[15];	//跳转前的域名
 		
 	}
-	
-	public static void main(String args[]) {
-//		String str= "\n\r\u3000\u3000abcdefg \n\r \u3000 \u3000          ";
-//		System.out.println(str2Double("0"));
-		try {
-			//%E7%A3%A8%E9%93%81%E5%B8%81
-			//
-//			System.out.println(new String("800%C4%A5%CC%FA%B1%D2".getBytes("gb2312"), Charset.forName("utf8")));
-			System.out.println(URLDecoder.decode("800%C4%A5%CC%FA%B1%D2", "gb2312"));
-		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-//		test();
-	}
-	
 	/**
 	 * 替换中英文空格
 	 * @param str
