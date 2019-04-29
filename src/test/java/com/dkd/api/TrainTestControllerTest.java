@@ -1,6 +1,7 @@
 package com.dkd.api;
 
 import com.dkd.XiaoyudiApplication;
+import com.dkd.common.utils.RedisService;
 import net.sf.json.JSONObject;
 import org.junit.After;
 import org.junit.Before;
@@ -30,7 +31,7 @@ public class TrainTestControllerTest {
     private final Logger logger = LoggerFactory.getLogger(TrainTestControllerTest.class);
     private MockMvc mockMvc;
     @Autowired
-    private TrainTestController trainTestController;
+    private RedisService redisService;
     private String reqUrl = "/app/trainTest";
     private String loginReqUrl = "/app/user";
 
@@ -53,120 +54,167 @@ public class TrainTestControllerTest {
 
     @Before
     public void setUp() throws Exception {
-//        this.mockMvc = MockMvcBuilders.standaloneSetup(trainTestController).build();
         this.mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
-        ResultActions resultActions = this.mockMvc.
-                perform(MockMvcRequestBuilders.post(loginReqUrl + "/generalLogin")
-                        .param("phone",mobile)
-                        .param("password","123456")
-                        .param("qcellcoreId","1")
-                );
-        MvcResult mvcResult = resultActions.andReturn();
-        logger.info("=====generalLogin mvcResult:" + mvcResult.getResponse().getStatus());
-        String result = mvcResult.getResponse().getContentAsString();
-        logger.info("=====generalLogin result :" + result);
-        JSONObject jsonObject = JSONObject.fromObject(result);
-        String  tokenJson =  jsonObject.optString("data");
-        String parents =  JSONObject.fromObject(tokenJson).optString("parents");
-        token =  JSONObject.fromObject(parents).optString("token");
-        logger.info("=====generalLogin result token:" + token);
-
-
-        ResultActions resultActions1 = this.mockMvc.
-                perform(MockMvcRequestBuilders.post(loginReqUrl + "/generalLogin")
-                        .param("phone",mobile1)
-                        .param("password","123456")
-                        .param("qcellcoreId","1")
-                );
-        MvcResult mvcResult1 = resultActions1.andReturn();
-        logger.info("=====generalLogin mvcResult:" + mvcResult1.getResponse().getStatus());
-        String result1 = mvcResult1.getResponse().getContentAsString();
-        logger.info("=====generalLogin result :" + result1);
-        JSONObject jsonObject1 = JSONObject.fromObject(result1);
-        String  tokenJson1 =  jsonObject1.optString("data");
-        String parents1 =  JSONObject.fromObject(tokenJson1).optString("parents");
-        token1 =  JSONObject.fromObject(parents1).optString("token");
-        logger.info("=====generalLogin result token:" + token1);
-
-        ResultActions resultActions2 = this.mockMvc.
-                perform(MockMvcRequestBuilders.post(loginReqUrl + "/generalLogin")
-                        .param("phone",mobile2)
-                        .param("password","123456")
-                        .param("qcellcoreId","1")
-                );
-        MvcResult mvcResult2 = resultActions2.andReturn();
-        logger.info("=====generalLogin mvcResult:" + mvcResult2.getResponse().getStatus());
-        String result2 = mvcResult2.getResponse().getContentAsString();
-        logger.info("=====generalLogin result :" + result2);
-        JSONObject jsonObject2 = JSONObject.fromObject(result2);
-        String  tokenJson2 =  jsonObject2.optString("data");
-        String parents2 =  JSONObject.fromObject(tokenJson2).optString("parents");
-        token2 =  JSONObject.fromObject(parents2).optString("token");
-        logger.info("=====generalLogin result token:" + token2);
-
-        ResultActions resultActions3 = this.mockMvc.
-                perform(MockMvcRequestBuilders.post(loginReqUrl + "/generalLogin")
-                        .param("phone",mobile3)
-                        .param("password","123456")
-                        .param("qcellcoreId","1")
-                );
-        MvcResult mvcResult3 = resultActions3.andReturn();
-        logger.info("=====generalLogin mvcResult:" + mvcResult3.getResponse().getStatus());
-        String result3 = mvcResult3.getResponse().getContentAsString();
-        logger.info("=====generalLogin result :" + result3);
-        JSONObject jsonObject3 = JSONObject.fromObject(result3);
-        String  tokenJson3 =  jsonObject3.optString("data");
-        String parents3 =  JSONObject.fromObject(tokenJson3).optString("parents");
-        token3 =  JSONObject.fromObject(parents3).optString("token");
-        logger.info("=====generalLogin result token:" + token3);
-
-        ResultActions resultActions4 = this.mockMvc.
-                perform(MockMvcRequestBuilders.post(loginReqUrl + "/generalLogin")
-                        .param("phone",mobile4)
-                        .param("password","123456")
-                        .param("qcellcoreId","1")
-                );
-        MvcResult mvcResult4 = resultActions4.andReturn();
-        logger.info("=====generalLogin mvcResult:" + mvcResult4.getResponse().getStatus());
-        String result4 = mvcResult4.getResponse().getContentAsString();
-        logger.info("=====generalLogin result :" + result4);
-        JSONObject jsonObject4 = JSONObject.fromObject(result4);
-        String  tokenJson4 =  jsonObject4.optString("data");
-        String parents4 =  JSONObject.fromObject(tokenJson4).optString("parents");
-        token4 =  JSONObject.fromObject(parents4).optString("token");
-        logger.info("=====generalLogin result token:" + token4);
-
-        ResultActions resultActions5 = this.mockMvc.
-                perform(MockMvcRequestBuilders.post(loginReqUrl + "/generalLogin")
-                        .param("phone",mobile5)
-                        .param("password","123456")
-                        .param("qcellcoreId","1")
-                );
-        MvcResult mvcResult5 = resultActions5.andReturn();
-        logger.info("=====generalLogin mvcResult:" + mvcResult5.getResponse().getStatus());
-        String result5 = mvcResult5.getResponse().getContentAsString();
-        logger.info("=====generalLogin result :" + result5);
-        JSONObject jsonObject5 = JSONObject.fromObject(result5);
-        String  tokenJson5 =  jsonObject5.optString("data");
-        String parents5 =  JSONObject.fromObject(tokenJson5).optString("parents");
-        token5 =  JSONObject.fromObject(parents5).optString("token");
-        logger.info("=====generalLogin result token:" + token5);
-
-        ResultActions resultActions6 = this.mockMvc.
-                perform(MockMvcRequestBuilders.post(loginReqUrl + "/generalLogin")
-                        .param("phone",mobile6)
-                        .param("password","123456")
-                        .param("qcellcoreId","1")
-                );
-        MvcResult mvcResult6 = resultActions6.andReturn();
-        logger.info("=====generalLogin mvcResult:" + mvcResult6.getResponse().getStatus());
-        String result6 = mvcResult6.getResponse().getContentAsString();
-        logger.info("=====generalLogin result :" + result6);
-        JSONObject jsonObject6 = JSONObject.fromObject(result6);
-        String  tokenJson6 =  jsonObject6.optString("data");
-        String parents6 =  JSONObject.fromObject(tokenJson6).optString("parents");
-        token6 =  JSONObject.fromObject(parents6).optString("token");
-        logger.info("=====generalLogin result token:" + token6);
+        String tokenCache = "userToken"+mobile;
+        Object tokenObj = redisService.get(tokenCache);
+        if(tokenObj!=null) {
+            ResultActions resultActions = this.mockMvc.
+                    perform(MockMvcRequestBuilders.post(loginReqUrl + "/generalLogin")
+                            .param("phone", mobile)
+                            .param("password", "123456")
+                            .param("qcellcoreId", "1")
+                    );
+            MvcResult mvcResult = resultActions.andReturn();
+            logger.info("=====generalLogin mvcResult:" + mvcResult.getResponse().getStatus());
+            String result = mvcResult.getResponse().getContentAsString();
+            logger.info("=====generalLogin result :" + result);
+            JSONObject jsonObject = JSONObject.fromObject(result);
+            String tokenJson = jsonObject.optString("data");
+            String parents = JSONObject.fromObject(tokenJson).optString("parents");
+            token = JSONObject.fromObject(parents).optString("token");
+            logger.info("=====generalLogin result token:" + token);
+            redisService.set(tokenCache,token,24*60*60L);
+        }else {
+            token = String.valueOf(tokenObj);
+            System.err.println("已登录tokenCache:"+tokenCache+" :"+tokenObj);
+        }
+        String tokenCache1 = "userToken"+mobile1;
+        Object tokenObj1 = redisService.get(tokenCache1);
+        if(tokenObj1!=null) {
+            ResultActions resultActions1 = this.mockMvc.
+                    perform(MockMvcRequestBuilders.post(loginReqUrl + "/generalLogin")
+                            .param("phone",mobile1)
+                            .param("password","123456")
+                            .param("qcellcoreId","1")
+                    );
+            MvcResult mvcResult1 = resultActions1.andReturn();
+            logger.info("=====generalLogin mvcResult:" + mvcResult1.getResponse().getStatus());
+            String result1 = mvcResult1.getResponse().getContentAsString();
+            logger.info("=====generalLogin result :" + result1);
+            JSONObject jsonObject1 = JSONObject.fromObject(result1);
+            String  tokenJson1 =  jsonObject1.optString("data");
+            String parents1 =  JSONObject.fromObject(tokenJson1).optString("parents");
+            token1 =  JSONObject.fromObject(parents1).optString("token");
+            logger.info("=====generalLogin result token:" + token1);
+            redisService.set(tokenCache1,token1,24*60*60L);
+        }else {
+            token1 = String.valueOf(tokenObj1);
+            System.err.println("已登录tokenCache:"+tokenCache1+" :"+tokenObj1);
+        }
+        String tokenCache2 = "userToken"+mobile2;
+        Object tokenObj2 = redisService.get(tokenCache2);
+        if(tokenObj2!=null) {
+            ResultActions resultActions2 = this.mockMvc.
+                    perform(MockMvcRequestBuilders.post(loginReqUrl + "/generalLogin")
+                            .param("phone",mobile2)
+                            .param("password","123456")
+                            .param("qcellcoreId","1")
+                    );
+            MvcResult mvcResult2 = resultActions2.andReturn();
+            logger.info("=====generalLogin mvcResult:" + mvcResult2.getResponse().getStatus());
+            String result2 = mvcResult2.getResponse().getContentAsString();
+            logger.info("=====generalLogin result :" + result2);
+            JSONObject jsonObject2 = JSONObject.fromObject(result2);
+            String  tokenJson2 =  jsonObject2.optString("data");
+            String parents2 =  JSONObject.fromObject(tokenJson2).optString("parents");
+            token2 =  JSONObject.fromObject(parents2).optString("token");
+            logger.info("=====generalLogin result token:" + token2);
+            redisService.set(tokenCache2,token2,24*60*60L);
+        }else {
+            token2 = String.valueOf(tokenObj2);
+            System.err.println("已登录tokenCache:"+tokenCache2+" :"+tokenObj2);
+        }
+        String tokenCache3 = "userToken"+mobile3;
+        Object tokenObj3 = redisService.get(tokenCache3);
+        if(tokenObj3!=null) {
+            ResultActions resultActions3 = this.mockMvc.
+                    perform(MockMvcRequestBuilders.post(loginReqUrl + "/generalLogin")
+                            .param("phone",mobile3)
+                            .param("password","123456")
+                            .param("qcellcoreId","1")
+                    );
+            MvcResult mvcResult3 = resultActions3.andReturn();
+            logger.info("=====generalLogin mvcResult:" + mvcResult3.getResponse().getStatus());
+            String result3 = mvcResult3.getResponse().getContentAsString();
+            logger.info("=====generalLogin result :" + result3);
+            JSONObject jsonObject3 = JSONObject.fromObject(result3);
+            String  tokenJson3 =  jsonObject3.optString("data");
+            String parents3 =  JSONObject.fromObject(tokenJson3).optString("parents");
+            token3 =  JSONObject.fromObject(parents3).optString("token");
+            logger.info("=====generalLogin result token:" + token3);
+                redisService.set(tokenCache3,token3,24*60*60L);
+            }else {
+            token3 = String.valueOf(tokenObj3);
+            System.err.println("已登录tokenCache:"+tokenCache3+" :"+tokenObj3);
+        }
+        String tokenCache4 = "userToken"+mobile4;
+        Object tokenObj4 = redisService.get(tokenCache4);
+        if(tokenObj4!=null) {
+            ResultActions resultActions4 = this.mockMvc.
+                    perform(MockMvcRequestBuilders.post(loginReqUrl + "/generalLogin")
+                            .param("phone",mobile4)
+                            .param("password","123456")
+                            .param("qcellcoreId","1")
+                    );
+            MvcResult mvcResult4 = resultActions4.andReturn();
+            logger.info("=====generalLogin mvcResult:" + mvcResult4.getResponse().getStatus());
+            String result4 = mvcResult4.getResponse().getContentAsString();
+            logger.info("=====generalLogin result :" + result4);
+            JSONObject jsonObject4 = JSONObject.fromObject(result4);
+            String  tokenJson4 =  jsonObject4.optString("data");
+            String parents4 =  JSONObject.fromObject(tokenJson4).optString("parents");
+            token4 =  JSONObject.fromObject(parents4).optString("token");
+            logger.info("=====generalLogin result token:" + token4);
+            redisService.set(tokenCache4,token4,24*60*60L);
+        }else {
+            token4 = String.valueOf(tokenObj4);
+            System.err.println("已登录tokenCache:"+tokenCache4+" :"+tokenObj4);
+        }
+        String tokenCache5 = "userToken"+mobile5;
+        Object tokenObj5 = redisService.get(tokenCache5);
+        if(tokenObj5!=null) {
+            ResultActions resultActions5 = this.mockMvc.
+                    perform(MockMvcRequestBuilders.post(loginReqUrl + "/generalLogin")
+                            .param("phone",mobile5)
+                            .param("password","123456")
+                            .param("qcellcoreId","1")
+                    );
+            MvcResult mvcResult5 = resultActions5.andReturn();
+            logger.info("=====generalLogin mvcResult:" + mvcResult5.getResponse().getStatus());
+            String result5 = mvcResult5.getResponse().getContentAsString();
+            logger.info("=====generalLogin result :" + result5);
+            JSONObject jsonObject5 = JSONObject.fromObject(result5);
+            String  tokenJson5 =  jsonObject5.optString("data");
+            String parents5 =  JSONObject.fromObject(tokenJson5).optString("parents");
+            token5 =  JSONObject.fromObject(parents5).optString("token");
+            logger.info("=====generalLogin result token:" + token5);
+            redisService.set(tokenCache5,token5,24*60*60L);
+        }else {
+            token5 = String.valueOf(tokenObj5);
+            System.err.println("已登录tokenCache:"+tokenCache5+" :"+tokenObj5);
+        }
+        String tokenCache6 = "userToken"+mobile6;
+        Object tokenObj6 = redisService.get(tokenCache6);
+        if(tokenObj5!=null) {
+            ResultActions resultActions6 = this.mockMvc.
+                    perform(MockMvcRequestBuilders.post(loginReqUrl + "/generalLogin")
+                            .param("phone",mobile6)
+                            .param("password","123456")
+                            .param("qcellcoreId","1")
+                    );
+            MvcResult mvcResult6 = resultActions6.andReturn();
+            logger.info("=====generalLogin mvcResult:" + mvcResult6.getResponse().getStatus());
+            String result6 = mvcResult6.getResponse().getContentAsString();
+            logger.info("=====generalLogin result :" + result6);
+            JSONObject jsonObject6 = JSONObject.fromObject(result6);
+            String  tokenJson6 =  jsonObject6.optString("data");
+            String parents6 =  JSONObject.fromObject(tokenJson6).optString("parents");
+            token6 =  JSONObject.fromObject(parents6).optString("token");
+            logger.info("=====generalLogin result token:" + token6);
+        }else {
+            token6 = String.valueOf(tokenObj6);
+            System.err.println("已登录tokenCache:"+tokenCache6+" :"+tokenObj6);
+        }
     }
 
     @After

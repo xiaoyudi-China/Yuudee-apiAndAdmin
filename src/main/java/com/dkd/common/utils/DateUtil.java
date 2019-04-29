@@ -925,23 +925,4 @@ public class DateUtil {
 		}
 		return dateList;
 	}
-
-	/**
-	 * DateFormat df = DateFormat.getDateInstance(DateFormat.FULL,
-	 * Locale.CHINA); String s = df.format(new Date()); System.out.println(s);
-	 * Full Thursday, July 29, 2010 2010年7月29日 星期四 long July 29, 2010 2010年7月29日
-	 * medium Jul 29, 2010 2010-7-29 short 7/29/10 10-7-29
-	 *
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		/*Date date = DateUtil.getDate("2018-10-15", "yyyy-MM-dd");
-		Date date2 = DateUtil.getDate("2018-11-05", "yyyy-MM-dd");
-		List<Date> list = DateUtil.findDates(date, date2);
-		for (Date date1 : list) {
-			System.out.println(DateUtil.getDate(date1));
-		}*/
-		System.out.println(DateUtil.getThreeMonthMornTimeLong(new Date()));
-	}
-
 }

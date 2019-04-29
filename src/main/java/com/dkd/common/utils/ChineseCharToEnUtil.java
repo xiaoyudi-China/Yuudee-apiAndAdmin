@@ -84,10 +84,4 @@ public final class ChineseCharToEnUtil {
         }
         return str;
     }
-
-    public static void main(String[] args) {
-        ChineseCharToEnUtil cte = new ChineseCharToEnUtil();
-        System.out.println("获取拼音首字母："+ cte.getAllFirstLetter("北京()9Oo*IO欢迎您"));
-    }
-
 }

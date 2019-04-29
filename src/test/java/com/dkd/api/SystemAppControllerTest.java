@@ -1,6 +1,7 @@
 package com.dkd.api;
 
 import com.dkd.XiaoyudiApplication;
+import com.dkd.common.utils.RedisService;
 import net.sf.json.JSONObject;
 import org.junit.After;
 import org.junit.Before;
@@ -32,7 +33,8 @@ public class SystemAppControllerTest {
     @Autowired
     private SystemAppController systemAppController;
     private String reqUrl = "/app/system";
-
+    @Autowired
+    private RedisService redisService;
 
     private String loginReqUrl = "/app/user";
 
@@ -43,21 +45,29 @@ public class SystemAppControllerTest {
     @Before
     public void setUp() throws Exception {
         this.mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
-        ResultActions resultActions = this.mockMvc.
-                perform(MockMvcRequestBuilders.post(loginReqUrl + "/generalLogin")
-                        .param("phone",mobile)
-                        .param("password","123456")
-                        .param("qcellcoreId","1")
-                );
-        MvcResult mvcResult = resultActions.andReturn();
-        logger.info("=====generalLogin mvcResult:" + mvcResult.getResponse().getStatus());
-        String result = mvcResult.getResponse().getContentAsString();
-        logger.info("=====generalLogin result :" + result);
-        JSONObject jsonObject = JSONObject.fromObject(result);
-        String  tokenJson =  jsonObject.optString("data");
-        String parents =  JSONObject.fromObject(tokenJson).optString("parents");
-        token =  JSONObject.fromObject(parents).optString("token");
-        logger.info("=====generalLogin result token:" + token);
+        String tokenCacheKey = "userToken"+mobile;
+        Object tokenObj = redisService.get(tokenCacheKey);
+        if(tokenObj==null) {
+            ResultActions resultActionsToken = this.mockMvc.
+                    perform(MockMvcRequestBuilders.post(loginReqUrl + "/generalLogin")
+                            .param("phone", mobile)
+                            .param("password", "123456")
+                            .param("qcellcoreId", "1")
+                    );
+            MvcResult mvcResultToken = resultActionsToken.andReturn();
+            logger.info("=====generalLogin mvcResult:" + mvcResultToken.getResponse().getStatus());
+            String resultToken = mvcResultToken.getResponse().getContentAsString();
+            logger.info("=====generalLogin result :" + resultToken);
+            JSONObject jsonObject = JSONObject.fromObject(resultToken);
+            String tokenJson = jsonObject.optString("data");
+            String parents = JSONObject.fromObject(tokenJson).optString("parents");
+            token = JSONObject.fromObject(parents).optString("token");
+            redisService.set(tokenCacheKey,token,24*60*60L);
+            logger.info("=====generalLogin result token:" + token);
+        }else {
+            System.err.println("已登录"+tokenCacheKey+":"+tokenObj);
+            token = String.valueOf(tokenObj);
+        }
     }
 
     @After
