@@ -33,6 +33,7 @@ public class TrainTestControllerTest {
     private TrainTestController trainTestController;
     private String reqUrl = "/app/trainTest";
     private String loginReqUrl = "/app/user";
+
     @Autowired
     private WebApplicationContext webApplicationContext;
     private  String token;
