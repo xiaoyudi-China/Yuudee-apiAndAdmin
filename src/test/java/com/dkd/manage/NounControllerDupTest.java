@@ -46,7 +46,7 @@ import static org.powermock.api.mockito.PowerMockito.whenNew;
 @PrepareForTest(value = {NounController.class, IsObjectNullUtils.class,FileUtils.class})
 public class NounControllerDupTest {
 
-    private final Logger logger = LoggerFactory.getLogger(NounControllerTest.class);
+    private final Logger logger = LoggerFactory.getLogger(NounControllerDupTest.class);
 
     private MockMvc mockMvc;
     @InjectMocks

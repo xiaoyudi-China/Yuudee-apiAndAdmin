@@ -39,7 +39,7 @@ import static org.mockito.Mockito.when;
 @PowerMockRunnerDelegate(SpringRunner.class)
 @PrepareForTest(value = {MyMD5Util.class,XydManageAccount.class})
 public class IndexControllerDupTest {
-    private final Logger logger = LoggerFactory.getLogger(IndexControllerTest.class);
+    private final Logger logger = LoggerFactory.getLogger(IndexControllerDupTest.class);
     private MockMvc mockMvc;
     @InjectMocks
     private IndexController indexController;
