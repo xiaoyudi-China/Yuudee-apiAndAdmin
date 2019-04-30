@@ -196,7 +196,7 @@ public class TrainTestControllerTest {
         }
         String tokenCache6 = "userToken"+mobile6;
         Object tokenObj6 = redisService.get(tokenCache6);
-        if(tokenObj5==null) {
+        if(tokenObj6==null) {
             ResultActions resultActions6 = this.mockMvc.
                     perform(MockMvcRequestBuilders.post(loginReqUrl + "/generalLogin")
                             .param("phone",mobile6)
@@ -367,6 +367,32 @@ public class TrainTestControllerTest {
         System.out.println("=====addFortifier7 mvcResult:" + mvcResult.getResponse().getStatus());
         String result = mvcResult.getResponse().getContentAsString();
         System.out.println("=====addFortifier7 result:" + result);
+    }
+
+    @Test
+    public void addFortifier8() throws Exception{
+        ResultActions resultActions = this.mockMvc.
+                perform(MockMvcRequestBuilders.request(HttpMethod.POST,reqUrl+"/addFortifier")
+                        .param("token",token)
+                        .param("state","1")
+                );
+        MvcResult mvcResult = resultActions.andReturn();
+        System.out.println("=====addFortifier8 mvcResult:" + mvcResult.getResponse().getStatus());
+        String result = mvcResult.getResponse().getContentAsString();
+        System.out.println("=====addFortifier8 result:" + result);
+    }
+
+    @Test
+    public void addFortifier9() throws Exception{
+        ResultActions resultActions = this.mockMvc.
+                perform(MockMvcRequestBuilders.request(HttpMethod.POST,reqUrl+"/addFortifier")
+                        .param("token",token)
+                        .param("module","3")
+                );
+        MvcResult mvcResult = resultActions.andReturn();
+        System.out.println("=====addFortifier9 mvcResult:" + mvcResult.getResponse().getStatus());
+        String result = mvcResult.getResponse().getContentAsString();
+        System.out.println("=====addFortifier9 result:" + result);
     }
 
     @Test
