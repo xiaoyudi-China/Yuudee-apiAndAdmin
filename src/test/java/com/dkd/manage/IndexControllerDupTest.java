@@ -1,7 +1,6 @@
 package com.dkd.manage;
 
 import com.dkd.common.config.Global;
-import com.dkd.common.utils.IsObjectNullUtils;
 import com.dkd.common.utils.MyMD5Util;
 import com.dkd.model.XydManageAccount;
 import com.dkd.service.impl.XydManageAccountServiceImpl;
@@ -37,7 +36,7 @@ import static org.mockito.Mockito.when;
 
 @RunWith(PowerMockRunner.class)
 @PowerMockRunnerDelegate(SpringRunner.class)
-@PrepareForTest(value = {MyMD5Util.class,XydManageAccount.class, IsObjectNullUtils.class})
+@PrepareForTest(value = {MyMD5Util.class,XydManageAccount.class})
 public class IndexControllerDupTest {
     private final Logger logger = LoggerFactory.getLogger(IndexControllerDupTest.class);
     private MockMvc mockMvc;
@@ -75,45 +74,13 @@ public class IndexControllerDupTest {
         String result = mvcResult.getResponse().getContentAsString();
         System.out.println("=====login result:" + result);
 
-        PowerMockito.mockStatic(IsObjectNullUtils.class);
-        when(IsObjectNullUtils.is("ceshi")).thenReturn(true);
-        when(IsObjectNullUtils.is("123456")).thenReturn(false);
-        resultActions = this.mockMvc.
+        ResultActions resultActions1 = this.mockMvc.
                 perform(MockMvcRequestBuilders.request(HttpMethod.POST,reqUrl+"/login")
-                        .param("username","ceshi")
-                        .param("password","123456")
-                );
-        mvcResult = resultActions.andReturn();
-        System.out.println("=====login mvcResult:" + mvcResult.getResponse().getStatus());
-        result = mvcResult.getResponse().getContentAsString();
-        System.out.println("=====login result:" + result);
-
-        when(IsObjectNullUtils.is("ceshi")).thenReturn(false);
-        when(IsObjectNullUtils.is("123456")).thenReturn(true);
-        resultActions = this.mockMvc.
-                perform(MockMvcRequestBuilders.request(HttpMethod.POST,reqUrl+"/login")
-                        .param("username","ceshi")
-                        .param("password","123456")
-                );
-        mvcResult = resultActions.andReturn();
-        System.out.println("=====login mvcResult:" + mvcResult.getResponse().getStatus());
-        result = mvcResult.getResponse().getContentAsString();
-        System.out.println("=====login result:" + result);
-
-        XydManageAccount account = new XydManageAccount();
-        xydManageAccounts.add(account);
-        when(xydManageAccountService.selectByAccount("ceshi")).thenReturn(xydManageAccounts);
-        when(IsObjectNullUtils.is("ceshi")).thenReturn(false);
-        when(IsObjectNullUtils.is(xydManageAccounts)).thenReturn(false);
-        resultActions = this.mockMvc.
-                perform(MockMvcRequestBuilders.request(HttpMethod.POST,reqUrl+"/login")
-                        .param("username","ceshi")
-                        .param("password","123456")
-                );
-        mvcResult = resultActions.andReturn();
-        System.out.println("=====login mvcResult:" + mvcResult.getResponse().getStatus());
-        result = mvcResult.getResponse().getContentAsString();
-        System.out.println("=====login result:" + result);
+                        .param("password","123456"));
+        MvcResult mvcResult1 = resultActions1.andReturn();
+        System.out.println("=====login mvcResult:" + mvcResult1.getResponse().getStatus());
+        String result1 = mvcResult1.getResponse().getContentAsString();
+        System.out.println("=====login result:" + result1);
     }
     @Test
     public void outlogin() throws Exception{
