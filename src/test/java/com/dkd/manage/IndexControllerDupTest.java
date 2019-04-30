@@ -6,6 +6,7 @@ import com.dkd.common.utils.MyMD5Util;
 import com.dkd.model.XydManageAccount;
 import com.dkd.model.XydManageRole;
 import com.dkd.model.XydUserRole;
+import com.dkd.service.XydManageAccessService;
 import com.dkd.service.XydManageRoleService;
 import com.dkd.service.impl.XydManageAccountServiceImpl;
 import org.junit.Before;
@@ -55,6 +56,8 @@ public class IndexControllerDupTest {
     XydManageAccountServiceImpl xydManageAccountService;
     @Mock
     XydManageRoleService manageRoleService;
+    @Mock
+    XydManageAccessService xydManageAccessService;
     @Mock
     Global global;
 
@@ -194,6 +197,7 @@ public class IndexControllerDupTest {
         when(xydManageRoles.get(anyInt())).thenReturn(xydManageRole);
         when(xydManageAccountService.selectByPrimaryKey(19)).thenReturn(xydManageAccount);
         when(IsObjectNullUtils.is(xydManageAccount)).thenReturn(false);
+        when(IsObjectNullUtils.is(null)).thenReturn(true);
         when(manageRoleService.selectByUserRoleList(xydUserRole)).thenReturn(xydManageRoles);
 
         when(IsObjectNullUtils.is(xydManageRoles)).thenReturn(false);
