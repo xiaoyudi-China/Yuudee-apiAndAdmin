@@ -1,6 +1,0 @@
-0:0:0:0:0:0:0:1 - - [19/Feb/2019:14:19:25 +0800] "GET /app/trainTest/getSystemStatistics?token=HRkBGDHbYDPKNCrMmXM/iw== HTTP/1.1" 200 510 2786
-0:0:0:0:0:0:0:1 - - [19/Feb/2019:16:10:12 +0800] "GET /app/trainTest/getSystemStatistics?token=gZcFlvS5KYYxB1uxDxfShQ== HTTP/1.1" 200 59 349
-0:0:0:0:0:0:0:1 - - [19/Feb/2019:16:10:13 +0800] "GET /favicon.ico HTTP/1.1" 200 946 35
-0:0:0:0:0:0:0:1 - - [19/Feb/2019:16:10:15 +0800] "GET /app/trainTest/getSystemStatistics?token=gZcFlvS5KYYxB1uxDxfShQ== HTTP/1.1" 200 59 9
-0:0:0:0:0:0:0:1 - - [19/Feb/2019:16:10:15 +0800] "GET /favicon.ico HTTP/1.1" 200 946 14
-0:0:0:0:0:0:0:1 - - [19/Feb/2019:16:10:59 +0800] "GET /app/trainTest/getSystemStatistics?token=64IHV4RYeku4sMWVjHxnA== HTTP/1.1" 200 782 1834
