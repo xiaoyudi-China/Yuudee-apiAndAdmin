@@ -1,0 +1,1 @@
+package com.dkd.service;import org.junit.Test;import static org.junit.Assert.*;public class XydPcidMustServiceTest {    @Test    public void deleteByPrimaryKey() {    }    @Test    public void selectByTypeAndOutLis() {    }}
