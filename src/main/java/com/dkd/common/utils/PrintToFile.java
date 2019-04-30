@@ -13,7 +13,7 @@ public class PrintToFile {
      */
     public static  boolean print(String code) {
         try {
-            String filePath = "/usr/local/tomcat/tomcat8080/logs/mxg.log";
+            String filePath = System.getProperty("user.dir") + "/src/main/resources/mxg.log";
             File tofile = new File(filePath);
             FileWriter fw = new FileWriter(tofile, true);
             BufferedWriter bw = new BufferedWriter(fw);
@@ -35,7 +35,7 @@ public class PrintToFile {
      */
     public static  boolean printPlay(String code) {
         try {
-            String filePath = "/usr/local/tomcat/tomcat8080/logs/mxg.log";
+            String filePath = System.getProperty("user.dir") + "/src/main/resources/mxg.log";
             File tofile = new File(filePath);
             FileWriter fw = new FileWriter(tofile, true);
             BufferedWriter bw = new BufferedWriter(fw);
