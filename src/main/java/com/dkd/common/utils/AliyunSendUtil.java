@@ -24,8 +24,8 @@ public class  AliyunSendUtil {
     static final String domain = "dysmsapi.aliyuncs.com";
 
     // TODO 此处需要替换成开发者自己的AK(在阿里云访问控制台寻找)
-    static final String accessKeyId = "LTAIEwm2LXa64cdB";
-    static final String accessKeySecret = "6VW6F1l7GcZiYvrWWbnNzxdiEwiDyW";
+    static final String accessKeyId = "***********";
+    static final String accessKeySecret = "*************";
     static final String bankUrl = "https://ccdcapi.alipay.com/validateAndCacheCardInfo.json?_input_charset=utf-8&cardNo=";
     static final String getBankUrl = "&cardBinCheck=true";
 
