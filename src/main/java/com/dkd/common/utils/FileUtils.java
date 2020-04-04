@@ -22,8 +22,8 @@ public class FileUtils {
     private static String endpoint = "http://oss-cn-beijing.aliyuncs.com";
 
     private static String endpoint1 = "http://yuudee.oss-cn-beijing.aliyuncs.com";
-    private static String accessKeyId = "LTAIEwm2LXa64cdB";
-    private static String accessKeySecret = "6VW6F1l7GcZiYvrWWbnNzxdiEwiDyW";
+    private static String accessKeyId = "**************";
+    private static String accessKeySecret = "**********";
     private static String bucketName = "yuudee";
 
     /**
