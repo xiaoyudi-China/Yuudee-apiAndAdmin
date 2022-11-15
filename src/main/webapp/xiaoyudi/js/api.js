@@ -1,5 +1,13 @@
-// var urls = 'http://47.95.244.242/XiaoyudiApplication/app/question'
-var urls = 'http://api.xiaoyudi.org/app/question'
+var protocol = window.location.protocol
+// 测试请求地址
+// var urls = protocol + '//47.95.244.242/XiaoyudiApplication/app/question'
+// var urls2 = protocol + '//47.95.244.242/XiaoyudiApplication/app/parents/toAssess'
+// 本地请求地址
+// var urls = protocol + '//172.168.20.60:8080/app/question'
+// var urls2 = protocol + '//172.168.20.60:8080/app/parents/toAssess'
+// 生产请求地址
+var urls = protocol + '//api.xiaoyudi.org/app/question'
+var urls2 = protocol + '//api.xiaoyudi.org/app/parents/toAssess'
 var cookie = {
       set:function(key,val,time){//设置cookie方法
           var date=new Date(); //获取当前时间
@@ -37,7 +45,11 @@ function getUrlParam(name) {
 if(getUrlParam('token')){
 	cookie.set('token',getUrlParam('token'))
 }
-// cookie.set('token','6h6MMdVEcW6NHNr0S/jnA==')
+if(getUrlParam('userId')){
+	cookie.set('userId',getUrlParam('userId'))
+}
+// cookie.set('token','uTXGg35i4oGZxf3iat7kig')
+// cookie.set('userId','5494')
 
 function get(url,params) {
     params = params || {}
@@ -72,6 +84,28 @@ function post(url,params) {
                 resolve(response)
             },
             error:function (err) {
+                reject(err)
+            }
+        })
+    });
+}
+function toAssess(params) {
+    params = params || {}
+    params.token = cookie.get('token')+'=='
+    params.userId = cookie.get('userId')
+    return new Promise(function(resolve, reject) {
+        $.ajax({
+            url:urls2,
+            type:'GET',
+            // headers:{contentType:'application/json'},
+            dataType:'json',
+            data:params,
+            success:function (response) {
+                console.log(response)
+                resolve(response)
+            },
+            error:function (err) {
+                console.log(err)
                 reject(err)
             }
         })

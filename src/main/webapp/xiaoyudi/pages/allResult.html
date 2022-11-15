@@ -6,14 +6,25 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <script type="text/javascript" src="../js/rem.js"></script>
     <link rel="stylesheet" href="../css/currency.css">
+    <script src="../js/jquery-1.11.2.min.js"></script>
+    <script src="../js/jquery.tmpl.min.js"></script>
+    <script type="text/javascript" src="../js/centent.js"></script>
+    <script src="../js/api.js?v=20190404"></script>
+    <script src="../js/echarts.min.js"></script>
+    <script src="../js/moment.js"></script>
     <style>
         body {
-            position: relative;
-            padding-top: .65rem;
+            /*position: fixed;*/
+            width: 100%;
+            /*top: 0;*/
+            /*bottom: 0;*/
+            padding-top: .85rem;
             box-sizing: border-box;
             /*height: 100%;*/
             min-height: 100%;
-            background-size: cover;
+            overflow: auto;
+            background: url(../img/assessment.png);
+            background-size: 107.3%;
         }
         html{
             height: 100%;
@@ -188,10 +199,21 @@
             height:100%;
             z-index: -1;
         }
+        #copyWriter{
+            margin-top: 0.20rem;
+            line-height: 0.42rem;
+        }
+        .home_button {
+            width: .86rem;
+            position: absolute;
+            right: .36rem;
+            top: .3rem;
+        }
     </style>
 </head>
 <body>
-<p class="title">PCDI问卷报告</p>
+<img src="../img/home_button.png" class="home_button" alt="">
+<p class="title">语言评估问卷报告</p>
 <table border="0" cellspacing="0" cellpadding="0" id="user">
 
 </table>
@@ -214,13 +236,7 @@
 </div>
 <!--background: url("") no-repeat;-->
 
-<img src="../img/assessment.png" class="bottomStrip" alt="">
-<script src="../js/jquery-1.11.2.min.js"></script>
-<script src="../js/jquery.tmpl.min.js"></script>
-<script type="text/javascript" src="../js/centent.js"></script>
-<script src="../js/api.js"></script>
-<script src="../js/echarts.min.js"></script>
-<script src="../js/moment.js"></script>
+<img src="" class="bottomStrip" alt="">
 <script id="userI" type="text/x-jquery-tmpl">
     <tbody>
         <tr>
@@ -250,6 +266,7 @@
         </div>
         <div class="text l">一共掌握了${resultData.count}个常用词汇，处于${resultData.percent}%的百分等级</div>
     </div>
+    <div id="copyWriter"></div>
     <div class="division">
         <span></span>
         <div class="lineL"></div>
@@ -272,18 +289,29 @@
 </script>
 <script>
     $(function () {
-        $('img').click(function () {
-            window.history.back(-1);
-        })
         $('.l1').click(function () {
-            window.location.href = 'pcdiRequired.html?status=1&id=' + data.resultData.id
+            window.location.href = 'pcdiRequired.html?id=' + data.resultData.id
+        })
+        $('.home_button').click(function () {
+            if (window.webkit) {
+                window.webkit.messageHandlers.goBack.postMessage(null);
+            } else {
+                android.goBackfour();
+            }
+
         })
         $('.l2').click(function () {
-            if(window.webkit){
-                window.webkit.messageHandlers.goBack.postMessage(null);
-            }else{
-                android.goBackfive();
-            }
+            toAssess({pcdiState: 6}).then(
+                function (res) {
+                    if (res.code == 200) {
+                        $('#Hcore').hide()
+                        $('.home_button').show()
+                    }
+                },
+                function (err) {
+                    console.log(err)
+                }
+            )
         })
         function getUrlParam(name) {
             var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
@@ -291,13 +319,25 @@
             if (r != null) return unescape(r[2]);
             return null; //返回参数值
         }
-
-        var status = getUrlParam('status');
-        if(status == 'core'){
-            $('.l1').hide();
-            $('.Submission.l').css('margin','.34rem auto')
-            $('.Submission.l').removeClass('l')
-        }
+        // 如果答题次数大于1次就隐藏重新评估按钮
+        toAssess().then(
+            function (res) {
+                if (res.code == 200) {
+                    if (Number(res.data.pcdiCount) > 1) {
+                        $('.l1').hide();
+                        $('.Submission.l').css('margin', '.34rem auto')
+                        $('.Submission.l').removeClass('l')
+                    }
+                    if (res.data.pcdiState === '6') {
+                        $('#Hcore').hide()
+                        $('.home_button').show()
+                    }
+                }
+            },
+            function (err) {
+                console.log(err)
+            }
+        )
         var  option = {
             tooltip : {
                 trigger: 'item',
@@ -359,15 +399,9 @@
         }
         get('/getReportInfo',{type:2}).then(
             function (res) {
-                console.log(res)
                 if(res.code == 200){
                     data = res.data;
                     res.data.resultData.createTime = moment(res.data.resultData.createTime).format('YYYY年MM月DD日 HH:mm');
-                    if(res.data.resultData.anew != '1'){
-                        $('.l1').hide();
-                        $('.Submission.l').css('margin','.34rem auto')
-                        $('.Submission.l').removeClass('l')
-                    }
                     $('#user').empty();
                     // 将月转成 xYxM
                     var y = parseInt(res.data.monthAge / 12)
@@ -380,10 +414,9 @@
                     $('#vocabularyNumI').tmpl(res.data).appendTo('#vocabularyNum')
                     $('#title').empty();
                     $('#titleI').tmpl(res.data).appendTo('#title')
-
+                    $('#copyWriter').html(res.data.resultData.vocabulary)
                     option.series[0].data[0].value = 100 - parseInt(res.data.resultData.score);
                     option.series[0].data[1].value = parseInt(res.data.resultData.score);
-                    console.log(option)
                     var myChart = echarts.init(document.getElementById('charts'));
                     myChart.setOption(option);
                 }else{

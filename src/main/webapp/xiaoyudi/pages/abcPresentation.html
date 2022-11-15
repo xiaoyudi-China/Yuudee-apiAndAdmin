@@ -6,6 +6,12 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <script type="text/javascript" src="../js/rem.js"></script>
     <link rel="stylesheet" href="../css/currency.css">
+    <script src="../js/jquery-1.11.2.min.js"></script>
+    <script src="../js/jquery.tmpl.min.js"></script>
+    <script type="text/javascript" src="../js/centent.js"></script>
+    <script src="../js/api.js?v=20190404"></script>
+    <script src="../js/echarts.min.js"></script>
+    <script src="../js/moment.js"></script>
     <style>
         html,body{
             height: 100%;
@@ -13,7 +19,7 @@
         body {
             background: url("../img/assessment.png") no-repeat;
             position: relative;
-            padding-top: .65rem;
+            padding-top: .85rem;
             box-sizing: border-box;
             background-size: 100% 101%;
         }
@@ -151,12 +157,20 @@
             color: #14101e;
             font-size: .28rem;
         }
+
+        .home_button {
+            width: .86rem;
+            position: absolute;
+            right: .36rem;
+            top: .3rem;
+            display: none;
+        }
     </style>
 </head>
 <body>
-<p class="title">ABC问卷报告</p>
+<img src="../img/home_button.png" class="home_button" alt="">
+<p class="title">行为评估问卷报告</p>
 <table border="0" cellspacing="0" cellpadding="0" id="user">
-
 </table>
 <ul>
     <li id="vocabulary">
@@ -176,13 +190,7 @@
         确定
     </div>
 </div>
-<script src="../js/jquery-1.11.2.min.js"></script>
-<script src="../js/jquery.tmpl.min.js"></script>
-<script type="text/javascript" src="../js/centent.js"></script>
-<script src="../js/api.js"></script>
-<script src="../js/echarts.min.js"></script>
-<script src="../js/moment.js"></script>
-<script src="../js/vconsole.min.js"></script>
+<!--<script src="../js/vconsole.min.js"></script>-->
 <script id="userI" type="text/x-jquery-tmpl">
     <tbody>
         <tr>
@@ -203,7 +211,7 @@
 <script id="vocabularyI" type="text/x-jquery-tmpl">
     <div class="title">
             <div class="spot"></div>
-            本次ABC问卷测评得分
+            本次行为评估问卷测评得分
         </div>
         <div style="position: relative;height: 2.18rem">
             <div id="charts">
@@ -220,7 +228,7 @@
 </script>
 <script>
     $(function () {
-        window.vConsole = new window.VConsole({
+        /*window.vConsole = new window.VConsole({
             defaultPlugins: ['system', 'network', 'element', 'storage'], // 可以在此设定要默认加载的面板
             maxLogNumber: 1000,
             // disableLogScrolling: true,
@@ -230,21 +238,45 @@
             onClearLog: function() {
                 console.log('on clearLog');
             }
-        });
+        });*/
         var data;
-        $('img').click(function () {
-            window.history.back(-1);
-        })
         $('.l1').click(function () {
-            window.location.href = 'abcquestionnaire.html?status=1&id='+data.resultData.id
+            window.location.href = 'abcquestionnaire.html?id='+data.resultData.id
         })
-        $('.l2').click(function () {
-            if(window.webkit){
+        $('.home_button').click(function () {
+            if (window.webkit) {
                 window.webkit.messageHandlers.goBack.postMessage(null);
-            }else{
+            } else {
                 android.goBacksix();
             }
+
         })
+        $('.l2').click(function () {
+            toAssess({abcState: 3}).then(
+                function (res) {
+                    if (res.code == 200) {
+                        $('#Hcore').hide()
+                        $('.home_button').show()
+                    }
+                },
+                function (err) {
+                    console.log(err)
+                }
+            )
+        })
+        toAssess().then(
+            function (res) {
+                if (res.code == 200) {
+                    if (res.data.abcState === '3') {
+                        $('#Hcore').hide()
+                        $('.home_button').show()
+                    }
+                }
+            },
+            function (err) {
+                console.log(err)
+            }
+        )
         function getUrlParam(name) {
             var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
             var r = window.location.search.substr(1).match(reg);  //匹配目标参数
@@ -349,7 +381,6 @@
                     $('#titleI').tmpl(res.data).appendTo('#title')
                     option.series[0].data[0].value = 171 - parseInt(res.data.resultData.score);
                     option.series[0].data[1].value = parseInt(res.data.resultData.score);
-                    console.log(option)
                     var myChart = echarts.init(document.getElementById('charts'));
                     myChart.setOption(option);
                 } else {

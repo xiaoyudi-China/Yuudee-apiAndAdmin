@@ -3,30 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <script type="text/javascript" src="../js/rem.js"></script>
     <link rel="stylesheet" href="../css/currency.css">
+    <script src="../js/jquery-1.11.2.min.js"></script>
+    <script src="../js/jquery.tmpl.min.js"></script>
+    <script type="text/javascript" src="../js/centent.js"></script>
+    <script src="../js/api.js?v=20190404"></script>
+    <script src="../js/echarts.min.js"></script>
+    <script src="../js/moment.js"></script>
     <style>
         body {
             /*background: url("../img/assessment.png") no-repeat;*/
             position: relative;
-            padding-top: .65rem;
+            padding-top: .85rem;
             box-sizing: border-box;
             /*height: 100%;*/
             min-height: 100%;
             background-size: cover;
         }
-        html{
+
+        html {
             height: 100%;
         }
-        .bottomStrip{
-            position: absolute;
+
+        .bottomStrip {
+            position: fixed;
             /*left: 50%;*/
             top: 0;
+            bottom: 0;
             width: 100%;
-            height:100%;
+            height: 100%;
             z-index: -1;
         }
+
         body > .title {
             font-family: STYuanti-SC-Bold;
             font-size: .44rem;
@@ -208,17 +219,19 @@
             color: #14101e;
             font-size: .28rem;
         }
-        /*.bottomStrip{*/
-            /*position: absolute;*/
-            /*left: 0;*/
-            /*bottom: 0;*/
-            /*width: 100%;*/
-            /*height:.13rem;*/
-        /*}*/
+
+        .home_button {
+            width: .86rem;
+            position: absolute;
+            right: .36rem;
+            top: .3rem;
+            display: none;
+        }
     </style>
 </head>
 <body>
-<p class="title">PCDI问卷报告</p>
+<img src="../img/home_button.png" class="home_button" alt="">
+<p class="title">语言评估问卷报告</p>
 <table border="0" cellspacing="0" cellpadding="0" id="user">
 
 </table>
@@ -258,6 +271,7 @@
         </tr>
     </tbody>
 
+
 </script>
 <script id="vocabularyI" type="text/x-jquery-tmpl">
     <div class="title">
@@ -292,6 +306,7 @@
         <div class="lineL"></div>
         <div class="lineR"></div>
     </div>
+
 </script>
 <script id="titleI" type="text/x-jquery-tmpl">
     <div class="title" style="margin-bottom: .7rem">
@@ -307,29 +322,34 @@
         ${resultData.title}
     </p>
 
+
 </script>
-<script src="../js/jquery-1.11.2.min.js"></script>
-<script src="../js/jquery.tmpl.min.js"></script>
-<script type="text/javascript" src="../js/centent.js"></script>
-<script src="../js/api.js"></script>
-<script src="../js/echarts.min.js"></script>
-<script src="../js/moment.js"></script>
 <script>
     $(function () {
         var data;
-        $('img').click(function () {
-            window.history.back(-1);
-        })
         $('.l1').click(function () {
-            window.location.href = 'pcdiRequired.html?status=1&id=' + data.resultData.id
+            window.location.href = 'pcdiRequired.html?id=' + data.resultData.id
         })
-        $('.l2').click(function () {
-            if(window.webkit){
+        $('.home_button').click(function () {
+            if (window.webkit) {
                 window.webkit.messageHandlers.goBack.postMessage(null);
-            }else{
+            } else {
                 android.goBackfour();
             }
 
+        })
+        $('.l2').click(function () {
+            toAssess({pcdiState: 5}).then(
+                function (res) {
+                    if (res.code == 200) {
+                        $('#Hcore').hide()
+                        $('.home_button').show()
+                    }
+                },
+                function (err) {
+                    console.log(err)
+                }
+            )
         })
         function getUrlParam(name) {
             var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
@@ -337,13 +357,25 @@
             if (r != null) return unescape(r[2]);
             return null; //返回参数值
         }
-        // console.log(1)
-        var status = getUrlParam('status');
-        if(status == 'core'){
-            $('.l1').hide();
-            $('.Submission.l').css('margin','.34rem auto')
-            $('.Submission.l').removeClass('l')
-        }
+        // 如果答题次数大于1次就隐藏重新评估按钮
+        toAssess().then(
+            function (res) {
+                if (res.code == 200) {
+                    if (Number(res.data.pcdiCount) > 1) {
+                        $('.l1').hide();
+                        $('.Submission.l').css('margin', '.34rem auto')
+                        $('.Submission.l').removeClass('l')
+                    }
+                    if (res.data.pcdiState === '5') {
+                        $('#Hcore').hide()
+                        $('.home_button').show()
+                    }
+                }
+            },
+            function (err) {
+                console.log(err)
+            }
+        )
         var option = {
             tooltip: {
                 trigger: 'item',
@@ -365,7 +397,7 @@
                     type: 'pie',
                     // selectedMode: false,
                     // clickable: false,
-                    silent:true,
+                    silent: true,
                     hoverAnimation: false,
                     radius: ['70%', '100%'],
                     avoidLabelOverlap: false,
@@ -405,20 +437,13 @@
         }
         get('/getReportInfo', {type: 1}).then(
             function (res) {
-                console.log(res)
-
                 if (res.code == 200) {
                     data = res.data;
                     res.data.resultData.createTime = moment(res.data.resultData.createTime).format('YYYY年MM月DD日 HH:mm');
-                    if (res.data.resultData.anew != '1') {
-                        $('.l1').hide();
-                        $('.Submission.l').css('margin', '.34rem auto')
-                        $('.Submission.l').removeClass('l')
-                    }
                     var resultData = res.data.resultData;
-                    res.data.allScore = resultData.nounScore+resultData.verbScore+resultData.adjectiveScore;
+                    res.data.allScore = resultData.nounScore + resultData.verbScore + resultData.adjectiveScore;
 
-                    res.data.Proportion = ((parseInt(res.data.resultData.score)/81)*100).toFixed(2);
+                    res.data.Proportion = ((parseInt(res.data.resultData.score) / 81) * 100).toFixed(2);
                     $('#user').empty();
                     // 将月转成 xYxM
                     var y = parseInt(res.data.monthAge / 12)
@@ -434,7 +459,7 @@
                     option.series[0].data[0].value = 100 - parseInt(res.data.resultData.score);
                     option.series[0].data[1].value = parseInt(res.data.resultData.score);
                     var myChart = echarts.init(document.getElementById('charts'));
-                    myChart.on('click',function (params) {
+                    myChart.on('click', function (params) {
                         console.log(params)
                     })
                     myChart.setOption(option);

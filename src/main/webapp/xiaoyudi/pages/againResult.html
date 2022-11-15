@@ -6,12 +6,14 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <script type="text/javascript" src="../js/rem.js"></script>
     <link rel="stylesheet" href="../css/currency.css">
+    <script src="../js/jquery-1.11.2.min.js"></script>
+    <script src="../js/echarts.min.js"></script>
     <style>
         body {
             background: url("../img/assessment.png") no-repeat;
             background-size: 100% 100%;
             position: relative;
-            padding-top: .65rem;
+            padding-top: .85rem;
             box-sizing: border-box;
         }
 
@@ -172,7 +174,7 @@
     </style>
 </head>
 <body>
-<p class="title">PCDI问卷报告</p>
+<p class="title">语言评估问卷报告</p>
 <table border="0" cellspacing="0" cellpadding="0">
     <tbody>
     <tr>
@@ -193,7 +195,7 @@
     <li>
         <div class="title">
             <div class="spot"></div>
-            本次ABC问卷测评得分
+            本次行为评估问卷测评得分
         </div>
         <div class="vocabularyNum clearfix">
             <div class="circular l">
@@ -231,8 +233,6 @@
 <div class="Submission">
     确定
 </div>
-<script src="../js/jquery-1.11.2.min.js"></script>
-<script src="../js/echarts.min.js"></script>
 <script>
     $(function () {
         $('img').click(function () {

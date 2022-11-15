@@ -10,17 +10,20 @@
         body {
             background: url("../img/assessment.png") no-repeat;
             position: relative;
-            padding-top: .65rem;
+            padding-top: .85rem;
             box-sizing: border-box;
         }
-
+        .title-content{
+            position: relative;
+        }
         .left_button {
-            position: fixed;
+            position: absolute;
             left: .35rem;
-            top: .35rem;
+            top: 50%;
             height: .865rem;
             /*width: .78rem;*/
             cursor: pointer;
+            transform: translate(0, -50%);
         }
 
         .title {
@@ -41,8 +44,10 @@
     </style>
 </head>
 <body>
-<img src="../img/left_button.png" class="left_button" alt="">
-<p class="title">ABC答题说明</p>
+<div class="title-content">
+    <img src="../img/left_button.png" class="left_button" alt="">
+    <p class="title">行为评估答题说明</p>
+</div>
 <p class="text">
     填表者必须是与儿童生活在一起（半年以上）的父母或是与儿童生活了3－6周的老师来填写,本问卷评估的是儿童目前的症状程度。总计57题，依据儿童的每种症状程度打分，没有该症状记0分；轻微记1分；明显记2分；严重记3分。
 <script src="../js/jquery-1.11.2.min.js"></script>

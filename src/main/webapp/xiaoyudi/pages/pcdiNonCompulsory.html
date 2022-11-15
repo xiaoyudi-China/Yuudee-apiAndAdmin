@@ -6,6 +6,10 @@
     <title>Title</title>
     <script type="text/javascript" src="../js/rem.js"></script>
     <link rel="stylesheet" href="../css/currency.css">
+    <script src="../js/jquery-1.11.2.min.js"></script>
+    <script src="../js/jquery.tmpl.min.js"></script>
+    <script type="text/javascript" src="../js/centent.js"></script>
+    <script src="../js/api.js?v=20190404"></script>
     <style>
         body {
             background: url("../img/questionnaire.png") no-repeat;
@@ -234,7 +238,7 @@
 
         .dialog1 .msg1 {
             width: 5.51rem;
-            margin: .85rem auto .58rem auto;
+            margin: .85rem auto .08rem auto;
             font-size: .28rem;
             color: #14101e;
             line-height: .4rem;
@@ -265,18 +269,66 @@
             z-index: 99;
             display: none;
         }
+
+
+        .note {
+            display: none;
+            background: url("../img/assessment.png") no-repeat;
+            width: 100%;
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            padding-top: .85rem;
+            box-sizing: border-box;
+            z-index: 10;
+        }
+        .note .title-content{
+            position: relative;
+        }
+        .note .left_button {
+            position: absolute;
+            left: .35rem;
+            top: 50%;
+            height: .865rem;
+            /*width: .78rem;*/
+            cursor: pointer;
+            transform: translate(0, -50%);
+        }
+
+        .note .title {
+            font-family: STYuanti-SC-Bold;
+            font-size: .44rem;
+            color: #a36033;
+            margin: 0 auto .9rem auto;
+            text-align: center;
+        }
+
+        .note .text {
+            margin: 0 .5rem;
+            color: #14101e;
+            text-indent: .88rem;
+            font-size: .28rem;
+            line-height: .56rem;
+        }
     </style>
 </head>
 <body>
+<div id="noteContent" class="note">
+    <div class="title-content">
+        <img id="backQuestion" src="../img/left_button.png" class="left_button" alt="">
+        <p class="title">语言评估答题说明</p>
+    </div>
+    <p class="text">这是一份了解幼儿汉语言词汇和沟通能力的量 表。如果您的孩子还不会说该词或者只是重复别人，请填“不会说”（选择第一个圆圈）；如果您的孩子会说该词而不是马上重复别人说过的词，请填“会说”（可选择第二个圆圈）。假如您的孩子对该词的发音不准（例如：火车说成“火些”）或他的说法有所不同（例一：葡萄说成“萄”；例二：老鼠说成“耗子”），仍算做会说。当遇到“面/面条”这种中间划有“/”的词汇时，对会说“/”两侧中的一个词即为“会说”。这个词表是用于不同年龄的孩子，完全有可能您的孩子现在只知道这个词表中较少的词，甚至根本不知道，也属于正常范围，请不要为孩子究竟知道其中多少个字词而担心。</p>
+</div>
 <div class="header">
-    <p class="title">PCDI选填问卷</p>
-    <p class="msg">汉语沟通发展量表：词汇及句子(16以上月龄)</p>
+    <p class="title">语言评估选填问卷</p>
+    <p class="msg">汉语沟通发展量表：词汇及句子</p>
     <img src="../img/home_button.png" class="home_button" alt="">
 </div>
 <div class="centent">
     <div class="top clearfix">
         <span class="l">选做部分</span>
-        <a href="answerNote.html" class="r"><span>查看答题说明<img class="r" src="../img/button_right.png" alt=""></span></a>
+        <p id="note" class="r"><span>查看答题说明<img class="r" src="../img/button_right.png" alt=""></span></p>
     </div>
     <div id="topicList">
 
@@ -289,37 +341,17 @@
 <div class="dialog1">
     <!--<img src="../img/close.png" alt="">-->
     <p class="msg1">
-        您尚未填写完问卷评估，您确定要退出吗？
+        如您不想继续填写选做部分,请点击左侧“提交必填”按钮,您将获得必填部分报告。如您想继续填写选填部分,请点击“继续填写”。
     </p>
     <div class="button clearfix">
+        <div class="Submission l l4">
+            提交必填
+        </div>
         <div class="Submission l l3">
             继续填写
         </div>
-        <div class="Submission l l4">
-            确定退出
-        </div>
     </div>
 </div>
-<div class="dialog">
-    <!--<img src="../img/close.png" alt="">-->
-    <p class="Htitle">您已经完成了PCDI必做部分问卷</p>
-    <p class="msg1">
-        如您愿意全部完成必做和选做部分，将可以获得幼童汉语言发展水平的完整评估。仅完成必做部分不会影响小雨滴2训练的使用，但将无法获取完整评估打分。
-        接下来的选做部分将花费您10-15分钟时间。
-    </p>
-    <div class="button clearfix">
-        <div class="Submission l l1">
-            确定提交
-        </div>
-        <div class="Submission l l2">
-            继续评估
-        </div>
-    </div>
-</div>
-<script src="../js/jquery-1.11.2.min.js"></script>
-<script src="../js/jquery.tmpl.min.js"></script>
-<script type="text/javascript" src="../js/centent.js"></script>
-<script src="../js/api.js"></script>
 <script type="text/x-jquery-tmpl" id="list">
     <div style="position:relative;">
         <div class="title">
@@ -352,13 +384,27 @@
     $(function () {
         var answerJSON = {};
         var answerList = [];
+        var disabled = false
         function getUrlParam(name) {
             var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
             var r = window.location.search.substr(1).match(reg);  //匹配目标参数
             if (r != null) return unescape(r[2]); return null; //返回参数值
         }
         var mustId = getUrlParam('id')
+        var status
+        var count
         var pcdiNonId = getUrlParam('pcdiNonId')
+        toAssess().then(
+            function (res) {
+                if (res.code == 200) {
+                    status = Number(res.data.pcdiState)
+                    count = Number(res.data.pcdiCount)
+                }
+            },
+            function (err) {
+                console.log(err)
+            }
+        )
         // var score = 0;
         $('.home_button').click(function () {
             $('.mask').show();
@@ -369,18 +415,64 @@
             $('.dialog1').hide()
         })
         $('.l4').click(function () {
-            if(window.webkit){
-                window.webkit.messageHandlers.goBack.postMessage(null);
-            }else{
-                android.goBackthree();
-            }
-
-            // window.location.href = 'requiredPresentation.html'
+            bitian(function () {
+                console.log(1)
+                var  score = 0;
+                var data = JSON.parse(JSON.stringify(answerJSON))
+                for(var key in data){
+                    if(data[key].answer == '会说' && data[key].answerid == 2){
+                        score = score+=1
+                    }
+                    answerList.push(data[key])
+                }
+                var  params = {
+                    resultList:JSON.stringify(answerList),
+                    mustId:mustId,
+                    pcdiCache: true
+                }
+                post('/addPcdiOutResult', params).then(
+                    function (res) {
+                        if (res.code == 200) {
+                            toAssess({pcdiCount: count+=1, pcdiState:3}).then(
+                                function (res) {
+                                    if (res.code == 200) {
+                                        window.location.href = 'requiredPresentation.html'
+                                    } else {
+                                        tips(res.msg);
+                                    }
+                                },
+                                function (err) {
+                                    console.log(err)
+                                }
+                            )
+                        } else {
+                            tips(res.msg);
+                        }
+                    },
+                    function (err) {
+                        console.log(err)
+                    }
+                )
+            })
         })
-        $('.l1').click(function () {
-            $('.mask').hide();
-            $('.dialog').hide()
-        })
+        function bitian (callback) {
+            post('/addPcdiResult', JSON.parse(localStorage.getItem('datas'))).then(
+                function (res) {
+                    console.log(res)
+                    // res.code = 209token过期
+                    if (res.code == 200) {
+                        // 必填提交成功然后去缓存选填数据
+                        mustId = res.data.id
+                        callback()
+                    } else {
+                        tips(res.msg);
+                    }
+                },
+                function (err) {
+                    console.log(err)
+                }
+            )
+        }
         $('.l2').click(function () {
             $('.mask').hide();
             $('.dialog').hide()
@@ -409,100 +501,146 @@
         //获取题目列表
         get('/getPcdi/optional').then(
             function (res) {
-                console.log(res)
-                if (res.code == 200) {
-                    if(pcdiNonId != 'null'){
-                        get('/getPcdi/optionalAndResult',{answerId:pcdiNonId}).then(
-                            function (data) {
-                                console.log(data)
-                                if(data.code == 200){
-                                    data.data.forEach(function (items,i) {
-                                        res.data.forEach(function (item,n) {
-                                            item.pcidList.forEach(function (o,j) {
-                                                if(o.pcdiTypeId == items.topicType && items.topicId == o.id){
-                                                    item.pcidList[j].answerid = items.sign
-                                                    item.pcidList[j].answer = items.answer
-                                                }
-                                            })
-
-                                        })
-                                        answerJSON[items.topicType+'|'+items.topicId] = {
-                                            topicId: items.topicId,
-                                            topicType: items.topicType,
-                                            answer: items.answer,
-                                            answerid: items.sign,
-                                        }
-                                    })
-                                    $('#topicList').empty();
-                                    $('#list').tmpl(res.data).appendTo('#topicList')
-                                }else{
-                                    tips(data.msg);
-                                }
-                            },
-                            function (err) {
-                                console.log(err)
-                            }
-                        )
-                    }else{
+                if (res.code === 200) {
+                    if (status !== 3 && status !== 4) {
                         $('#topicList').empty();
                         $('#list').tmpl(res.data).appendTo('#topicList')
+                    } else if (status === 4) {
+                        getPcdi(res)
+                    } else {
+                        getCache(res)
                     }
-
                 } else {
                     tips(res.msg);
                 }
-
             },
             function (err) {
                 console.log(err)
             }
         );
-        //提交
-        $('#determine').click(function () {
-            var  score = 0;
-            if($('.selectColor').length<$('#topicList').find('li').length){
-
-                tips('您还没有题目未做完，请继续答题')
-                var isHasFindNoSelector=false
-                $('#topicList').find('li').each(function (index,item) {
-                    if(!isHasFindNoSelector&&$(item).find('.selectColor').length===0){
-                        console.log($(item).position().top)
-                        console.log($('.centent').scrollTop($(item).position().top-$(item).parent().position().top))
-                        isHasFindNoSelector=true
-                        // $(window).scroll($(item).offset().top);
-
-                    }
-                })
-                return
-            }
-            var data = JSON.parse(JSON.stringify(answerJSON))
-            for(var key in data){
-                if(data[key].answer == '会说' && data[key].answerid == 2){
-                    score = score+=1
-                }
-                answerList.push(data[key])
-            }
-            var  params = {
-                resultList:JSON.stringify(answerList),
-                count:score,
-                mustId:mustId
-            }
-            console.log(params)
-            post('/addPcdiOutResult', params).then(
-                function (res) {
-                    console.log(res)
-                    if (res.code == 200) {
-                        window.location.href = 'allResult.html'
-                    } else {
-                        tips(res.msg);
+        function  getPcdi(res) {
+            // 获取上次提交的数据
+            get('/getPcdi/optionalAndResult',{answerId:pcdiNonId}).then(
+                function (data) {
+                    if(data.code == 200){
+                        echo(res, data)
+                    }else{
+                        tips(data.msg);
                     }
                 },
                 function (err) {
                     console.log(err)
                 }
             )
+        }
+        // 赋值
+        function echo (res, data) {
+            if (data.data !== null) {
+                data.data.forEach(function (items,i) {
+                    res.data.forEach(function (item,n) {
+                        item.pcidList.forEach(function (o,j) {
+                            if(o.pcdiTypeId == items.topicType && items.topicId == o.id){
+                                item.pcidList[j].answerid = items.sign ? items.sign : items.answerid
+                                item.pcidList[j].answer = items.answer
+                            }
+                        })
+                    })
+                    answerJSON[items.topicType+'|'+items.topicId] = {
+                        topicId: items.topicId,
+                        topicType: items.topicType,
+                        answer: items.answer,
+                        answerid: items.answerid,
+                    }
+                })
+            }
+            $('#topicList').empty();
+            $('#list').tmpl(res.data).appendTo('#topicList')
+        }
+        function getCache(res) {
+            //    获取缓存7天的数据
+            get('/getCache', {type: 2}).then(
+                function (data) {
+                    if (data.code == 200) {
+                        echo(res, data)
+                    } else {
+                        tips(data.msg);
+                    }
+
+                },
+                function (err) {
+                    console.log(err)
+                }
+            )
+        }
+        //提交
+        $('#determine').click(function () {
+            if($('.selectColor').length<$('#topicList').find('li').length){
+                tips('您还没有题目未做完，请继续答题')
+                var isHasFindNoSelector=false
+                $('#topicList').find('li').each(function (index, item) {
+                    if (!isHasFindNoSelector && $(item).find('.selectColor').length === 0) {
+                        $('.centent').scrollTop($(item).position().top - $(item).parent().parent().position().top)
+                        isHasFindNoSelector = true
+                        $(window).scroll($(item).offset().top);
+
+                    }
+                })
+                return
+            }
+            var  score = 0;
+            bitian(function () {
+                var data = JSON.parse(JSON.stringify(answerJSON))
+                for(var key in data){
+                    if(data[key].answer == '会说' && data[key].answerid == 2){
+                        score = score+=1
+                    }
+                    answerList.push(data[key])
+                }
+                var  params = {
+                    resultList:JSON.stringify(answerList),
+                    count:score,
+                    mustId:mustId
+                }
+                if (disabled) return false
+                disabled = true
+                post('/addPcdiOutResult', params).then(
+                    function (res) {
+                        if (res.code == 200) {
+                            toAssess({pcdiCount: count+=1, pcdiState:4}).then(
+                                function (res) {
+                                    if (res.code == 200) {
+                                        window.location.href = 'allResult.html'
+                                    } else {
+                                        tips(res.msg);
+                                    }
+                                },
+                                function (err) {
+                                    console.log(err)
+                                }
+                            )
+                        } else {
+                            tips(res.msg);
+                        }
+                        disabled = false
+                    },
+                    function (err) {
+                        console.log(err)
+                    }
+                )
+            })
 
         });
+
+
+        // 查看答题说明
+        $('#note').on('click', function () {
+            $('#noteContent').show()
+        })
+
+        // 从答题说明返回
+        $('#backQuestion').on('click', function () {
+            $('#noteContent').hide()
+        })
     })
 </script>
 </body>
