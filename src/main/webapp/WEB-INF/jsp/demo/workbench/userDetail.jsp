@@ -786,7 +786,7 @@
                 var dayNounOption = JSON.parse(JSON.stringify(option))
                 dayNounOption.yAxis = {
                     splitNumber: 6,
-                    name: '正确率/百分比',
+                    name: ' 正确率/百分比',
                     max: 100
                 }
                 var X = []

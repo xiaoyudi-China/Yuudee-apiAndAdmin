@@ -166,7 +166,10 @@
                     "defaultContent": "",
                     "name": "sex",
                     "render": function (data, type, full, meta) {
-                        return data == "0" ? "男" : "女";
+                        if(data)
+                            return data == "0" ? "男" : "女";
+                        else
+                            return '-';
                     }
                 },
                 {
@@ -176,7 +179,10 @@
                     "defaultContent": "",
                     "name": "birthdate",
                     "render": function (data, type, full, meta) {
-                        return timestampToyyyy_MM_dd(data/1000);
+                        if(data)
+                            return timestampToyyyy_MM_dd(data/1000);
+                        else
+                            return '-';
                     }
                 }, {
                     "title": "家长手机号",

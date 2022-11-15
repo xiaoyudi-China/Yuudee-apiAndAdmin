@@ -191,6 +191,7 @@
             ajax: {
                 "url": "${path}/manage/roll/getpcdiMustList.ajax",
                 "data": function (d) {
+
                     d.type = type;
                     d.topictitle = topictitle;
                 }
