@@ -1,5 +1,7 @@
 package com.dkd.api;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.dkd.common.config.Constants;
 import com.dkd.common.constant.ResultStant;
 import com.dkd.common.emun.PCDIMustType;
@@ -593,6 +595,7 @@ public class PcdiAndAbcController {
     public Map addPcdiOutResult(HttpServletResponse response, @RequestParam(value = "token")String token,
                                 @RequestParam(value = "resultList")String resultList,
                                 @RequestParam(value = "mustId")Integer mustId,
+                                @RequestParam(value = "pcdiCache",required = false) Boolean pcdiCache,
                                 @RequestParam(value = "count", required = false)Integer count){
         response.addHeader("Access-Control-Allow-Origin", "*");
         response.addHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
@@ -605,12 +608,7 @@ public class PcdiAndAbcController {
             resultMap.put("data", "");
             return resultMap;
         }
-        if (IsObjectNullUtils.is(resultList)){
-            resultMap.put("code", ResultStant.RESULT_CODE_LOGIN);
-            resultMap.put("msg", "无法获取答题记录，请重试!");
-            resultMap.put("data", "");
-            return resultMap;
-        }
+
         List<Map<String ,Object>> list = new ArrayList<>();
         try {
             Gson gson=new Gson();
@@ -619,7 +617,7 @@ public class PcdiAndAbcController {
         }catch (Exception e){
             e.printStackTrace();
         }
-        if (IsObjectNullUtils.is(mustId) || IsObjectNullUtils.is(list) || list.size() < 1){
+        if (IsObjectNullUtils.is(mustId)) {
             resultMap.put("code", ResultStant.RESULT_CODE_LOGIN);
             resultMap.put("msg", "无法获取答题记录，请重试!");
             resultMap.put("data", "");
@@ -636,6 +634,18 @@ public class PcdiAndAbcController {
                     resultMap.put("data", "");
                     return resultMap;
                 }
+
+                System.out.println("开始缓存处理" + pcdiCache);
+                if (pcdiCache != null && pcdiCache) {
+                    String key = xydParents.getId() + "pcdiOptional";
+                    this.redisService.set(key, list, constants.getCacheTime());
+                    System.out.println("缓存pcdiOptional成功！" + list);
+                    resultMap.put("code", ResultStant.RESULT_CODE_SUCCESS);
+                    resultMap.put("msg", "缓存成功！");
+                    resultMap.put("data", "");
+                    return resultMap;
+                }
+
                 XydAnswerRecord xydmustRecord = xydAnswerRecordService.selectByPrimaryKey(mustId);
                 if(IsObjectNullUtils.is(xydmustRecord)){
                     resultMap.put("code", ResultStant.RESULT_CODE_LOGIN);
@@ -835,6 +845,13 @@ public class PcdiAndAbcController {
                     resultList = (List<Object>) redisService.get(key);
                     redisService.remove(key);
                 }
+
+                if ("2".equals(type)) {
+                    String key = xydParents.getId() + "pcdiOptional";
+                    resultList = (List<Object>)redisService.get(key);
+                    redisService.remove(key);
+                }
+
                 if ("3".equals(type)){
                     String key = xydParents.getId()+"abc";
                     resultList = (List<Object>) redisService.get(key);
