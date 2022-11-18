@@ -49,4 +49,6 @@ public interface XydAnswerRecordService {
     int selectTypeCount(String type);
 
     List<XydAnswerRecord> selectByTypeList(XydAnswerRecord xydAnswerRecord);
+
+    int updateAnewByPrimary(XydAnswerRecord xydAnswerRecord);
 }

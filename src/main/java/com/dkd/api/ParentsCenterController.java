@@ -1,5 +1,6 @@
 package com.dkd.api;
 
+import com.dkd.common.config.Constants;
 import com.dkd.common.constant.ResultStant;
 import com.dkd.common.utils.IsObjectNullUtils;
 import com.dkd.common.utils.RedisService;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletResponse;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -40,6 +42,8 @@ public class ParentsCenterController {
     private RedisTemplate redisTemplate;
     @Autowired
     private RedisService redisService;
+    @Autowired
+    private Constants constants;
 
     @RequestMapping(value = "/test")
     public Map mxgTest(){
@@ -55,7 +59,11 @@ public class ParentsCenterController {
      * 三个判断 ：是否完善儿童个人信息、是否pcdi问卷提醒、abc问卷提醒
      */
     @RequestMapping(value = "/toAssess")
-    public Map ParentsToAssess(@RequestParam(value = "token")String token){
+    public Map ParentsToAssess(HttpServletResponse response, @RequestParam(value = "token",required = false) String token, @RequestParam(value = "state",required = false) String state, @RequestParam(value = "pcdiCount",required = false) String pcdiCount, @RequestParam(value = "pcdiState",required = false) String pcdiState, @RequestParam(value = "userId",required = false) String userId, @RequestParam(value = "abcCount",required = false) String abcCount, @RequestParam(value = "abcState",required = false) String abcState) {
+        response.addHeader("Access-Control-Allow-Origin", "*");
+        response.addHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+        response.setHeader("Access-Control-Allow-Headers", "x-requested-with");
+        response.addHeader("Access-Control-Max-Age", "1800");
         Map<String, Object> resultMap = new HashMap();
         Map<String, Object> map = new HashMap<>();
         if (IsObjectNullUtils.is(token)){
@@ -65,11 +73,112 @@ public class ParentsCenterController {
             return resultMap;
         }
         try {
-            TokenProccessor.getInstance().setRedisTemplate(redisTemplate);
-            Object object = TokenProccessor.getInstance().getValueByKeyTheRedis(token);
-            if (!IsObjectNullUtils.is(object) && object instanceof XydParents) {
-                XydParents xydParents = xydParentsService.selectByPrimaryKey(((XydParents) object).getId());
-                if (!IsObjectNullUtils.is(xydParents)){
+            if (pcdiCount != null) {
+                String key = userId + "pcdiCount";
+                System.out.println("key=" + key);
+                this.redisService.set(key, pcdiCount, constants.getStateTime());
+                resultMap.put("code", ResultStant.RESULT_CODE_SUCCESS);
+                resultMap.put("msg", "pcdiCount缓存成功！");
+                resultMap.put("data", "");
+            } else {
+                String key = userId + "pcdiCount";
+                TokenProccessor.getInstance().setRedisTemplate(redisTemplate);
+                Object object = TokenProccessor.getInstance().getValueByKeyTheRedis(key);
+                if (IsObjectNullUtils.is(object)) {
+                    pcdiCount = "0";
+                } else {
+                    pcdiCount = (String) object;
+                }
+
+                map.put("pcdiCount", pcdiCount);
+                resultMap.put("data", map);
+            }
+
+            if (pcdiState != null) {
+                String key = userId + "pcdiState";
+                this.redisService.set(key, pcdiState, constants.getStateTime());
+                resultMap.put("code", ResultStant.RESULT_CODE_SUCCESS);
+                resultMap.put("msg", "pcdiState缓存成功！");
+                resultMap.put("data", "");
+            } else {
+                String key = userId + "pcdiState";
+                TokenProccessor.getInstance().setRedisTemplate(this.redisTemplate);
+                Object object = TokenProccessor.getInstance().getValueByKeyTheRedis(key);
+                if (IsObjectNullUtils.is(object)) {
+                    pcdiState = "0";
+                } else {
+                    pcdiState = (String) object;
+                }
+
+                map.put("pcdiState", pcdiState);
+                resultMap.put("data", map);
+            }
+        } catch (Exception exception) {
+            resultMap.put("code", ResultStant.RESULT_CODE_SERVICE);
+            resultMap.put("msg", "pcdi提示信息有误！");
+            resultMap.put("data", "");
+            exception.printStackTrace();
+        }
+
+        try {
+            if (abcCount != null) {
+                String key = userId + "abcCount";
+                this.redisService.set(key, abcCount, this.constants.getStateTime());
+                resultMap.put("code", ResultStant.RESULT_CODE_SUCCESS);
+                resultMap.put("msg", "abcCount缓存成功！");
+                resultMap.put("data", "");
+            } else {
+                String key = userId + "abcCount";
+                TokenProccessor.getInstance().setRedisTemplate(this.redisTemplate);
+                Object object = TokenProccessor.getInstance().getValueByKeyTheRedis(key);
+                if (IsObjectNullUtils.is(object)) {
+                    abcCount = "0";
+                } else {
+                    abcCount = (String) object;
+                }
+
+                map.put("abcCount", abcCount);
+                resultMap.put("data", map);
+            }
+
+            if (abcState != null) {
+                String key = userId + "abcState";
+                this.redisService.set(key, abcState, this.constants.getStateTime());
+                resultMap.put("code", ResultStant.RESULT_CODE_SUCCESS);
+                resultMap.put("msg", "abcState缓存成功！");
+                resultMap.put("data", "");
+            } else {
+                String key = userId + "abcState";
+                TokenProccessor.getInstance().setRedisTemplate(this.redisTemplate);
+                Object object = TokenProccessor.getInstance().getValueByKeyTheRedis(key);
+                if (IsObjectNullUtils.is(object)) {
+                    abcState = "0";
+                } else {
+                    abcState = (String) object;
+                }
+
+                map.put("abcState", abcState);
+                resultMap.put("data", map);
+            }
+        } catch (Exception exception) {
+            resultMap.put("code", ResultStant.RESULT_CODE_SERVICE);
+            resultMap.put("msg", "abc提示信息有误！");
+            resultMap.put("data", "");
+            exception.printStackTrace();
+        }
+
+        try {
+            TokenProccessor.getInstance().setRedisTemplate(this.redisTemplate);
+            Object tokenObject = TokenProccessor.getInstance().getValueByKeyTheRedis(token);
+            if (!IsObjectNullUtils.is(tokenObject) && tokenObject instanceof XydParents) {
+                XydParents xydParents = this.xydParentsService.selectByPrimaryKey(((XydParents) tokenObject).getId());
+                if (!IsObjectNullUtils.is(state) && "1".equals(state)) {
+                    XydAnswerRecord xydAnswerRecord = this.xydAnswerRecordService.selectByReportInfoList(xydParents, "3");
+                    xydAnswerRecord.setAnew("0");
+                    xydAnswerRecordService.updateAnewByPrimary(xydAnswerRecord);
+                }
+
+                if (!IsObjectNullUtils.is(xydParents)) {
                     XydSystemRemind xydSystemRemind = new XydSystemRemind();
                     xydSystemRemind.setIsRemind("1");
                     xydSystemRemind.setParentsId(xydParents.getId());
@@ -83,7 +192,12 @@ public class ParentsCenterController {
                     }
                     String pcdiStatus = "";
                     String abcStatus = "";
-                   //判断是否需要填写pcdi
+
+                    if (redisService.get(xydParents.getId() + "pcdiOptional") != null) {
+                        map.put("pcdiIsRemind", "5");
+                    }
+
+                    //判断是否需要填写pcdi
                     xydSystemRemind.setType("1");
                     xydSystemRemind.setIsRemind("1");
                     List<XydSystemRemind> pcdiList = xydSystemRemindService.selectList(xydSystemRemind);

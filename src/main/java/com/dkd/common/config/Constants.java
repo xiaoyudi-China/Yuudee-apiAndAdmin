@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 @PropertySource("classpath:/properties/constants.properties")
 public class Constants {
     public long cacheTime;
-
+    public long stateTime;
     public int countTime;
 
     public int getCountTime() {
@@ -21,6 +21,14 @@ public class Constants {
 
     public void setCountTime(int countTime) {
         this.countTime = countTime;
+    }
+
+    public long getStateTime() {
+        return stateTime;
+    }
+
+    public void setStateTime(long stateTime) {
+        this.stateTime = stateTime;
     }
 
     public long getCacheTime() {

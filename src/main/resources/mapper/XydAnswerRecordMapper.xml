@@ -578,4 +578,10 @@
     and type in ("1", "2") AND is_valid ="1"
     ORDER BY create_time DESC
   </select>
+
+  <update id="updateAnewByPrimary" parameterType="com.dkd.model.XydAnswerRecord">
+    update xyd_answer_record
+    set anew = #{anew,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
 </mapper>

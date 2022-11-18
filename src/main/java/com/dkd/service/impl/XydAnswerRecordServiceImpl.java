@@ -439,4 +439,9 @@ public class XydAnswerRecordServiceImpl implements XydAnswerRecordService{
             return "2";
         }
     }
+
+    @Override
+    public int updateAnewByPrimary(XydAnswerRecord xydAnswerRecord) {
+        return xydAnswerRecordMapper.updateAnewByPrimary(xydAnswerRecord);
+    }
 }

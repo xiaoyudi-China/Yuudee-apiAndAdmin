@@ -36,4 +36,6 @@ public interface XydAnswerRecordMapper extends BaseMapper<XydAnswerRecord>{
     List<XydAnswerRecord> selectByTypeList(XydAnswerRecord xydAnswerRecord);
     //更具类型查询问卷
     List<XydAnswerRecord> selectByArrTypeList(@Param("parentsId") Integer parentsId, @Param("types")String[] types);
+
+    int updateAnewByPrimary(XydAnswerRecord xydAnswerRecord);
 }
